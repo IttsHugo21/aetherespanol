@@ -64,7 +64,7 @@
             <div class="pt-6">
                 <p class="text-lg text-gray-500 mb-6 font-medium">Por Hugo Pérez — Aether</p>
                 <button 
-                    onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})"
+                    onclick="openBookingModal()"
                     class="glow-button bg-[#00ff9d] text-black px-10 py-5 rounded-full text-xl font-bold uppercase tracking-wide hover:bg-[#05eb92]">
                     AGENDA TU LLAMADA GRATUITA
                 </button>
@@ -213,6 +213,7 @@
             
             <div class="pt-6">
                 <button 
+                    onclick="openBookingModal()"
                     class="glow-button bg-[#00ff9d] text-black px-12 py-6 rounded-full text-2xl font-black uppercase tracking-wider hover:bg-[#05eb92]">
                     AGENDA TU LLAMADA AHORA
                 </button>
@@ -223,15 +224,174 @@
         </div>
     </section>
 
-    <footer class="py-12 px-6 border-t border-gray-900 text-center text-gray-500 text-sm bg-black">
-        <div class="max-w-7xl mx-auto space-y-4">
-            <p class="text-gray-300 font-bold tracking-widest uppercase">Hugo Pérez • Aether © 2026</p>
-            <p class="text-xs uppercase tracking-widest text-[#00ff9d]">Alta Ingeniería en Diseño Web Premium</p>
-            <div class="pt-4 flex justify-center text-xs italic">
-                <span>Zaragoza, España</span>
+    <!-- MODAL DE CALENDARIO / RESERVA -->
+    <div id="modal-booking" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity" onclick="closeModal('modal-booking')"></div>
+        <div class="relative bg-[#0f0f0f] border border-emerald-500/20 w-full max-w-xl overflow-hidden rounded-[32px] shadow-2xl flex flex-col">
+            
+            <!-- Header Modal -->
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-[#141414]">
+                <div>
+                    <h3 class="text-xl font-bold text-[#00ff9d]">Agendar Sesión Estratégica</h3>
+                    <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">30 minutos • Hugo Pérez</p>
+                </div>
+                <button onclick="closeModal('modal-booking')" class="text-gray-500 hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6 overflow-y-auto max-h-[70vh]">
+                <div>
+                    <label class="text-sm font-semibold text-gray-400 uppercase tracking-tighter mb-3 block">1. Selecciona el día</label>
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center text-xs">
+                        <!-- Generado por JS -->
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-sm font-semibold text-gray-400 uppercase tracking-tighter mb-3 block">2. Selecciona la hora (CET)</label>
+                    <div id="time-grid" class="grid grid-cols-3 gap-2">
+                        <!-- Generado por JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Modal -->
+            <div class="p-6 bg-[#141414] border-t border-gray-800">
+                <button 
+                    id="confirm-booking-btn"
+                    disabled
+                    onclick="sendWhatsAppBooking()"
+                    class="w-full py-4 bg-emerald-500 text-black font-black uppercase tracking-widest rounded-2xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#00ff9d] transition-all transform active:scale-95">
+                    Confirmar y Agendar
+                </button>
+                <p class="text-[10px] text-gray-500 text-center mt-3 uppercase tracking-tighter">Se abrirá WhatsApp para finalizar la reserva</p>
             </div>
         </div>
-    </footer>
+    </div>
 
+    <!-- ... existing code (other modals) ... -->
+
+    <script>
+        let selectedDate = null;
+        let selectedTime = null;
+        const MY_PHONE = "34640230147";
+
+        function openBookingModal() {
+            openModal('modal-booking');
+            generateCalendar();
+        }
+
+        function generateCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+            
+            // Días de la semana
+            ['L', 'M', 'X', 'J', 'V', 'S', 'D'].forEach(d => {
+                grid.innerHTML += `<div class="text-gray-600 font-bold mb-2">${d}</div>`;
+            });
+
+            const today = new Date();
+            // Mostrar los próximos 14 días (excluyendo domingos por ejemplo)
+            for (let i = 1; i <= 21; i++) {
+                const date = new Date();
+                date.setDate(today.getDate() + i);
+                
+                const isSunday = date.getDay() === 0;
+                const dayNum = date.getDate();
+                const month = date.toLocaleDateString('es-ES', { month: 'short' });
+
+                if (isSunday) {
+                    grid.innerHTML += `<div class="p-3 text-gray-800 cursor-not-allowed">${dayNum}</div>`;
+                } else {
+                    const dateStr = date.toISOString().split('T')[0];
+                    grid.innerHTML += `
+                        <button 
+                            onclick="selectDay(this, '${dateStr}')"
+                            class="day-btn p-2 rounded-xl border border-gray-800 hover:border-emerald-500/50 transition-all flex flex-col items-center">
+                            <span class="text-gray-500 text-[10px] uppercase">${month}</span>
+                            <span class="text-lg font-bold text-white">${dayNum}</span>
+                        </button>`;
+                }
+            }
+        }
+
+        function selectDay(btn, date) {
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-500'));
+            document.querySelectorAll('.day-btn').forEach(b => {
+                b.querySelector('span:last-child').classList.add('text-white');
+                b.querySelector('span:first-child').classList.add('text-gray-500');
+            });
+
+            btn.classList.add('bg-emerald-500', 'border-emerald-500');
+            btn.querySelector('span:last-child').classList.replace('text-white', 'text-black');
+            btn.querySelector('span:first-child').classList.replace('text-gray-500', 'text-black');
+            
+            selectedDate = date;
+            generateTimeSlots();
+            checkSelection();
+        }
+
+        function generateTimeSlots() {
+            const grid = document.getElementById('time-grid');
+            grid.innerHTML = '';
+            const slots = ["09:00", "10:00", "11:00", "12:00", "16:00", "17:00", "18:00", "19:00"];
+            
+            slots.forEach(time => {
+                grid.innerHTML += `
+                    <button 
+                        onclick="selectTime(this, '${time}')"
+                        class="time-btn py-3 px-4 rounded-xl border border-gray-800 text-gray-400 font-bold hover:border-emerald-500/50 transition-all">
+                        ${time}
+                    </button>`;
+            });
+        }
+
+        function selectTime(btn, time) {
+            document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-500'));
+            btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-500');
+            selectedTime = time;
+            checkSelection();
+        }
+
+        function checkSelection() {
+            const btn = document.getElementById('confirm-booking-btn');
+            if (selectedDate && selectedTime) {
+                btn.disabled = false;
+                btn.classList.add('animate-pulse');
+            }
+        }
+
+        function sendWhatsAppBooking() {
+            const dateObj = new Date(selectedDate);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const dateFormatted = dateObj.toLocaleDateString('es-ES', options);
+            
+            const message = `Hola Hugo! 👋 Me gustaría agendar la sesión estratégica con Aether Design.%0A%0A📅 *Fecha:* ${dateFormatted}%0A🕒 *Hora:* ${selectedTime}h (CET)%0A%0A¿Me confirmas si está disponible?`;
+            
+            window.open(`https://wa.me/${MY_PHONE}?text=${message}`, '_blank');
+            closeModal('modal-booking');
+        }
+
+        // Funciones de modal existentes (actualizadas)
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            if(id === 'modal-booking') {
+                selectedDate = null;
+                selectedTime = null;
+                document.getElementById('confirm-booking-btn').disabled = true;
+            }
+        }
+        
+        // ... rest of existing script ...
+    </script>
 </body>
 </html>
