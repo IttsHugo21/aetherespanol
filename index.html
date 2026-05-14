@@ -662,16 +662,55 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
-      .pq-grid { grid-template-columns: 1fr; }
-      .sm-grid { grid-template-columns: 1fr; }
+      /* Ajustes de cuadrícula */
+      .pq-grid, .sm-grid, .testimonios-grid { grid-template-columns: 1fr; gap: 4rem; }
       .proceso-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
       .proceso-steps::before { display: none; }
-      .testimonios-grid { grid-template-columns: 1fr; }
+      
+      /* Reducción de espaciados gigantes */
+      #para-quien, #proceso, #testimonios, #sobre-mi { padding: 6rem 5vw; }
+      #cta-final { padding: 7rem 5vw; }
+      
+      /* Tipografía adaptada a tablet */
+      .hero-headline { font-size: clamp(3rem, 8vw, 4.5rem); }
+      .section-title { font-size: clamp(2.2rem, 6vw, 3rem); }
+      .cta-big { font-size: clamp(2.4rem, 6vw, 4rem); }
     }
+
     @media (max-width: 600px) {
-      .proceso-steps { grid-template-columns: 1fr; }
-      .hero-headline { font-size: 3rem; }
-      footer { flex-direction: column; align-items: flex-start; }
+      /* Reducción de espaciados para móvil */
+      #para-quien, #proceso, #testimonios, #sobre-mi { padding: 4rem 5vw; }
+      #cta-final { padding: 5rem 5vw; }
+      #hero { padding-bottom: 4vh; }
+
+      /* Ajustes del Hero */
+      .hero-glow { width: 100vw; height: 100vw; top: 20%; }
+      .hero-badge { font-size: 0.65rem; padding: 0.35rem 0.8rem; margin-bottom: 2rem; }
+      .hero-headline { font-size: 2.6rem; max-width: 100%; }
+      .hero-sub { font-size: 0.95rem; margin-top: 1.5rem; }
+      /* Botones ocupando todo el ancho en móvil para mejor interacción */
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 1.2rem; margin-top: 2.5rem; }
+      .btn-primary { text-align: center; padding: 1rem 1.5rem; }
+      .btn-ghost { justify-content: center; }
+      .hero-scroll { display: none; } /* Oculto para ahorrar espacio visual */
+
+      /* Navegación */
+      nav { padding: 1rem 5vw; }
+      .nav-logo { font-size: 1.3rem; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
+
+      /* Componentes interiores */
+      .proceso-steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pq-card { padding: 1.2rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .testimonio-card { padding: 1.8rem 1.4rem; }
+      .testimonio-text { font-size: 1.15rem; }
+      
+      /* CTA Final */
+      .cta-perks { flex-direction: column; gap: 1.2rem; align-items: flex-start; margin: 3rem auto 0; width: fit-content; }
+      
+      /* Footer */
+      footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2rem 5vw; }
+      .footer-links { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
