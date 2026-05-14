@@ -1,606 +1,1110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aether Studio — Webs que venden</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aether — Webs para Infoproductores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-:root{
-  --bg:#04100a;
-  --bg2:#071710;
-  --bg3:#0d2117;
-  --green:#00e87c;
-  --green-dim:#00b860;
-  --green-muted:#1a4d30;
-  --green-glow:rgba(0,232,124,0.12);
-  --text:#edfff5;
-  --text-mid:#9abfaa;
-  --text-dim:#567565;
-  --border:rgba(0,232,124,0.12);
-  --border-mid:rgba(0,232,124,0.22);
-}
+  <style>
+    :root {
+      --bg:        #060d09;
+      --bg2:       #0c1810;
+      --bg3:       #111f14;
+      --green:     #2e6b45;
+      --green-mid: #3d8a5a;
+      --green-lit: #5cb87a;
+      --accent:    #a8e6be;
+      --text:      #dfe8dc;
+      --text-dim:  #7a9180;
+      --white:     #f2f7f3;
+      --line:      rgba(94,160,118,0.18);
+    }
 
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ─── NAV ─── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:all .4s}
-nav.scrolled{background:rgba(4,16,10,.85);backdrop-filter:blur(16px);border-color:var(--border)}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:.08em;color:var(--text);text-decoration:none}
-.nav-logo span{color:var(--green)}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{color:var(--text-mid);text-decoration:none;font-size:.875rem;letter-spacing:.04em;transition:color .2s}
-.nav-links a:hover{color:var(--green)}
-.nav-cta{background:var(--green);color:#04100a;padding:.6rem 1.4rem;border-radius:4px;text-decoration:none;font-size:.875rem;font-weight:600;letter-spacing:.04em;transition:all .2s}
-.nav-cta:hover{background:#fff;color:#04100a}
+    html { scroll-behavior: smooth; }
 
-/* ─── HERO ─── */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:8rem 2rem 4rem;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 60%,rgba(0,232,124,.07) 0%,transparent 70%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 20%,transparent 80%)}
-.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--green-glow);border:1px solid var(--border-mid);border-radius:100px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:2rem;animation:fadeUp .8s ease both}
-.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;color:var(--text);margin-bottom:1.5rem;animation:fadeUp .8s .1s ease both}
-.hero h1 em{color:var(--green);font-style:italic}
-.hero-sub{max-width:560px;margin:0 auto 2.5rem;color:var(--text-mid);font-size:1.1rem;font-weight:300;animation:fadeUp .8s .2s ease both}
-.hero-sub strong{color:var(--text);font-weight:500}
-.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
-.btn-primary{background:var(--green);color:#04100a;padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.02em;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
-.btn-primary:hover{background:#fff;transform:translateY(-2px)}
-.btn-secondary{border:1px solid var(--border-mid);color:var(--text-mid);padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:400;font-size:1rem;transition:all .25s}
-.btn-secondary:hover{border-color:var(--green);color:var(--green)}
-.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text-dim);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeUp .8s .6s ease both}
-.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--green),transparent);animation:scrollLine 2s ease infinite}
-@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* ─── STATS ─── */
-.stats{padding:3rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;text-align:center}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--green);line-height:1}
-.stat-label{color:var(--text-dim);font-size:.85rem;letter-spacing:.06em;margin-top:.3rem}
+    /* ─── NOISE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-/* ─── PROBLEM ─── */
-.section{padding:6rem 2rem}
-.section-inner{max-width:1100px;margin:0 auto}
-.label{display:inline-block;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
-.heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:600;line-height:1.1;color:var(--text)}
-.heading em{color:var(--green);font-style:italic}
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 5vw;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(6,13,9,0.88);
+      backdrop-filter: blur(14px);
+      border-color: var(--line);
+    }
 
-.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:3rem}
-.problem-item{background:var(--bg2);padding:2.5rem;transition:background .3s}
-.problem-item:hover{background:var(--bg3)}
-.problem-icon{font-size:1.8rem;margin-bottom:1rem;filter:grayscale(1)}
-.problem-title{font-size:1.1rem;font-weight:500;color:var(--text);margin-bottom:.5rem}
-.problem-desc{color:var(--text-mid);font-size:.9rem;line-height:1.6}
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--green-lit); }
 
-/* ─── SERVICES ─── */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
-.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2.5rem;transition:all .3s;position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);transform:scaleX(0);transition:transform .4s}
-.service-card:hover{border-color:var(--border-mid);transform:translateY(-4px)}
-.service-card:hover::before{transform:scaleX(1)}
-.service-tag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);background:var(--green-glow);border:1px solid var(--border);border-radius:100px;padding:.25rem .8rem;display:inline-block;margin-bottom:1.5rem}
-.service-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--green-muted);line-height:1;margin-bottom:1rem}
-.service-title{font-size:1.3rem;font-weight:500;color:var(--text);margin-bottom:.75rem}
-.service-desc{color:var(--text-mid);font-size:.9rem;line-height:1.65}
-.service-features{margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem}
-.service-features li{list-style:none;display:flex;align-items:center;gap:.6rem;color:var(--text-mid);font-size:.85rem}
-.service-features li::before{content:'→';color:var(--green);font-size:.8rem}
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green-lit);
+      border: none;
+      padding: 0.65rem 1.4rem;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
-/* ─── PROCESS ─── */
-.process{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:3.5rem;position:relative}
-.process-steps::before{content:'';position:absolute;top:2.2rem;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--border-mid),var(--border-mid),transparent)}
-.step{text-align:center;padding:2rem 1.5rem;position:relative}
-.step-num{width:3rem;height:3rem;border-radius:50%;background:var(--bg);border:1px solid var(--border-mid);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--green);margin:0 auto 1.5rem;position:relative;z-index:1}
-.step-title{font-size:1rem;font-weight:500;color:var(--text);margin-bottom:.5rem}
-.step-desc{color:var(--text-dim);font-size:.85rem;line-height:1.6}
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 5vw 8vh;
+      overflow: hidden;
+    }
 
-/* ─── TESTIMONIALS ─── */
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
-.testi-featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
-.testi-masonry{columns:3;column-gap:1.5rem;margin-top:1.5rem}
-.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;break-inside:avoid;margin-bottom:1.5rem}
-.testi-quote{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--text);line-height:1.5;margin-bottom:1.5rem}
-.testi-quote::before{content:'\201C';color:var(--green);font-size:2rem;line-height:0;vertical-align:-0.4em;margin-right:.2rem}
-.testi-author{display:flex;align-items:center;gap:1rem}
-.testi-avatar{width:2.8rem;height:2.8rem;border-radius:50%;background:var(--green-muted);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.9rem;color:var(--green);border:1px solid var(--border-mid)}
-.testi-name{font-weight:500;font-size:.9rem;color:var(--text)}
-.testi-role{font-size:.8rem;color:var(--text-dim)}
-.stars{color:var(--green);font-size:.9rem;margin-bottom:1rem;letter-spacing:2px}
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 60%, black 30%, transparent 100%);
+    }
 
-/* ─── CTA SECTION ─── */
-.cta-section{text-align:center;padding:8rem 2rem;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(0,232,124,.06) 0%,transparent 70%)}
-.cta-section .heading{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1.5rem}
-.cta-section .sub{max-width:520px;margin:0 auto 3rem;color:var(--text-mid);font-size:1.05rem}
-.cta-guarantee{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-dim);font-size:.8rem;margin-top:1.5rem}
-.cta-guarantee::before{content:'✓';color:var(--green)}
+    .hero-glow {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(46,107,69,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-/* ─── FOOTER ─── */
-footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
-.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text-mid)}
-.footer-logo span{color:var(--green)}
-.footer-links{display:flex;gap:2rem}
-.footer-links a{color:var(--text-dim);text-decoration:none;font-size:.85rem;transition:color .2s}
-.footer-links a:hover{color:var(--green)}
-.footer-copy{color:var(--text-dim);font-size:.8rem;width:100%;text-align:center;padding-top:2rem;border-top:1px solid var(--border)}
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-lit);
+      border: 1px solid var(--green);
+      padding: 0.4rem 1rem;
+      margin-bottom: 2.5rem;
+      width: fit-content;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green-lit);
+      animation: pulse 2s infinite;
+    }
 
-/* ─── ANIMS ─── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:none}
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
+      font-weight: 300;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      max-width: 18ch;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--green-lit);
+    }
 
-/* ─── RESPONSIVE ─── */
-@media(max-width:900px){
-  .testi-masonry{columns:2}
-}
-@media(max-width:700px){
-  .nav-links{display:none}
-  .problem-grid{grid-template-columns:1fr}
-  .process-steps::before{display:none}
-  .testi-featured-grid{grid-template-columns:1fr}
-  .testi-masonry{columns:1}
-  footer{flex-direction:column;text-align:center}
-  .footer-links{justify-content:center}
-  #sobre-mi .section-inner > div{grid-template-columns:1fr!important;gap:3rem!important}
-}
-</style>
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
+      font-weight: 400;
+      color: var(--text-dim);
+      max-width: 52ch;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-actions {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.8s forwards;
+    }
+
+    .btn-primary {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--green-lit);
+      border: none;
+      padding: 1rem 2.4rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      transform: translateX(-100%);
+      transition: transform 0.3s;
+    }
+    .btn-primary:hover::after { transform: translateX(0); }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(92,184,122,0.25);
+    }
+
+    .btn-ghost {
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--green-lit); }
+    .btn-ghost svg { transition: transform 0.2s; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      right: 5vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      opacity: 0;
+      animation: fadeIn 1s 1.2s forwards;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--green-lit), transparent);
+      animation: scrollDrop 2s 1.5s infinite;
+    }
+
+    /* ─── STRIP ─── */
+    .strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--bg2);
+      padding: 1.2rem 5vw;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .strip-track {
+      display: flex;
+      gap: 4rem;
+      animation: marquee 18s linear infinite;
+    }
+    .strip-item {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .strip-dot { width: 4px; height: 4px; background: var(--green-lit); border-radius: 50%; }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green-lit);
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+    }
+    .section-title em { font-style: italic; color: var(--green-lit); }
+
+    /* ─── PARA QUIÉN ─── */
+    #para-quien {
+      padding: 9rem 5vw;
+    }
+    .pq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5vw;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .pq-left .section-title { max-width: 18ch; }
+    .pq-desc {
+      margin-top: 1.8rem;
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 44ch;
+    }
+    .pq-cta { margin-top: 2.8rem; }
+
+    .pq-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .pq-card {
+      background: var(--bg2);
+      border: 1px solid var(--line);
+      padding: 1.6rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.4rem;
+      transition: border-color 0.3s, transform 0.3s;
+      cursor: default;
+    }
+    .pq-card:hover {
+      border-color: var(--green-mid);
+      transform: translateX(6px);
+    }
+    .pq-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--bg3);
+      border: 1px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
+    }
+    .pq-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .pq-card-desc {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    /* ─── PROCESO ─── */
+    #proceso {
+      padding: 9rem 5vw;
+    }
+    .proceso-header { margin-bottom: 5rem; }
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .proceso-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: var(--line);
+    }
+    .proceso-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--green);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--green-lit);
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s, color 0.3s;
+    }
+    .proceso-step:hover .step-circle {
+      background: var(--green);
+      color: var(--white);
+    }
+    .step-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .step-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    /* ─── TESTIMONIO ─── */
+    #testimonios {
+      padding: 9rem 5vw;
+      background: var(--bg2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--line);
+      margin-top: 4rem;
+    }
+    .testimonio-card {
+      background: var(--bg);
+      padding: 2.6rem 2.2rem;
+    }
+    .testimonio-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1.2rem;
+    }
+    .star { color: var(--green-lit); font-size: 0.9rem; }
+    .testimonio-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.55;
+      margin-bottom: 1.8rem;
+    }
+    .testimonio-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--green-lit);
+    }
+    .author-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .author-role {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── SOBRE MÍ ─── */
+    #sobre-mi {
+      padding: 9rem 5vw;
+      background: var(--bg);
+    }
+    .sm-grid {
+      display: grid;
+      grid-template-columns: 4fr 5fr;
+      gap: 6vw;
+      align-items: center;
+    }
+    .sm-image-wrapper {
+      padding: 1rem;
+      background: var(--bg2);
+      border: 1px solid var(--line);
+    }
+    .sm-image-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--line);
+      filter: grayscale(15%);
+    }
+    .sm-text {
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+    .sm-text p { margin-bottom: 1.4rem; }
+    .sm-text strong { color: var(--white); font-weight: 600; }
+
+    /* ─── CTA FINAL ─── */
+    #cta-final {
+      padding: 11rem 5vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(46,107,69,0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 6rem);
+      font-weight: 300;
+      line-height: 1.08;
+      color: var(--white);
+      max-width: 22ch;
+      margin: 0 auto 2rem;
+    }
+    .cta-big em { font-style: italic; color: var(--green-lit); }
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--text-dim);
+      max-width: 44ch;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .cta-perks {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .cta-perk {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+    .cta-perk-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--green-lit);
+      flex-shrink: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2.5rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--green-lit); }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green-lit); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes scrollDrop {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .pq-grid { grid-template-columns: 1fr; }
+      .sm-grid { grid-template-columns: 1fr; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .proceso-steps::before { display: none; }
+      .testimonios-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .proceso-steps { grid-template-columns: 1fr; }
+      .hero-headline { font-size: 3rem; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">Æther<span>.</span></a>
-  <a href="#contacto" class="nav-cta">Hablemos →</a>
-</nav>
+  <!-- ─── NAV ─── -->
+  <nav id="nav">
+    <div class="nav-logo">A<span>e</span>ther</div>
+    <a href="#cta-final" class="nav-cta">Quiero vender más →</a>
+  </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div style="position:relative;z-index:1;max-width:820px">
-    <div class="hero-badge">Disponible para nuevos proyectos</div>
-    <h1>Tu negocio merece<br>una web que <em>venda</em></h1>
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-badge">Webs para gente que quiere hacer dinero</div>
+
+    <h1 class="hero-headline">
+      Si tu web no vende,<br>tienes un folleto<br><em>muy caro.</em>
+    </h1>
+
     <p class="hero-sub">
-      Diseño webs de alta conversión para negocios digitales.<br>
-      <strong>Más clientes. Más ingresos. Sin complicaciones.</strong>
+      Hago webs para infoproductores. Pero no para que te digan "qué bonita". Las hago para que la gente saque la tarjeta de crédito. En 48 horas. Y sin mareos.
     </p>
+
     <div class="hero-actions">
-      <a href="#contacto" class="btn-primary">Quiero mi web ↗</a>
-      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+      <a href="#cta-final" class="btn-primary">Agenda llamada (es gratis) →</a>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ─── STRIP ─── -->
+  <div class="strip">
+    <div class="strip-track">
+      <span class="strip-item"><span class="strip-dot"></span>Cero plantillas de mierda</span>
+      <span class="strip-item"><span class="strip-dot"></span>Textos que venden</span>
+      <span class="strip-item"><span class="strip-dot"></span>Lista en 48h</span>
+      <span class="strip-item"><span class="strip-dot"></span>Hosting incluido</span>
+      <span class="strip-item"><span class="strip-dot"></span>Sin letras pequeñas</span>
+      <span class="strip-item"><span class="strip-dot"></span>Alta conversión</span>
+      <span class="strip-item"><span class="strip-dot"></span>Cero plantillas de mierda</span>
+      <span class="strip-item"><span class="strip-dot"></span>Textos que venden</span>
+      <span class="strip-item"><span class="strip-dot"></span>Lista en 48h</span>
+      <span class="strip-item"><span class="strip-dot"></span>Hosting incluido</span>
+      <span class="strip-item"><span class="strip-dot"></span>Sin letras pequeñas</span>
+      <span class="strip-item"><span class="strip-dot"></span>Alta conversión</span>
     </div>
   </div>
-  <div class="hero-scroll">Scroll</div>
-</section>
 
-<!-- STATS -->
-<section class="stats reveal">
-  <div class="stats-inner">
-    <div>
-      <div class="stat-num">+40</div>
-      <div class="stat-label">Proyectos entregados</div>
-    </div>
-    <div>
-      <div class="stat-num">3×</div>
-      <div class="stat-label">Más conversiones promedio</div>
-    </div>
-    <div>
-      <div class="stat-num">48h</div>
-      <div class="stat-label">Primera versión lista</div>
-    </div>
-    <div>
-      <div class="stat-num">100%</div>
-      <div class="stat-label">Clientes satisfechos</div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEMA -->
-<section class="section reveal" id="problema">
-  <div class="section-inner">
-    <span class="label">El problema</span>
-    <h2 class="heading">¿Tu web actual te está<br><em>costando</em> clientes?</h2>
-    <div class="problem-grid">
-      <div class="problem-item">
-        <div class="problem-icon">😩</div>
-        <div class="problem-title">Diseño anticuado</div>
-        <div class="problem-desc">La primera impresión lo es todo. Si tu web parece del 2015, tus clientes potenciales se van antes de leer nada.</div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-icon">🐌</div>
-        <div class="problem-title">Carga lenta</div>
-        <div class="problem-desc">El 53% de los usuarios abandona una web que tarda más de 3 segundos. Cada segundo perdido = dinero perdido.</div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-icon">📉</div>
-        <div class="problem-title">Sin estrategia de conversión</div>
-        <div class="problem-desc">Una web bonita que no convierte es un gasto, no una inversión. Sin CTA claros y estructura, el tráfico no se traduce en ventas.</div>
-      </div>
-      <div class="problem-item">
-        <div class="problem-icon">📱</div>
-        <div class="problem-title">No adaptada al móvil</div>
-        <div class="problem-desc">Más del 70% del tráfico es móvil. Si tu web no funciona en el teléfono, estás regalando clientes a tu competencia.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICIOS -->
-<section class="section reveal" id="servicios" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-  <div class="section-inner">
-    <span class="label">Servicios</span>
-    <h2 class="heading">Todo lo que necesitas<br>para <em>crecer</em> online</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <span class="service-tag">Más popular</span>
-        <div class="service-num">01</div>
-        <div class="service-title">Landing Page de Alta Conversión</div>
-        <div class="service-desc">Una página diseñada específicamente para convertir visitantes en clientes. Cada elemento tiene un propósito: que te llamen, compren o dejen sus datos.</div>
-        <ul class="service-features">
-          <li>Diseño personalizado y único</li>
-          <li>Optimizada para SEO desde el día 1</li>
-          <li>Velocidad de carga &lt;2 segundos</li>
-          <li>Integración con tu CRM o email</li>
-          <li>Entrega en 48h</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <span class="service-tag">Para marcas</span>
-        <div class="service-num">02</div>
-        <div class="service-title">Web Corporativa Completa</div>
-        <div class="service-desc">Presencia digital profesional que transmite autoridad y confianza. Tu negocio merece una web que compita con los grandes.</div>
-        <ul class="service-features">
-          <li>Hasta 8 páginas incluidas</li>
-          <li>Panel de administración propio</li>
-          <li>Blog integrado</li>
-          <li>Formularios y automatizaciones</li>
-          <li>Entrega en 14 días</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section class="section process reveal" id="proceso">
-  <div class="section-inner">
-    <span class="label">Cómo funciona</span>
-    <h2 class="heading">Tu nueva web en<br><em>4 pasos</em> simples</h2>
-    <div class="process-steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-title">Llamada inicial</div>
-        <div class="step-desc">30 minutos para entender tu negocio, tu cliente ideal y tus objetivos concretos.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-title">Propuesta y diseño</div>
-        <div class="step-desc">En 48h recibes una propuesta visual y estratégica hecha a medida para ti.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">Desarrollo</div>
-        <div class="step-desc">Construyo tu web con revisiones incluidas hasta que quedes 100% satisfecho.</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-title">Entrega y lanzamiento</div>
-        <div class="step-desc">Tu web online, con formación incluida y soporte post-lanzamiento.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section reveal" id="clientes" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-  <div class="section-inner">
-    <span class="label">Clientes</span>
-    <h2 class="heading">Más de 40 negocios ya<br><em>confían</em> en Aether</h2>
-    <p style="color:var(--text-mid);margin-top:1rem;max-width:500px">Esto es lo que dicen los que ya dieron el paso.</p>
-
-    <!-- fila destacada -->
-    <div class="testi-featured-grid">
-      <div class="testi-card" style="border-color:var(--border-mid);margin-bottom:0">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote" style="font-size:1.35rem">Llevaba meses con la web parada porque no me convencía ningún presupuesto. Con Hugo lo tuve claro desde la primera llamada y el resultado fue mejor de lo que esperaba.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">CR</div>
-          <div>
-            <div class="testi-name">Carlos Rodríguez</div>
-            <div class="testi-role">Consultor financiero · Madrid</div>
-          </div>
+  <!-- ─── PARA QUIÉN ─── -->
+  <section id="para-quien">
+    <div class="pq-grid">
+      <div class="pq-left reveal">
+        <div class="section-label">Para quién es esto</div>
+        <h2 class="section-title">
+          Para los que están hartos de<br>regalar su <em>conocimiento.</em>
+        </h2>
+        <p class="pq-desc">
+          Si vendes cursos, mentorías o servicios online, tu web tiene un único trabajo: vender por ti mientras tú haces otras cosas. Si ahora mismo no lo hace, estás perdiendo dinero cada minuto. Literalmente.
+        </p>
+        <div class="pq-cta">
+          <a href="#cta-final" class="btn-primary">Quiero mi web →</a>
         </div>
       </div>
-      <div class="testi-card" style="border-color:var(--border-mid);margin-bottom:0">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote" style="font-size:1.35rem">Tenía dudas porque nunca había invertido en una web de verdad. Al final me animé y estoy contento, se nota la diferencia respecto a lo que tenía antes.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">JP</div>
+
+      <div class="pq-cards reveal" style="transition-delay:0.15s">
+        <div class="pq-card">
+          <div class="pq-icon">🎓</div>
           <div>
-            <div class="testi-name">Javier Pardo</div>
-            <div class="testi-role">Negocio de ropa online · Barcelona</div>
+            <div class="pq-card-title">Creadores de cursos online</div>
+            <div class="pq-card-desc">Si la gente entra a tu curso y no compra, el problema no es tu producto. Es que no sabes venderlo. Te lo soluciono.</div>
+          </div>
+        </div>
+        <div class="pq-card">
+          <div class="pq-icon">🧠</div>
+          <div>
+            <div class="pq-card-title">Mentores y coaches</div>
+            <div class="pq-card-desc">Tener la agenda vacía jode. Una buena web filtra a los curiosos y te trae gente con la tarjeta en la mano lista para pagar.</div>
+          </div>
+        </div>
+        <div class="pq-card">
+          <div class="pq-icon">📈</div>
+          <div>
+            <div class="pq-card-title">Consultores y especialistas</div>
+            <div class="pq-card-desc">Deja de perseguir clientes. Que entren en tu web y entiendan al segundo por qué deben pagarte a ti y no a tu competencia.</div>
+          </div>
+        </div>
+        <div class="pq-card">
+          <div class="pq-icon">🚀</div>
+          <div>
+            <div class="pq-card-title">Negocios digitales</div>
+            <div class="pq-card-desc">Si vives de internet, tu web es tu comercial. Y ahora mismo, el tuyo está de vacaciones. Te pongo uno que trabaje 24/7.</div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- grid masonry -->
-    <div class="testi-masonry">
-      <div class="testi-card">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Muy buen trato y comunicación fluida durante todo el proceso. Sabía en todo momento cómo iba el proyecto.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">MS</div>
-          <div><div class="testi-name">María Sánchez</div><div class="testi-role">Agencia de marketing · Murcia</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Rápido y sin dramas. Le expliqué lo que necesitaba, me hizo algunas preguntas y en poco tiempo tenía algo concreto encima de la mesa.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">AL</div>
-          <div><div class="testi-name">Andrés Llanos</div><div class="testi-role">Coach · Valencia</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Me empezaron a llegar consultas por la web, algo que antes no pasaba. No sé si es solo el diseño o también el SEO, pero algo está funcionando.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">LG</div>
-          <div><div class="testi-name">Laura García</div><div class="testi-role">Formadora online · Sevilla</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">La web anterior me daba vergüenza mandarla. Ahora no tengo ese problema. Simple pero hace falta decirlo.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">RV</div>
-          <div><div class="testi-name">Roberto Vidal</div><div class="testi-role">Nutricionista · Bilbao</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Lo que más me gustó es que no me vendió más de lo que necesitaba. Me dijo lo que tenía sentido para mi negocio y punto.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">NF</div>
-          <div><div class="testi-name">Natalia Ferrer</div><div class="testi-role">Diseñadora freelance · Bilbao</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Fui con las ideas muy verdes y me ayudó a estructurarlo todo. Al final quedó bastante mejor de lo que yo tenía en la cabeza.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">DM</div>
-          <div><div class="testi-name">Diego Martín</div><div class="testi-role">Consultor independiente · Zaragoza</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">El proceso fue más tranquilo de lo que esperaba. Sin agobios, con revisiones incluidas y sin cobrarme extra por cada cambio.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">IT</div>
-          <div><div class="testi-name">Isabel Torres</div><div class="testi-role">Fotógrafa · Ciudad de México</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Había probado con otra persona antes y fue una pesadilla. Con Hugo todo fue diferente: cumplió plazos y estuvo disponible cuando lo necesité.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">PO</div>
-          <div><div class="testi-name">Pablo Ortega</div><div class="testi-role">Profesor online · Alicante</div></div>
-        </div>
-      </div>
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Tardé demasiado en dar el paso, la verdad. Pero contenta con el resultado. Se nota que entiende lo que necesita cada tipo de negocio.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">SM</div>
-          <div><div class="testi-name">Sara Muñoz</div><div class="testi-role">Psicóloga · Granada</div></div>
-        </div>
-      </div>
+  <!-- ─── PROCESO ─── -->
+  <section id="proceso">
+    <div class="proceso-header reveal">
+      <div class="section-label">Cómo lo hacemos</div>
+      <h2 class="section-title">Pagas, trabajamos, cobras.<br><em>Así de simple.</em></h2>
     </div>
 
-    <!-- fila final destacada -->
-    <div class="testi-featured-grid" style="margin-top:0">
-      <div class="testi-card" style="margin-bottom:0; border-color:var(--border-mid)">
-        <div class="stars">★★★★★</div>
-        <div class="testi-quote">Ya le he encargado un segundo proyecto. Cuando algo funciona y el trato es bueno, no hace falta buscar más.</div>
-        <div class="testi-author">
-          <div class="testi-avatar">FN</div>
-          <div><div class="testi-name">Fernando Navarro</div><div class="testi-role">Emprendedor · Valencia</div></div>
-        </div>
+    <div class="proceso-steps">
+      <div class="proceso-step reveal">
+        <div class="step-circle">1</div>
+        <div class="step-title">Reservas un hueco</div>
+        <div class="step-desc">Pinchas en el botón y agendamos un rato. Sin formularios coñazo ni preguntas inútiles.</div>
+      </div>
+      <div class="proceso-step reveal" style="transition-delay:0.1s">
+        <div class="step-circle">2</div>
+        <div class="step-title">Hablamos de pasta</div>
+        <div class="step-desc">Me cuentas qué vendes y a quién. Y yo te digo cómo le vamos a sacar los cuartos a tu mercado.</div>
+      </div>
+      <div class="proceso-step reveal" style="transition-delay:0.2s">
+        <div class="step-circle">3</div>
+        <div class="step-title">Me encierro a currar</div>
+        <div class="step-desc">Desaparezco 48 horas a picar piedra. Diseño, monto y dejo lista tu máquina de hacer dinero.</div>
+      </div>
+      <div class="proceso-step reveal" style="transition-delay:0.3s">
+        <div class="step-circle">4</div>
+        <div class="step-title">A vender</div>
+        <div class="step-desc">Le das al OK, subimos la web a tu dominio y empiezas a recibir clientes. No tiene más misterio.</div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SOBRE MÍ -->
-<section class="section reveal" id="sobre-mi">
-  <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
-      <div>
-        <img src="https://i.postimg.cc/FK5YG2Jk/Captura-de-pantalla-2026-05-13-023047.png" alt="Hugo, fundador de Aether Studio" style="width:100%;border-radius:8px;display:block">
-      </div>
-      <div>
-        <span class="label">Sobre mí</span>
-        <h2 class="heading" style="margin-bottom:1.5rem">Hola, soy Hugo.<br>Hago webs que <em>trabajan</em><br>por ti.</h2>
-        <p style="color:var(--text-mid);margin-bottom:1.2rem;line-height:1.75">No soy una agencia con 20 personas donde tu proyecto se pierde entre cuentas. Soy Hugo, diseñador y desarrollador web especializado en negocios digitales.</p>
-        <p style="color:var(--text-mid);margin-bottom:1.2rem;line-height:1.75">Cada web que construyo tiene un solo objetivo: <strong style="color:var(--text)">hacer crecer tu negocio</strong>. Combino diseño de alto impacto con estrategia de conversión para que cada visita cuente.</p>
-        <p style="color:var(--text-mid);margin-bottom:2.5rem;line-height:1.75">Trabajo con pocos clientes a la vez para darte atención total. No subcontrato. No uso plantillas. Todo es tuyo, único y hecho a medida.</p>
-        <div style="display:flex;gap:2.5rem">
+  <!-- ─── TESTIMONIOS ─── -->
+  <section id="testimonios">
+    <div class="reveal">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen los que<br>ya <em>confiaron en Aether.</em></h2>
+    </div>
+
+    <div class="testimonios-grid">
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"En 48 horas tenía una web que antes me costaba meses conseguir. El resultado superó todo lo que esperaba."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">ML</div>
           <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">+40</div>
-            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Proyectos</div>
-          </div>
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">3×</div>
-            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Más conversiones</div>
-          </div>
-          <div>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">48h</div>
-            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Primera versión</div>
+            <div class="author-name">María L.</div>
+            <div class="author-role">Creadora de curso de finanzas personales</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+      <div class="testimonio-card reveal" style="transition-delay:0.1s">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"La llamada previa marcó la diferencia. Notaron exactamente lo que necesitaba sin tener que explicarlo mil veces."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">CR</div>
+          <div>
+            <div class="author-name">Carlos R.</div>
+            <div class="author-role">Coach de productividad</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonio-card reveal" style="transition-delay:0.2s">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Tener el dominio y el hosting incluido fue un alivio enorme. Todo centralizado, todo resuelto. 100% recomendable."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">SV</div>
+          <div>
+            <div class="author-name">Sara V.</div>
+            <div class="author-role">Consultora de marketing digital</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Tenía pánico a la parte técnica. Me lo dio todo hecho y masticado. Le pasé mis textos y a los dos días estaba la web subida y funcionando. Sin mareos."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">LG</div>
+          <div>
+            <div class="author-name">Laura G.</div>
+            <div class="author-role">Psicóloga online</div>
+          </div>
+        </div>
+      </div>
 
-<!-- CTA FINAL -->
-<section class="cta-section reveal" id="contacto">
-  <div style="position:relative;z-index:1">
-    <span class="label">¿Listo para empezar?</span>
-    <h2 class="heading">Tu competencia ya tiene<br>una web que <em>convierte</em></h2>
-    <p class="sub">Reserva tu llamada gratuita de 30 minutos y descubre cómo podemos transformar tu presencia online en tu mejor vendedor.</p>
-    <a href="mailto:aetherdesignweb@gmail.com" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.8rem">Reservar llamada gratuita →</a>
-    <div><span class="cta-guarantee">Sin compromiso · Respuesta en 24h · 100% gratuito</span></div>
-  </div>
-</section>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Llevaba 6 meses con mi web en 'modo mantenimiento' porque me daba vergüenza enseñarla. Ahora la envío con orgullo y por fin me están entrando clientes solos."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">DM</div>
+          <div>
+            <div class="author-name">David M.</div>
+            <div class="author-role">Entrenador personal</div>
+          </div>
+        </div>
+      </div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Æther<span>.</span> Studio</div>
-  <div class="footer-links">
-    <a href="#servicios">Servicios</a>
-    <a href="#proceso">Proceso</a>
-    <a href="mailto:aetherdesignweb@gmail.com">Contacto</a>
-  </div>
-  <div class="footer-copy">© 2025 Aether Studio · Hugo Pérez Mené ·
-    <a href="#" onclick="showLegal('aviso');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Aviso Legal</a> ·
-    <a href="#" onclick="showLegal('privacidad');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Política de Privacidad</a> ·
-    <a href="#" onclick="showLegal('cookies');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Política de Cookies</a>
-  </div>
-</footer>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Contraté a otra agencia antes y me cobraron el triple por una plantilla que ni sabía usar. Aquí fue pim, pam. Sencillo, al grano y facturando."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">EC</div>
+          <div>
+            <div class="author-name">Elena C.</div>
+            <div class="author-role">Asesora fiscal</div>
+          </div>
+        </div>
+      </div>
 
-<!-- LEGAL MODAL -->
-<div id="legal-overlay" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(4,16,10,.96);backdrop-filter:blur(8px);overflow-y:auto;padding:4rem 2rem">
-  <div style="max-width:760px;margin:0 auto;position:relative">
-    <button onclick="hideLegal()" style="position:fixed;top:2rem;right:2rem;background:var(--bg3);border:1px solid var(--border-mid);color:var(--text-mid);padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.9rem;transition:all .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-mid)'">✕ Cerrar</button>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Me daba miedo que sonara a humo. Tuve la videollamada, entendió mi negocio mejor que yo, y montó algo que realmente funciona y convierte visitas en dinero."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">JT</div>
+          <div>
+            <div class="author-name">Javi T.</div>
+            <div class="author-role">Creador de cursos de vídeo</div>
+          </div>
+        </div>
+      </div>
 
-    <!-- AVISO LEGAL -->
-    <div id="legal-aviso" class="legal-page" style="display:none">
-      <span class="label">Legal</span>
-      <h2 class="heading" style="margin-bottom:2.5rem">Aviso <em>Legal</em></h2>
-      <div class="legal-body">
-        <h3>1. Datos identificativos del titular</h3>
-        <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:</p>
-        <ul>
-          <li><strong>Titular:</strong> Hugo Pérez Mené</li>
-          <li><strong>DNI:</strong> 26055790X</li>
-          <li><strong>Domicilio:</strong> Calle La Milagrosa 30</li>
-          <li><strong>Actividad:</strong> Diseño y desarrollo web</li>
-          <li><strong>Correo electrónico:</strong> aetherdesignweb@gmail.com</li>
-          <li><strong>Denominación comercial:</strong> Aether Studio</li>
-        </ul>
-        <h3>2. Objeto y ámbito de aplicación</h3>
-        <p>El presente Aviso Legal regula el acceso y uso del sitio web aetherstudio.com (en adelante, "el Sitio Web"), del que es titular Hugo Pérez Mené. El acceso al Sitio Web implica la aceptación plena y sin reservas de las presentes condiciones.</p>
-        <h3>3. Propiedad intelectual e industrial</h3>
-        <p>Todos los contenidos del Sitio Web —incluyendo textos, imágenes, logotipos, diseño gráfico y código fuente— son propiedad de Hugo Pérez Mené o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o modificación sin autorización expresa del titular.</p>
-        <h3>4. Responsabilidad</h3>
-        <p>Hugo Pérez Mené no se hace responsable de los daños o perjuicios derivados del uso del Sitio Web, de la imposibilidad de acceso al mismo o de la presencia de virus o elementos lesivos en los contenidos. El titular se reserva el derecho a modificar, suspender o eliminar los contenidos del Sitio Web en cualquier momento y sin previo aviso.</p>
-        <h3>5. Legislación aplicable</h3>
-        <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada del uso del Sitio Web, las partes se someten a los juzgados y tribunales del domicilio del titular, salvo que la ley disponga otra cosa.</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"No tengo ni idea de qué es un hosting ni quiero saberlo. La tranquilidad de delegar todo esto a alguien que va al grano no tiene precio."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Marta R.</div>
+            <div class="author-role">Mentora de negocios</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Por fin alguien que no te habla en idioma 'informático'. Entendió a la primera que yo lo que quería era vender mis mentorías, no ganar premios de diseño."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">AP</div>
+          <div>
+            <div class="author-name">Andrés P.</div>
+            <div class="author-role">Consultor B2B</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Pensaba que hacer una web era un parto de meses. En un fin de semana lo teníamos listo. Me ahorró tiempo, dolores de cabeza y mucho dinero."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">SF</div>
+          <div>
+            <div class="author-name">Silvia F.</div>
+            <div class="author-role">Nutricionista</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"La gente entraba a mi Instagram pero no me compraba. Fue cambiar la web vieja por esta y la diferencia en ventas es ridícula. Saben lo que hacen."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">RO</div>
+          <div>
+            <div class="author-name">Rubén O.</div>
+            <div class="author-role">Inversor y formador</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Soy muy negada para la tecnología, me agobiaba solo pensar en la web. Lo dejé todo en sus manos y fue la mejor decisión del año. Paz mental absoluta."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">CL</div>
+          <div>
+            <div class="author-name">Carmen L.</div>
+            <div class="author-role">Coach vocal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Si buscas a un artista para que te ponga muñequitos dando vueltas, este no es tu sitio. Si quieres un embudo de ventas que funcione rápido, estás en el lugar correcto."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">PV</div>
+          <div>
+            <div class="author-name">Pablo V.</div>
+            <div class="author-role">Experto en Ads</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Me pasaba el día contestando las mismas dudas por WhatsApp. Ahora la web responde por mí y filtra a los curiosos. Solo me escriben los que ya van a pagar."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">LD</div>
+          <div>
+            <div class="author-name">Lucía D.</div>
+            <div class="author-role">Diseñadora de interiores</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Es directo y no pierde el tiempo. Tal cual se lee en su web, así trabaja. Pagas, le pasas lo tuyo y a los dos días tienes tu máquina de ventas. Un lujo."</p>
+        <div class="testimonio-author">
+          <div class="author-avatar">MS</div>
+          <div>
+            <div class="author-name">Marcos S.</div>
+            <div class="author-role">Copywriter</div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- POLÍTICA DE PRIVACIDAD -->
-    <div id="legal-privacidad" class="legal-page" style="display:none">
-      <span class="label">Legal</span>
-      <h2 class="heading" style="margin-bottom:2.5rem">Política de <em>Privacidad</em></h2>
-      <div class="legal-body">
-        <h3>1. Responsable del tratamiento</h3>
-        <ul>
-          <li><strong>Identidad:</strong> Hugo Pérez Mené</li>
-          <li><strong>DNI:</strong> 26055790X</li>
-          <li><strong>Domicilio:</strong> Calle La Milagrosa 30</li>
-          <li><strong>Correo electrónico:</strong> aetherdesignweb@gmail.com</li>
-        </ul>
-        <h3>2. Finalidad del tratamiento</h3>
-        <p>Los datos personales que facilites a través de los formularios de contacto del Sitio Web serán tratados con las siguientes finalidades:</p>
-        <ul>
-          <li>Gestionar las consultas y solicitudes de información que nos envíes.</li>
-          <li>Enviarte información comercial sobre los servicios de Aether Studio, siempre que hayas prestado tu consentimiento.</li>
-          <li>Dar cumplimiento a las obligaciones legales aplicables.</li>
-        </ul>
-        <h3>3. Legitimación</h3>
-        <p>La base legal para el tratamiento de tus datos es el consentimiento que prestas al cumplimentar y enviar el formulario de contacto, así como el interés legítimo en la gestión de consultas precontractuales.</p>
-        <h3>4. Conservación de los datos</h3>
-        <p>Tus datos serán conservados durante el tiempo estrictamente necesario para atender tu solicitud y, en su caso, durante los plazos legales de prescripción que resulten aplicables.</p>
-        <h3>5. Destinatarios</h3>
-        <p>Los datos no serán cedidos a terceros salvo obligación legal. Podrán acceder a ellos proveedores de servicios tecnológicos (hosting, email) bajo contrato de encargado de tratamiento con las garantías adecuadas.</p>
-        <h3>6. Tus derechos</h3>
-        <p>Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, dirigiéndote por escrito a aetherdesignweb@gmail.com, adjuntando copia de tu documento de identidad. También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
-        <h3>7. Seguridad</h3>
-        <p>Hugo Pérez Mené adopta las medidas técnicas y organizativas necesarias para garantizar la seguridad de tus datos y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+  <!-- ─── SOBRE MÍ ─── -->
+  <section id="sobre-mi">
+    <div class="sm-grid">
+      <div class="reveal">
+        <div class="sm-image-wrapper">
+          <img src="https://i.postimg.cc/FK5YG2Jk/Captura-de-pantalla-2026-05-13-023047.png" alt="Hugo">
+        </div>
+      </div>
+      <div class="sm-text reveal" style="transition-delay:0.15s">
+        <div class="section-label">Sobre mí</div>
+        <h2 class="section-title" style="margin-bottom: 2rem;">
+          No hago webs para que te den <em>premios de diseño.</em>
+        </h2>
+        <p>Soy Hugo.</p>
+        <p>No tengo una agencia con 20 empleados en una oficina con futbolín, ni te voy a cobrar reuniones de "brainstorming" donde no se dice absolutamente nada útil y solo pierdes tu tiempo.</p>
+        <p><strong>Mi negocio es que tu negocio haga dinero. Punto.</strong></p>
+        <p>He visto a demasiada gente buena perder miles de euros porque su web parecía un blog de 2012. O peor, porque contrataron a un "artista" que les cobró una fortuna por una web preciosa que tardaba en cargar la vida misma y no vendía un carajo.</p>
+        <p>Si buscas un colega para charlar durante semanas sobre qué tono de verde le va mejor a tu logotipo, vete a otro lado. Si lo que quieres es una máquina bien engrasada para que la gente saque la tarjeta de crédito, estás en el sitio correcto.</p>
       </div>
     </div>
+  </section>
 
-    <!-- POLÍTICA DE COOKIES -->
-    <div id="legal-cookies" class="legal-page" style="display:none">
-      <span class="label">Legal</span>
-      <h2 class="heading" style="margin-bottom:2.5rem">Política de <em>Cookies</em></h2>
-      <div class="legal-body">
-        <h3>1. ¿Qué son las cookies?</h3>
-        <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Permiten recordar tus preferencias y mejorar tu experiencia de navegación.</p>
-        <h3>2. Cookies utilizadas en este sitio web</h3>
-        <p>Este sitio web puede utilizar los siguientes tipos de cookies:</p>
-        <ul>
-          <li><strong>Cookies técnicas o necesarias:</strong> imprescindibles para el funcionamiento básico del Sitio Web. No requieren consentimiento.</li>
-          <li><strong>Cookies analíticas:</strong> permiten conocer el número de visitantes y el comportamiento de navegación con fines estadísticos. Se utilizan únicamente de forma agregada y anónima.</li>
-        </ul>
-        <h3>3. Gestión y desactivación de cookies</h3>
-        <p>Puedes configurar tu navegador para aceptar, rechazar o eliminar las cookies en cualquier momento. Ten en cuenta que desactivar ciertas cookies puede afectar al correcto funcionamiento del Sitio Web. A continuación encontrarás los enlaces de configuración de los navegadores más habituales:</p>
-        <ul>
-          <li>Google Chrome: Configuración → Privacidad y seguridad → Cookies</li>
-          <li>Mozilla Firefox: Opciones → Privacidad y seguridad</li>
-          <li>Safari: Preferencias → Privacidad</li>
-          <li>Microsoft Edge: Configuración → Privacidad, búsqueda y servicios</li>
-        </ul>
-        <h3>4. Actualizaciones de esta política</h3>
-        <p>Hugo Pérez Mené se reserva el derecho a modificar esta Política de Cookies en cualquier momento para adaptarla a novedades legislativas o cambios en el Sitio Web. Se recomienda revisarla periódicamente.</p>
-        <h3>5. Contacto</h3>
-        <p>Para cualquier consulta relacionada con el uso de cookies, puedes contactar en aetherdesignweb@gmail.com.</p>
-      </div>
+  <!-- ─── CTA FINAL ─── -->
+  <section id="cta-final">
+    <h2 class="cta-big reveal">
+      Deja de perder dinero con<br>esa web que <em>tienes.</em>
+    </h2>
+    <p class="cta-sub reveal" style="transition-delay:0.1s">
+      Si quieres seguir igual, cierra esta pestaña y a otra cosa. Si quieres que tu negocio parezca un puto negocio serio y empiece a vender en 48 horas, dale al botón.
+    </p>
+    <div class="reveal" style="transition-delay:0.2s">
+      <a href="#" class="btn-primary" style="font-size:0.9rem; padding:1.15rem 3rem;">
+        Reserva tu llamada (y hablemos de negocios) →
+      </a>
     </div>
-  </div>
-</div>
+    <div class="cta-perks reveal" style="transition-delay:0.3s">
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Cero compromiso</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Llamada sin coste</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Te lo doy todo montado</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Vendes en 48h</div>
+    </div>
+  </section>
 
-<style>
-.legal-body h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--green);margin:2rem 0 .75rem}
-.legal-body p{color:var(--text-mid);line-height:1.8;margin-bottom:1rem;font-size:.95rem}
-.legal-body ul{color:var(--text-mid);padding-left:1.5rem;margin-bottom:1rem}
-.legal-body ul li{margin-bottom:.4rem;font-size:.95rem;line-height:1.7}
-.legal-body strong{color:var(--text);font-weight:500}
-</style>
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">A<span>e</span>ther</div>
+    <div class="footer-copy">© 2025 Aether. Todos los derechos reservados.</div>
+    <div class="footer-links">
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#cta-final">Contacto</a>
+    </div>
+  </footer>
 
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
 
-function showLegal(page) {
-  document.querySelectorAll('.legal-page').forEach(p => p.style.display = 'none');
-  document.getElementById('legal-' + page).style.display = 'block';
-  document.getElementById('legal-overlay').style.display = 'block';
-  window.scrollTo(0,0);
-}
-function hideLegal() {
-  document.getElementById('legal-overlay').style.display = 'none';
-}
-</script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth CTA link (placeholder)
+    document.querySelectorAll('a[href="#cta-final"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('cta-final').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
 </body>
 </html>
