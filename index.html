@@ -103,7 +103,9 @@ nav.scrolled{background:rgba(4,16,10,.85);backdrop-filter:blur(16px);border-colo
 
 /* ─── TESTIMONIALS ─── */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
-.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem}
+.testi-featured-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+.testi-masonry{columns:3;column-gap:1.5rem;margin-top:1.5rem}
+.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem;break-inside:avoid;margin-bottom:1.5rem}
 .testi-quote{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--text);line-height:1.5;margin-bottom:1.5rem}
 .testi-quote::before{content:'\201C';color:var(--green);font-size:2rem;line-height:0;vertical-align:-0.4em;margin-right:.2rem}
 .testi-author{display:flex;align-items:center;gap:1rem}
@@ -135,10 +137,15 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-i
 .reveal.visible{opacity:1;transform:none}
 
 /* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .testi-masonry{columns:2}
+}
 @media(max-width:700px){
   .nav-links{display:none}
   .problem-grid{grid-template-columns:1fr}
   .process-steps::before{display:none}
+  .testi-featured-grid{grid-template-columns:1fr}
+  .testi-masonry{columns:1}
   footer{flex-direction:column;text-align:center}
   .footer-links{justify-content:center}
   #sobre-mi .section-inner > div{grid-template-columns:1fr!important;gap:3rem!important}
@@ -299,8 +306,8 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-i
     <p style="color:var(--text-mid);margin-top:1rem;max-width:500px">Esto es lo que dicen los que ya dieron el paso.</p>
 
     <!-- fila destacada -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem">
-      <div class="testi-card" style="border-color:var(--border-mid)">
+    <div class="testi-featured-grid">
+      <div class="testi-card" style="border-color:var(--border-mid);margin-bottom:0">
         <div class="stars">★★★★★</div>
         <div class="testi-quote" style="font-size:1.35rem">Llevaba meses con la web parada porque no me convencía ningún presupuesto. Con Hugo lo tuve claro desde la primera llamada y el resultado fue mejor de lo que esperaba.</div>
         <div class="testi-author">
@@ -311,7 +318,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-i
           </div>
         </div>
       </div>
-      <div class="testi-card" style="border-color:var(--border-mid)">
+      <div class="testi-card" style="border-color:var(--border-mid);margin-bottom:0">
         <div class="stars">★★★★★</div>
         <div class="testi-quote" style="font-size:1.35rem">Tenía dudas porque nunca había invertido en una web de verdad. Al final me animé y estoy contento, se nota la diferencia respecto a lo que tenía antes.</div>
         <div class="testi-author">
@@ -324,9 +331,9 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-i
       </div>
     </div>
 
-    <!-- grid masonry 3 col -->
-    <div style="columns:3;column-gap:1.5rem;margin-top:1.5rem">
-      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+    <!-- grid masonry -->
+    <div class="testi-masonry">
+      <div class="testi-card">
         <div class="stars">★★★★★</div>
         <div class="testi-quote">Muy buen trato y comunicación fluida durante todo el proceso. Sabía en todo momento cómo iba el proyecto.</div>
         <div class="testi-author">
@@ -404,13 +411,17 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-i
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0">
       <div class="testi-card">
         <div class="stars">★★★★★</div>
-        <div class="testi-quote">Por fin tengo una web que no me da apuro enseñar. Eso ya vale mucho para mí, aunque suene a poco.</div>
+        <div class="testi-quote">Tardé demasiado en dar el paso, la verdad. Pero contenta con el resultado. Se nota que entiende lo que necesita cada tipo de negocio.</div>
         <div class="testi-author">
-          <div class="testi-avatar">EC</div>
-          <div><div class="testi-name">Elena Castillo</div><div class="testi-role">Interiorista · Málaga</div></div>
+          <div class="testi-avatar">SM</div>
+          <div><div class="testi-name">Sara Muñoz</div><div class="testi-role">Psicóloga · Granada</div></div>
         </div>
       </div>
-      <div class="testi-card">
+    </div>
+
+    <!-- fila final -->
+    <div class="testi-featured-grid" style="margin-top:0">
+      <div class="testi-card" style="margin-bottom:0">
         <div class="stars">★★★★★</div>
         <div class="testi-quote">Ya le he encargado un segundo proyecto. Cuando algo funciona y el trato es bueno, no hace falta buscar más.</div>
         <div class="testi-author">
