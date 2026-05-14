@@ -1,397 +1,607 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hugo Pérez | Diseño Web Aether</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #f3f4f6;
-        }
-        .glow-button {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 0 rgba(0, 255, 157, 0);
-        }
-        .glow-button:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
-            transform: translateY(-2px);
-        }
-        .card-hover {
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            border-color: #00ff9d;
-        }
-        .bg-grid {
-            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aether Studio — Webs que venden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#04100a;
+  --bg2:#071710;
+  --bg3:#0d2117;
+  --green:#00e87c;
+  --green-dim:#00b860;
+  --green-muted:#1a4d30;
+  --green-glow:rgba(0,232,124,0.12);
+  --text:#edfff5;
+  --text-mid:#9abfaa;
+  --text-dim:#567565;
+  --border:rgba(0,232,124,0.12);
+  --border-mid:rgba(0,232,124,0.22);
+}
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid transparent;transition:all .4s}
+nav.scrolled{background:rgba(4,16,10,.85);backdrop-filter:blur(16px);border-color:var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:.08em;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--green)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--text-mid);text-decoration:none;font-size:.875rem;letter-spacing:.04em;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--green);color:#04100a;padding:.6rem 1.4rem;border-radius:4px;text-decoration:none;font-size:.875rem;font-weight:600;letter-spacing:.04em;transition:all .2s}
+.nav-cta:hover{background:#fff;color:#04100a}
+
+/* ─── HERO ─── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;padding:8rem 2rem 4rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 60%,rgba(0,232,124,.07) 0%,transparent 70%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 20%,transparent 80%)}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--green-glow);border:1px solid var(--border-mid);border-radius:100px;padding:.4rem 1.1rem;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:2rem;animation:fadeUp .8s ease both}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;color:var(--text);margin-bottom:1.5rem;animation:fadeUp .8s .1s ease both}
+.hero h1 em{color:var(--green);font-style:italic}
+.hero-sub{max-width:560px;margin:0 auto 2.5rem;color:var(--text-mid);font-size:1.1rem;font-weight:300;animation:fadeUp .8s .2s ease both}
+.hero-sub strong{color:var(--text);font-weight:500}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .3s ease both}
+.btn-primary{background:var(--green);color:#04100a;padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:1rem;letter-spacing:.02em;transition:all .25s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:#fff;transform:translateY(-2px)}
+.btn-secondary{border:1px solid var(--border-mid);color:var(--text-mid);padding:.9rem 2.2rem;border-radius:4px;text-decoration:none;font-weight:400;font-size:1rem;transition:all .25s}
+.btn-secondary:hover{border-color:var(--green);color:var(--green)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:var(--text-dim);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.5rem;animation:fadeUp .8s .6s ease both}
+.hero-scroll::after{content:'';width:1px;height:40px;background:linear-gradient(to bottom,var(--green),transparent);animation:scrollLine 2s ease infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── STATS ─── */
+.stats{padding:3rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--green);line-height:1}
+.stat-label{color:var(--text-dim);font-size:.85rem;letter-spacing:.06em;margin-top:.3rem}
+
+/* ─── PROBLEM ─── */
+.section{padding:6rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.label{display:inline-block;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+.heading{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:600;line-height:1.1;color:var(--text)}
+.heading em{color:var(--green);font-style:italic}
+
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:3rem}
+.problem-item{background:var(--bg2);padding:2.5rem;transition:background .3s}
+.problem-item:hover{background:var(--bg3)}
+.problem-icon{font-size:1.8rem;margin-bottom:1rem;filter:grayscale(1)}
+.problem-title{font-size:1.1rem;font-weight:500;color:var(--text);margin-bottom:.5rem}
+.problem-desc{color:var(--text-mid);font-size:.9rem;line-height:1.6}
+
+/* ─── SERVICES ─── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.service-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2.5rem;transition:all .3s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent);transform:scaleX(0);transition:transform .4s}
+.service-card:hover{border-color:var(--border-mid);transform:translateY(-4px)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-tag{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--green);background:var(--green-glow);border:1px solid var(--border);border-radius:100px;padding:.25rem .8rem;display:inline-block;margin-bottom:1.5rem}
+.service-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--green-muted);line-height:1;margin-bottom:1rem}
+.service-title{font-size:1.3rem;font-weight:500;color:var(--text);margin-bottom:.75rem}
+.service-desc{color:var(--text-mid);font-size:.9rem;line-height:1.65}
+.service-features{margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem}
+.service-features li{list-style:none;display:flex;align-items:center;gap:.6rem;color:var(--text-mid);font-size:.85rem}
+.service-features li::before{content:'→';color:var(--green);font-size:.8rem}
+
+/* ─── PROCESS ─── */
+.process{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:3.5rem;position:relative}
+.process-steps::before{content:'';position:absolute;top:2.2rem;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,var(--border-mid),var(--border-mid),transparent)}
+.step{text-align:center;padding:2rem 1.5rem;position:relative}
+.step-num{width:3rem;height:3rem;border-radius:50%;background:var(--bg);border:1px solid var(--border-mid);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--green);margin:0 auto 1.5rem;position:relative;z-index:1}
+.step-title{font-size:1rem;font-weight:500;color:var(--text);margin-bottom:.5rem}
+.step-desc{color:var(--text-dim);font-size:.85rem;line-height:1.6}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem}
+.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:2rem}
+.testi-quote{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--text);line-height:1.5;margin-bottom:1.5rem}
+.testi-quote::before{content:'\201C';color:var(--green);font-size:2rem;line-height:0;vertical-align:-0.4em;margin-right:.2rem}
+.testi-author{display:flex;align-items:center;gap:1rem}
+.testi-avatar{width:2.8rem;height:2.8rem;border-radius:50%;background:var(--green-muted);display:flex;align-items:center;justify-content:center;font-weight:600;font-size:.9rem;color:var(--green);border:1px solid var(--border-mid)}
+.testi-name{font-weight:500;font-size:.9rem;color:var(--text)}
+.testi-role{font-size:.8rem;color:var(--text-dim)}
+.stars{color:var(--green);font-size:.9rem;margin-bottom:1rem;letter-spacing:2px}
+
+/* ─── CTA SECTION ─── */
+.cta-section{text-align:center;padding:8rem 2rem;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(0,232,124,.06) 0%,transparent 70%)}
+.cta-section .heading{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:1.5rem}
+.cta-section .sub{max-width:520px;margin:0 auto 3rem;color:var(--text-mid);font-size:1.05rem}
+.cta-guarantee{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-dim);font-size:.8rem;margin-top:1.5rem}
+.cta-guarantee::before{content:'✓';color:var(--green)}
+
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--border);padding:3rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--text-mid)}
+.footer-logo span{color:var(--green)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{color:var(--text-dim);text-decoration:none;font-size:.85rem;transition:color .2s}
+.footer-links a:hover{color:var(--green)}
+.footer-copy{color:var(--text-dim);font-size:.8rem;width:100%;text-align:center;padding-top:2rem;border-top:1px solid var(--border)}
+
+/* ─── ANIMS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  .nav-links{display:none}
+  .problem-grid{grid-template-columns:1fr}
+  .process-steps::before{display:none}
+  footer{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+  #sobre-mi .section-inner > div{grid-template-columns:1fr!important;gap:3rem!important}
+}
+</style>
 </head>
-<body class="bg-grid">
+<body>
 
-    <!-- HERO SECTION -->
-    <header class="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
-        <!-- Logo Esquina Superior Derecha -->
-        <div class="absolute top-6 right-6 md:top-10 md:right-12 z-50">
-            <div class="h-16 w-32 md:h-24 md:w-48 bg-gradient-to-r from-emerald-400 to-emerald-200 opacity-90 drop-shadow-[0_0_15px_rgba(0,255,157,0.2)] hover:opacity-100 transition-all duration-300 hover:scale-105 hover:drop-shadow-[0_0_25px_rgba(0,255,157,0.6)]"
-                 style="-webkit-mask-image: url('https://i.postimg.cc/t4sKnKpv/Gemini-Generated-Image-tgamittgamittgam-removebg-preview.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: right center; mask-image: url('https://i.postimg.cc/t4sKnKpv/Gemini-Generated-Image-tgamittgamittgam-removebg-preview.png'); mask-size: contain; mask-repeat: no-repeat; mask-position: right center;"
-                 title="Aether Design Logo">
-            </div>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Æther<span>.</span></a>
+  <a href="#contacto" class="nav-cta">Hablemos →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:1;max-width:820px">
+    <div class="hero-badge">Disponible para nuevos proyectos</div>
+    <h1>Tu negocio merece<br>una web que <em>venda</em></h1>
+    <p class="hero-sub">
+      Diseño webs de alta conversión para negocios digitales.<br>
+      <strong>Más clientes. Más ingresos. Sin complicaciones.</strong>
+    </p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Quiero mi web ↗</a>
+      <a href="#servicios" class="btn-secondary">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">+40</div>
+      <div class="stat-label">Proyectos entregados</div>
+    </div>
+    <div>
+      <div class="stat-num">3×</div>
+      <div class="stat-label">Más conversiones promedio</div>
+    </div>
+    <div>
+      <div class="stat-num">48h</div>
+      <div class="stat-label">Primera versión lista</div>
+    </div>
+    <div>
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Clientes satisfechos</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section class="section reveal" id="problema">
+  <div class="section-inner">
+    <span class="label">El problema</span>
+    <h2 class="heading">¿Tu web actual te está<br><em>costando</em> clientes?</h2>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-icon">😩</div>
+        <div class="problem-title">Diseño anticuado</div>
+        <div class="problem-desc">La primera impresión lo es todo. Si tu web parece del 2015, tus clientes potenciales se van antes de leer nada.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🐌</div>
+        <div class="problem-title">Carga lenta</div>
+        <div class="problem-desc">El 53% de los usuarios abandona una web que tarda más de 3 segundos. Cada segundo perdido = dinero perdido.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📉</div>
+        <div class="problem-title">Sin estrategia de conversión</div>
+        <div class="problem-desc">Una web bonita que no convierte es un gasto, no una inversión. Sin CTA claros y estructura, el tráfico no se traduce en ventas.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📱</div>
+        <div class="problem-title">No adaptada al móvil</div>
+        <div class="problem-desc">Más del 70% del tráfico es móvil. Si tu web no funciona en el teléfono, estás regalando clientes a tu competencia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section reveal" id="servicios" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <span class="label">Servicios</span>
+    <h2 class="heading">Todo lo que necesitas<br>para <em>crecer</em> online</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-tag">Más popular</span>
+        <div class="service-num">01</div>
+        <div class="service-title">Landing Page de Alta Conversión</div>
+        <div class="service-desc">Una página diseñada específicamente para convertir visitantes en clientes. Cada elemento tiene un propósito: que te llamen, compren o dejen sus datos.</div>
+        <ul class="service-features">
+          <li>Diseño personalizado y único</li>
+          <li>Optimizada para SEO desde el día 1</li>
+          <li>Velocidad de carga &lt;2 segundos</li>
+          <li>Integración con tu CRM o email</li>
+          <li>Entrega en 48h</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-tag">Para marcas</span>
+        <div class="service-num">02</div>
+        <div class="service-title">Web Corporativa Completa</div>
+        <div class="service-desc">Presencia digital profesional que transmite autoridad y confianza. Tu negocio merece una web que compita con los grandes.</div>
+        <ul class="service-features">
+          <li>Hasta 8 páginas incluidas</li>
+          <li>Panel de administración propio</li>
+          <li>Blog integrado</li>
+          <li>Formularios y automatizaciones</li>
+          <li>Entrega en 14 días</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="section process reveal" id="proceso">
+  <div class="section-inner">
+    <span class="label">Cómo funciona</span>
+    <h2 class="heading">Tu nueva web en<br><em>4 pasos</em> simples</h2>
+    <div class="process-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">Llamada inicial</div>
+        <div class="step-desc">30 minutos para entender tu negocio, tu cliente ideal y tus objetivos concretos.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">Propuesta y diseño</div>
+        <div class="step-desc">En 48h recibes una propuesta visual y estratégica hecha a medida para ti.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">Desarrollo</div>
+        <div class="step-desc">Construyo tu web con revisiones incluidas hasta que quedes 100% satisfecho.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-title">Entrega y lanzamiento</div>
+        <div class="step-desc">Tu web online, con formación incluida y soporte post-lanzamiento.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section reveal" id="clientes" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="section-inner">
+    <span class="label">Clientes</span>
+    <h2 class="heading">Más de 40 negocios ya<br><em>confían</em> en Aether</h2>
+    <p style="color:var(--text-mid);margin-top:1rem;max-width:500px">Esto es lo que dicen los que ya dieron el paso.</p>
+
+    <!-- fila destacada -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem">
+      <div class="testi-card" style="border-color:var(--border-mid)">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote" style="font-size:1.35rem">Llevaba meses con la web parada porque no me convencía ningún presupuesto. Con Hugo lo tuve claro desde la primera llamada y el resultado fue mejor de lo que esperaba.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">CR</div>
+          <div>
+            <div class="testi-name">Carlos Rodríguez</div>
+            <div class="testi-role">Consultor financiero · Madrid</div>
+          </div>
         </div>
-
-        <!-- Decoración de fondo -->
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-900/20 via-transparent to-transparent opacity-50 pointer-events-none"></div>
-        
-        <div class="relative z-10 max-w-4xl text-center space-y-8">
-            <div class="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-[#00ff9d] uppercase bg-emerald-950/30 border border-emerald-500/30 rounded-full">
-                Diseño Web Premium para Marcas Exclusivas
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight md:leading-tight">
-                No atraemos miradas, <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200">atraemos clientes</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-                Estaba cansado de ver webs que no convierten, por eso fundé <strong class="text-gray-100 font-semibold">Aether</strong>.
-            </p>
-            
-            <div class="pt-6">
-                <p class="text-lg text-gray-500 mb-6 font-medium">Por Hugo Pérez — Aether</p>
-                <button 
-                    onclick="openBookingModal()"
-                    class="glow-button bg-[#00ff9d] text-black px-10 py-5 rounded-full text-xl font-bold uppercase tracking-wide hover:bg-[#05eb92]">
-                    AGENDA TU LLAMADA GRATUITA
-                </button>
-                <p class="mt-4 text-gray-500 text-sm italic">Solo quedan 2 plazas disponibles</p>
-            </div>
+      </div>
+      <div class="testi-card" style="border-color:var(--border-mid)">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote" style="font-size:1.35rem">Tenía dudas porque nunca había invertido en una web de verdad. Al final me animé y estoy contento, se nota la diferencia respecto a lo que tenía antes.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">JP</div>
+          <div>
+            <div class="testi-name">Javier Pardo</div>
+            <div class="testi-role">Negocio de ropa online · Barcelona</div>
+          </div>
         </div>
-    </header>
-
-    <!-- BENEFICIOS -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-bold mb-4">Tu web no solo se ve bien,<br><span class="text-[#00ff9d]">genera resultados</span></h2>
-            <div class="w-20 h-1 bg-[#00ff9d] mx-auto rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div class="card-hover p-8 bg-[#111] border border-gray-800 rounded-3xl">
-                <div class="w-12 h-12 bg-emerald-950/50 rounded-2xl flex items-center justify-center mb-6 text-[#00ff9d]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">✦ Diseño Aether</h3>
-                <p class="text-gray-400 leading-relaxed">Es aburrido contratarnos, pierde la gracia cuando sabes que no tendrás más competencia.</p>
-            </div>
-            
-            <div class="card-hover p-8 bg-[#111] border border-gray-800 rounded-3xl">
-                <div class="w-12 h-12 bg-emerald-950/50 rounded-2xl flex items-center justify-center mb-6 text-[#00ff9d]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">✦ Optimización</h3>
-                <p class="text-gray-400 leading-relaxed">Velocidad de carga ultrarrápida, SEO técnico y llamadas a la acción estratégicas para vender más.</p>
-            </div>
-
-            <div class="card-hover p-8 bg-[#111] border border-gray-800 rounded-3xl">
-                <div class="w-12 h-12 bg-emerald-950/50 rounded-2xl flex items-center justify-center mb-6 text-[#00ff9d]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">✦ Personalización</h3>
-                <p class="text-gray-400 leading-relaxed">Adaptada totalmente a tu marca, valores y objetivos únicos. No utilizamos plantillas genéricas.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUÉ INCLUYE -->
-    <section class="py-24 bg-[#0d0d0d]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold">Esto es lo que incluye tu proyecto</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div class="flex items-start space-x-4 p-6 bg-[#161616] rounded-2xl border border-gray-800/50 hover:bg-[#1a1a1a] transition-colors">
-                    <div class="text-[#00ff9d] mt-1 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div><h4 class="font-bold text-lg mb-1">Responsive & Mobile First</h4><p class="text-gray-400 text-sm text-balance">Experiencia perfecta en smartphones y tablets.</p></div>
-                </div>
-                <div class="flex items-start space-x-4 p-6 bg-[#161616] rounded-2xl border border-gray-800/50 hover:bg-[#1a1a1a] transition-colors">
-                    <div class="text-[#00ff9d] mt-1 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div><h4 class="font-bold text-lg mb-1">Optimización SEO Básica</h4><p class="text-gray-400 text-sm text-balance">Para que Google te encuentre desde el primer día.</p></div>
-                </div>
-                <div class="flex items-start space-x-4 p-6 bg-[#161616] rounded-2xl border border-gray-800/50 hover:bg-[#1a1a1a] transition-colors">
-                    <div class="text-[#00ff9d] mt-1 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div><h4 class="font-bold text-lg mb-1">Entrega + Guía</h4><p class="text-gray-400 text-sm text-balance">Web lista + videollamada para enseñarte a gestionarla.</p></div>
-                </div>
-                <div class="flex items-start space-x-4 p-6 bg-[#161616] rounded-2xl border border-gray-800/50 hover:bg-[#1a1a1a] transition-colors">
-                    <div class="text-[#00ff9d] mt-1 shrink-0"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-                    <div><h4 class="font-bold text-lg mb-1">Integraciones</h4><p class="text-gray-400 text-sm text-balance">Añadimos tanto tus redes sociales como tu portfolio</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN PORTFOLIO / INFO EXTRA -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center bg-[#111]/80 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-gray-800/60 shadow-2xl">
-            <!-- Logo Esquina Superior Derecha Biografía -->
-            <div class="absolute top-6 right-6 md:top-10 md:right-10 z-20 pointer-events-none md:pointer-events-auto">
-                <div class="h-14 w-32 md:h-16 md:w-40 bg-gradient-to-r from-emerald-400 to-emerald-200 opacity-40 drop-shadow-[0_0_10px_rgba(0,255,157,0.1)] hover:opacity-100 transition-all duration-300 hover:scale-105"
-                     style="-webkit-mask-image: url('https://i.postimg.cc/t4sKnKpv/Gemini-Generated-Image-tgamittgamittgam-removebg-preview.png'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: right center; mask-image: url('https://i.postimg.cc/t4sKnKpv/Gemini-Generated-Image-tgamittgamittgam-removebg-preview.png'); mask-size: contain; mask-repeat: no-repeat; mask-position: right center;"
-                     title="Aether Design Logo">
-                </div>
-            </div>
-
-            <!-- Imagen -->
-            <div class="relative group order-2 lg:order-1 max-w-md mx-auto w-full">
-                <div class="absolute -inset-2 bg-gradient-to-r from-[#00ff9d]/20 to-emerald-900/20 rounded-3xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-                <img src="https://i.postimg.cc/CxCQ8S9s/Composiciones.jpg" alt="Proyectos Aether Design" class="relative rounded-2xl border border-gray-700/50 w-full aspect-square md:aspect-[4/5] object-cover object-center shadow-xl transition-transform duration-500 group-hover:scale-[1.02]">
-            </div>
-            
-            <!-- Texto (Biografía) -->
-            <div class="space-y-6 order-1 lg:order-2">
-                <h2 class="text-3xl md:text-5xl font-bold leading-tight">Soy Hugo Pérez,<br>fundador de <span class="text-[#00ff9d]">Aether.</span></h2>
-                <div class="w-16 h-1 bg-[#00ff9d] rounded-full"></div>
-                <p class="text-gray-300 text-xl md:text-2xl leading-relaxed font-light">
-                    Voy a ser directo contigo. Vas a atraer nuevos clientes, tendrás una imagen profesional, y <strong class="text-white font-semibold">ya no conocerás la palabra competencia</strong>.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- BONUS -->
-    <section class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="bg-gradient-to-br from-[#111] to-[#0a0a0a] border-l-8 border-[#00ff9d] p-12 rounded-3xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
-                <svg width="200" height="200" viewBox="0 0 24 24" fill="#00ff9d"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-            </div>
-            
-            <h2 class="text-3xl md:text-4xl font-bold mb-10 leading-tight">Si reservas tu llamada esta semana,<br>te llevas estos bonus:</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
-                <div class="space-y-2">
-                    <div class="text-sm font-bold text-[#00ff9d]">BONUS 1</div>
-                    <h4 class="text-xl font-bold">Pack de Copys Premium</h4>
-                    <p class="text-gray-400">Textos persuasivos escritos por expertos incluidos en tu web.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-sm font-bold text-[#00ff9d]">BONUS 2</div>
-                    <h4 class="text-xl font-bold">Estrategia de Conversión</h4>
-                    <p class="text-gray-400">Revisión completa de tu embudo de ventas actual.</p>
-                </div>
-                <div class="space-y-2">
-                    <div class="text-sm font-bold text-[#00ff9d]">BONUS 3</div>
-                    <h4 class="text-xl font-bold">1 Mes Extra</h4>
-                    <p class="text-gray-400">Mantenimiento técnico gratuito durante el primer mes.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GARANTÍA -->
-    <section class="py-24 px-6">
-        <div class="max-w-4xl mx-auto bg-emerald-950/20 border border-emerald-500/30 p-12 rounded-[40px] text-center shadow-2xl shadow-emerald-900/10">
-            <h2 class="text-3xl font-bold mb-6 italic text-[#00ff9d]">Garantía de Satisfacción Aether</h2>
-            <p class="text-xl md:text-2xl text-emerald-50/90 font-light leading-relaxed">
-                "Si después de entregada la web no estás <span class="font-semibold text-[#00ff9d]">100% satisfecho</span> con el resultado, trabajaremos juntos sin descanso hasta que quede perfecta. Mi prioridad es tu éxito."
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section id="contacto" class="py-32 px-6 text-center bg-black relative">
-        <div class="max-w-4xl mx-auto space-y-10">
-            <h2 class="text-4xl md:text-6xl font-extrabold leading-tight">¿Listo para tener la web que tu marca merece?</h2>
-            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto">
-                Agenda una llamada de 30 minutos gratuita y sin compromiso.<br>
-                Analizaremos tu proyecto y te daré una propuesta personalizada.
-            </p>
-            
-            <div class="pt-6">
-                <button 
-                    onclick="openBookingModal()"
-                    class="glow-button bg-[#00ff9d] text-black px-12 py-6 rounded-full text-2xl font-black uppercase tracking-wider hover:bg-[#05eb92]">
-                    AGENDA TU LLAMADA AHORA
-                </button>
-                <p class="mt-8 text-gray-500 font-medium tracking-wide uppercase">
-                    Solo quedan 2 plazas disponibles
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODAL DE CALENDARIO / RESERVA -->
-    <div id="modal-booking" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-black/90 backdrop-blur-md transition-opacity" onclick="closeModal('modal-booking')"></div>
-        <div class="relative bg-[#0f0f0f] border border-emerald-500/20 w-full max-w-xl overflow-hidden rounded-[32px] shadow-2xl flex flex-col">
-            
-            <!-- Header Modal -->
-            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-[#141414]">
-                <div>
-                    <h3 class="text-xl font-bold text-[#00ff9d]">Agendar Sesión Estratégica</h3>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest mt-1">30 minutos • Hugo Pérez</p>
-                </div>
-                <button onclick="closeModal('modal-booking')" class="text-gray-500 hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                </button>
-            </div>
-
-            <div class="p-6 space-y-6 overflow-y-auto max-h-[70vh]">
-                <div>
-                    <label class="text-sm font-semibold text-gray-400 uppercase tracking-tighter mb-3 block">1. Selecciona el día</label>
-                    <div id="calendar-grid" class="grid grid-cols-7 gap-2 text-center text-xs">
-                        <!-- Generado por JS -->
-                    </div>
-                </div>
-
-                <div>
-                    <label class="text-sm font-semibold text-gray-400 uppercase tracking-tighter mb-3 block">2. Selecciona la hora (CET)</label>
-                    <div id="time-grid" class="grid grid-cols-3 gap-2">
-                        <!-- Generado por JS -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Footer Modal -->
-            <div class="p-6 bg-[#141414] border-t border-gray-800">
-                <button 
-                    id="confirm-booking-btn"
-                    disabled
-                    onclick="sendWhatsAppBooking()"
-                    class="w-full py-4 bg-emerald-500 text-black font-black uppercase tracking-widest rounded-2xl disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#00ff9d] transition-all transform active:scale-95">
-                    Confirmar y Agendar
-                </button>
-                <p class="text-[10px] text-gray-500 text-center mt-3 uppercase tracking-tighter">Se abrirá WhatsApp para finalizar la reserva</p>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <!-- ... existing code (other modals) ... -->
+    <!-- grid masonry 3 col -->
+    <div style="columns:3;column-gap:1.5rem;margin-top:1.5rem">
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Muy buen trato y comunicación fluida durante todo el proceso. Sabía en todo momento cómo iba el proyecto.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">MS</div>
+          <div><div class="testi-name">María Sánchez</div><div class="testi-role">Agencia de marketing · Murcia</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Rápido y sin dramas. Le expliqué lo que necesitaba, me hizo algunas preguntas y en poco tiempo tenía algo concreto encima de la mesa.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">AL</div>
+          <div><div class="testi-name">Andrés Llanos</div><div class="testi-role">Coach · Valencia</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Me empezaron a llegar consultas por la web, algo que antes no pasaba. No sé si es solo el diseño o también el SEO, pero algo está funcionando.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">LG</div>
+          <div><div class="testi-name">Laura García</div><div class="testi-role">Formadora online · Sevilla</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">La web anterior me daba vergüenza mandarla. Ahora no tengo ese problema. Simple pero hace falta decirlo.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">RV</div>
+          <div><div class="testi-name">Roberto Vidal</div><div class="testi-role">Nutricionista · Bilbao</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Lo que más me gustó es que no me vendió más de lo que necesitaba. Me dijo lo que tenía sentido para mi negocio y punto.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">NF</div>
+          <div><div class="testi-name">Natalia Ferrer</div><div class="testi-role">Diseñadora freelance · Bilbao</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Fui con las ideas muy verdes y me ayudó a estructurarlo todo. Al final quedó bastante mejor de lo que yo tenía en la cabeza.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">DM</div>
+          <div><div class="testi-name">Diego Martín</div><div class="testi-role">Consultor independiente · Zaragoza</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">El proceso fue más tranquilo de lo que esperaba. Sin agobios, con revisiones incluidas y sin cobrarme extra por cada cambio.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">IT</div>
+          <div><div class="testi-name">Isabel Torres</div><div class="testi-role">Fotógrafa · Ciudad de México</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Había probado con otra persona antes y fue una pesadilla. Con Hugo todo fue diferente: cumplió plazos y estuvo disponible cuando lo necesité.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">PO</div>
+          <div><div class="testi-name">Pablo Ortega</div><div class="testi-role">Profesor online · Alicante</div></div>
+        </div>
+      </div>
+      <div class="testi-card" style="break-inside:avoid;margin-bottom:1.5rem">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Tardé demasiado en dar el paso, la verdad. Pero contenta con el resultado. Se nota que entiende lo que necesita cada tipo de negocio.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">SM</div>
+          <div><div class="testi-name">Sara Muñoz</div><div class="testi-role">Psicóloga · Granada</div></div>
+        </div>
+      </div>
+    </div>
 
-    <script>
-        let selectedDate = null;
-        let selectedTime = null;
-        const MY_PHONE = "34640230147";
+    <!-- fila final 2 col -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:0">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Por fin tengo una web que no me da apuro enseñar. Eso ya vale mucho para mí, aunque suene a poco.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">EC</div>
+          <div><div class="testi-name">Elena Castillo</div><div class="testi-role">Interiorista · Málaga</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <div class="testi-quote">Ya le he encargado un segundo proyecto. Cuando algo funciona y el trato es bueno, no hace falta buscar más.</div>
+        <div class="testi-author">
+          <div class="testi-avatar">FN</div>
+          <div><div class="testi-name">Fernando Navarro</div><div class="testi-role">Emprendedor · Valencia</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function openBookingModal() {
-            openModal('modal-booking');
-            generateCalendar();
-        }
+<!-- SOBRE MÍ -->
+<section class="section reveal" id="sobre-mi">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center">
+      <div>
+        <img src="https://i.postimg.cc/FK5YG2Jk/Captura-de-pantalla-2026-05-13-023047.png" alt="Hugo, fundador de Aether Studio" style="width:100%;border-radius:8px;display:block">
+      </div>
+      <div>
+        <span class="label">Sobre mí</span>
+        <h2 class="heading" style="margin-bottom:1.5rem">Hola, soy Hugo.<br>Hago webs que <em>trabajan</em><br>por ti.</h2>
+        <p style="color:var(--text-mid);margin-bottom:1.2rem;line-height:1.75">No soy una agencia con 20 personas donde tu proyecto se pierde entre cuentas. Soy Hugo, diseñador y desarrollador web especializado en negocios digitales.</p>
+        <p style="color:var(--text-mid);margin-bottom:1.2rem;line-height:1.75">Cada web que construyo tiene un solo objetivo: <strong style="color:var(--text)">hacer crecer tu negocio</strong>. Combino diseño de alto impacto con estrategia de conversión para que cada visita cuente.</p>
+        <p style="color:var(--text-mid);margin-bottom:2.5rem;line-height:1.75">Trabajo con pocos clientes a la vez para darte atención total. No subcontrato. No uso plantillas. Todo es tuyo, único y hecho a medida.</p>
+        <div style="display:flex;gap:2.5rem">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">+40</div>
+            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Proyectos</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">3×</div>
+            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Más conversiones</div>
+          </div>
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:700;color:var(--green);line-height:1">48h</div>
+            <div style="color:var(--text-dim);font-size:.8rem;letter-spacing:.06em;margin-top:.2rem">Primera versión</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        function generateCalendar() {
-            const grid = document.getElementById('calendar-grid');
-            grid.innerHTML = '';
-            
-            // Días de la semana
-            ['L', 'M', 'X', 'J', 'V', 'S', 'D'].forEach(d => {
-                grid.innerHTML += `<div class="text-gray-600 font-bold mb-2">${d}</div>`;
-            });
+<!-- CTA FINAL -->
+<section class="cta-section reveal" id="contacto">
+  <div style="position:relative;z-index:1">
+    <span class="label">¿Listo para empezar?</span>
+    <h2 class="heading">Tu competencia ya tiene<br>una web que <em>convierte</em></h2>
+    <p class="sub">Reserva tu llamada gratuita de 30 minutos y descubre cómo podemos transformar tu presencia online en tu mejor vendedor.</p>
+    <a href="mailto:aetherdesignweb@gmail.com" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.8rem">Reservar llamada gratuita →</a>
+    <div><span class="cta-guarantee">Sin compromiso · Respuesta en 24h · 100% gratuito</span></div>
+  </div>
+</section>
 
-            const today = new Date();
-            // Mostrar los próximos 14 días (excluyendo domingos por ejemplo)
-            for (let i = 1; i <= 21; i++) {
-                const date = new Date();
-                date.setDate(today.getDate() + i);
-                
-                const isSunday = date.getDay() === 0;
-                const dayNum = date.getDate();
-                const month = date.toLocaleDateString('es-ES', { month: 'short' });
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Æther<span>.</span> Studio</div>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="mailto:aetherdesignweb@gmail.com">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2025 Aether Studio · Hugo Pérez Mené ·
+    <a href="#" onclick="showLegal('aviso');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Aviso Legal</a> ·
+    <a href="#" onclick="showLegal('privacidad');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Política de Privacidad</a> ·
+    <a href="#" onclick="showLegal('cookies');return false" style="color:var(--text-dim);text-decoration:none;transition:color .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-dim)'">Política de Cookies</a>
+  </div>
+</footer>
 
-                if (isSunday) {
-                    grid.innerHTML += `<div class="p-3 text-gray-800 cursor-not-allowed">${dayNum}</div>`;
-                } else {
-                    const dateStr = date.toISOString().split('T')[0];
-                    grid.innerHTML += `
-                        <button 
-                            onclick="selectDay(this, '${dateStr}')"
-                            class="day-btn p-2 rounded-xl border border-gray-800 hover:border-emerald-500/50 transition-all flex flex-col items-center">
-                            <span class="text-gray-500 text-[10px] uppercase">${month}</span>
-                            <span class="text-lg font-bold text-white">${dayNum}</span>
-                        </button>`;
-                }
-            }
-        }
+<!-- LEGAL MODAL -->
+<div id="legal-overlay" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(4,16,10,.96);backdrop-filter:blur(8px);overflow-y:auto;padding:4rem 2rem">
+  <div style="max-width:760px;margin:0 auto;position:relative">
+    <button onclick="hideLegal()" style="position:fixed;top:2rem;right:2rem;background:var(--bg3);border:1px solid var(--border-mid);color:var(--text-mid);padding:.6rem 1.2rem;border-radius:4px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:.9rem;transition:all .2s" onmouseover="this.style.color='var(--green)'" onmouseout="this.style.color='var(--text-mid)'">✕ Cerrar</button>
 
-        function selectDay(btn, date) {
-            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-500'));
-            document.querySelectorAll('.day-btn').forEach(b => {
-                b.querySelector('span:last-child').classList.add('text-white');
-                b.querySelector('span:first-child').classList.add('text-gray-500');
-            });
+    <!-- AVISO LEGAL -->
+    <div id="legal-aviso" class="legal-page" style="display:none">
+      <span class="label">Legal</span>
+      <h2 class="heading" style="margin-bottom:2.5rem">Aviso <em>Legal</em></h2>
+      <div class="legal-body">
+        <h3>1. Datos identificativos del titular</h3>
+        <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), se informa de los siguientes datos:</p>
+        <ul>
+          <li><strong>Titular:</strong> Hugo Pérez Mené</li>
+          <li><strong>DNI:</strong> 26055790X</li>
+          <li><strong>Domicilio:</strong> Calle La Milagrosa 30</li>
+          <li><strong>Actividad:</strong> Diseño y desarrollo web</li>
+          <li><strong>Correo electrónico:</strong> aetherdesignweb@gmail.com</li>
+          <li><strong>Denominación comercial:</strong> Aether Studio</li>
+        </ul>
+        <h3>2. Objeto y ámbito de aplicación</h3>
+        <p>El presente Aviso Legal regula el acceso y uso del sitio web aetherstudio.com (en adelante, "el Sitio Web"), del que es titular Hugo Pérez Mené. El acceso al Sitio Web implica la aceptación plena y sin reservas de las presentes condiciones.</p>
+        <h3>3. Propiedad intelectual e industrial</h3>
+        <p>Todos los contenidos del Sitio Web —incluyendo textos, imágenes, logotipos, diseño gráfico y código fuente— son propiedad de Hugo Pérez Mené o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o modificación sin autorización expresa del titular.</p>
+        <h3>4. Responsabilidad</h3>
+        <p>Hugo Pérez Mené no se hace responsable de los daños o perjuicios derivados del uso del Sitio Web, de la imposibilidad de acceso al mismo o de la presencia de virus o elementos lesivos en los contenidos. El titular se reserva el derecho a modificar, suspender o eliminar los contenidos del Sitio Web en cualquier momento y sin previo aviso.</p>
+        <h3>5. Legislación aplicable</h3>
+        <p>Las presentes condiciones se rigen por la legislación española. Para cualquier controversia derivada del uso del Sitio Web, las partes se someten a los juzgados y tribunales del domicilio del titular, salvo que la ley disponga otra cosa.</p>
+      </div>
+    </div>
 
-            btn.classList.add('bg-emerald-500', 'border-emerald-500');
-            btn.querySelector('span:last-child').classList.replace('text-white', 'text-black');
-            btn.querySelector('span:first-child').classList.replace('text-gray-500', 'text-black');
-            
-            selectedDate = date;
-            generateTimeSlots();
-            checkSelection();
-        }
+    <!-- POLÍTICA DE PRIVACIDAD -->
+    <div id="legal-privacidad" class="legal-page" style="display:none">
+      <span class="label">Legal</span>
+      <h2 class="heading" style="margin-bottom:2.5rem">Política de <em>Privacidad</em></h2>
+      <div class="legal-body">
+        <h3>1. Responsable del tratamiento</h3>
+        <ul>
+          <li><strong>Identidad:</strong> Hugo Pérez Mené</li>
+          <li><strong>DNI:</strong> 26055790X</li>
+          <li><strong>Domicilio:</strong> Calle La Milagrosa 30</li>
+          <li><strong>Correo electrónico:</strong> aetherdesignweb@gmail.com</li>
+        </ul>
+        <h3>2. Finalidad del tratamiento</h3>
+        <p>Los datos personales que facilites a través de los formularios de contacto del Sitio Web serán tratados con las siguientes finalidades:</p>
+        <ul>
+          <li>Gestionar las consultas y solicitudes de información que nos envíes.</li>
+          <li>Enviarte información comercial sobre los servicios de Aether Studio, siempre que hayas prestado tu consentimiento.</li>
+          <li>Dar cumplimiento a las obligaciones legales aplicables.</li>
+        </ul>
+        <h3>3. Legitimación</h3>
+        <p>La base legal para el tratamiento de tus datos es el consentimiento que prestas al cumplimentar y enviar el formulario de contacto, así como el interés legítimo en la gestión de consultas precontractuales.</p>
+        <h3>4. Conservación de los datos</h3>
+        <p>Tus datos serán conservados durante el tiempo estrictamente necesario para atender tu solicitud y, en su caso, durante los plazos legales de prescripción que resulten aplicables.</p>
+        <h3>5. Destinatarios</h3>
+        <p>Los datos no serán cedidos a terceros salvo obligación legal. Podrán acceder a ellos proveedores de servicios tecnológicos (hosting, email) bajo contrato de encargado de tratamiento con las garantías adecuadas.</p>
+        <h3>6. Tus derechos</h3>
+        <p>Puedes ejercer en cualquier momento tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, dirigiéndote por escrito a aetherdesignweb@gmail.com, adjuntando copia de tu documento de identidad. También tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
+        <h3>7. Seguridad</h3>
+        <p>Hugo Pérez Mené adopta las medidas técnicas y organizativas necesarias para garantizar la seguridad de tus datos y evitar su alteración, pérdida, tratamiento o acceso no autorizado.</p>
+      </div>
+    </div>
 
-        function generateTimeSlots() {
-            const grid = document.getElementById('time-grid');
-            grid.innerHTML = '';
-            const slots = ["09:00", "10:00", "11:00", "12:00", "16:00", "17:00", "18:00", "19:00"];
-            
-            slots.forEach(time => {
-                grid.innerHTML += `
-                    <button 
-                        onclick="selectTime(this, '${time}')"
-                        class="time-btn py-3 px-4 rounded-xl border border-gray-800 text-gray-400 font-bold hover:border-emerald-500/50 transition-all">
-                        ${time}
-                    </button>`;
-            });
-        }
+    <!-- POLÍTICA DE COOKIES -->
+    <div id="legal-cookies" class="legal-page" style="display:none">
+      <span class="label">Legal</span>
+      <h2 class="heading" style="margin-bottom:2.5rem">Política de <em>Cookies</em></h2>
+      <div class="legal-body">
+        <h3>1. ¿Qué son las cookies?</h3>
+        <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Permiten recordar tus preferencias y mejorar tu experiencia de navegación.</p>
+        <h3>2. Cookies utilizadas en este sitio web</h3>
+        <p>Este sitio web puede utilizar los siguientes tipos de cookies:</p>
+        <ul>
+          <li><strong>Cookies técnicas o necesarias:</strong> imprescindibles para el funcionamiento básico del Sitio Web. No requieren consentimiento.</li>
+          <li><strong>Cookies analíticas:</strong> permiten conocer el número de visitantes y el comportamiento de navegación con fines estadísticos. Se utilizan únicamente de forma agregada y anónima.</li>
+        </ul>
+        <h3>3. Gestión y desactivación de cookies</h3>
+        <p>Puedes configurar tu navegador para aceptar, rechazar o eliminar las cookies en cualquier momento. Ten en cuenta que desactivar ciertas cookies puede afectar al correcto funcionamiento del Sitio Web. A continuación encontrarás los enlaces de configuración de los navegadores más habituales:</p>
+        <ul>
+          <li>Google Chrome: Configuración → Privacidad y seguridad → Cookies</li>
+          <li>Mozilla Firefox: Opciones → Privacidad y seguridad</li>
+          <li>Safari: Preferencias → Privacidad</li>
+          <li>Microsoft Edge: Configuración → Privacidad, búsqueda y servicios</li>
+        </ul>
+        <h3>4. Actualizaciones de esta política</h3>
+        <p>Hugo Pérez Mené se reserva el derecho a modificar esta Política de Cookies en cualquier momento para adaptarla a novedades legislativas o cambios en el Sitio Web. Se recomienda revisarla periódicamente.</p>
+        <h3>5. Contacto</h3>
+        <p>Para cualquier consulta relacionada con el uso de cookies, puedes contactar en aetherdesignweb@gmail.com.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-        function selectTime(btn, time) {
-            document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('bg-emerald-500', 'text-black', 'border-emerald-500'));
-            btn.classList.add('bg-emerald-500', 'text-black', 'border-emerald-500');
-            selectedTime = time;
-            checkSelection();
-        }
+<style>
+.legal-body h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--green);margin:2rem 0 .75rem}
+.legal-body p{color:var(--text-mid);line-height:1.8;margin-bottom:1rem;font-size:.95rem}
+.legal-body ul{color:var(--text-mid);padding-left:1.5rem;margin-bottom:1rem}
+.legal-body ul li{margin-bottom:.4rem;font-size:.95rem;line-height:1.7}
+.legal-body strong{color:var(--text);font-weight:500}
+</style>
 
-        function checkSelection() {
-            const btn = document.getElementById('confirm-booking-btn');
-            if (selectedDate && selectedTime) {
-                btn.disabled = false;
-                btn.classList.add('animate-pulse');
-            }
-        }
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        function sendWhatsAppBooking() {
-            const dateObj = new Date(selectedDate);
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const dateFormatted = dateObj.toLocaleDateString('es-ES', options);
-            
-            const message = `Hola Hugo! 👋 Me gustaría agendar la sesión estratégica con Aether Design.%0A%0A📅 *Fecha:* ${dateFormatted}%0A🕒 *Hora:* ${selectedTime}h (CET)%0A%0A¿Me confirmas si está disponible?`;
-            
-            window.open(`https://wa.me/${MY_PHONE}?text=${message}`, '_blank');
-            closeModal('modal-booking');
-        }
-
-        // Funciones de modal existentes (actualizadas)
-        function openModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-            if(id === 'modal-booking') {
-                selectedDate = null;
-                selectedTime = null;
-                document.getElementById('confirm-booking-btn').disabled = true;
-            }
-        }
-        
-        // ... rest of existing script ...
-    </script>
+function showLegal(page) {
+  document.querySelectorAll('.legal-page').forEach(p => p.style.display = 'none');
+  document.getElementById('legal-' + page).style.display = 'block';
+  document.getElementById('legal-overlay').style.display = 'block';
+  window.scrollTo(0,0);
+}
+function hideLegal() {
+  document.getElementById('legal-overlay').style.display = 'none';
+}
+</script>
 </body>
 </html>
