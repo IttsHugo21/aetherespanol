@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aether — Webs para Clínicas de Estética</title>
+  <title>Aether — Webs para Infoproductores</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* Paleta ajustada para transmitir lujo, limpieza clínica y autoridad */
-      --bg:        #040a07;
-      --bg2:       #08120c;
-      --bg3:       #0e1d13;
-      --green:     #8a9c8b;
-      --green-mid: #aabfab;
-      --green-lit: #d1e8d2;
-      --accent:    #ffffff;
+      --bg:        #060d09;
+      --bg2:       #0c1810;
+      --bg3:       #111f14;
+      --green:     #2e6b45;
+      --green-mid: #3d8a5a;
+      --green-lit: #5cb87a;
+      --accent:    #a8e6be;
       --text:      #dfe8dc;
-      --text-dim:  #8b9990;
-      --white:     #f4f7f4;
-      --line:      rgba(170, 191, 171, 0.15);
+      --text-dim:  #7a9180;
+      --white:     #f2f7f3;
+      --line:      rgba(94,160,118,0.18);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,13 +57,12 @@
       justify-content: space-between;
       padding: 1.4rem 5vw;
       border-bottom: 1px solid transparent;
-      transition: background 0.4s, border-color 0.4s, padding 0.4s;
+      transition: background 0.4s, border-color 0.4s;
     }
     nav.scrolled {
-      background: rgba(4,10,7,0.88);
+      background: rgba(6,13,9,0.88);
       backdrop-filter: blur(14px);
       border-color: var(--line);
-      padding: 1rem 5vw;
     }
 
     .nav-logo {
@@ -74,25 +72,8 @@
       letter-spacing: 0.18em;
       color: var(--white);
       text-transform: uppercase;
-      text-decoration: none;
     }
     .nav-logo span { color: var(--green-lit); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--text-dim);
-      text-decoration: none;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--green-lit); }
 
     .nav-cta {
       font-size: 0.78rem;
@@ -116,7 +97,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 5vw 10vh;
+      padding: 0 5vw 8vh;
       overflow: hidden;
     }
 
@@ -128,7 +109,6 @@
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse 80% 70% at 50% 60%, black 30%, transparent 100%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 60%, black 30%, transparent 100%);
     }
 
     .hero-glow {
@@ -138,7 +118,7 @@
       transform: translateX(-50%);
       width: 700px;
       height: 700px;
-      background: radial-gradient(ellipse at center, rgba(170,191,171,0.15) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(46,107,69,0.35) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -156,7 +136,7 @@
       margin-bottom: 2.5rem;
       width: fit-content;
       opacity: 0;
-      animation: fadeUp 0.8s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: fadeUp 0.7s 0.2s forwards;
     }
     .hero-badge::before {
       content: '';
@@ -168,14 +148,14 @@
 
     .hero-headline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 7.5vw, 6.8rem);
+      font-size: clamp(3.2rem, 8vw, 7.5rem);
       font-weight: 300;
       line-height: 1.02;
       letter-spacing: -0.01em;
       color: var(--white);
       max-width: 18ch;
       opacity: 0;
-      animation: fadeUp 0.8s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: fadeUp 0.8s 0.4s forwards;
     }
     .hero-headline em {
       font-style: italic;
@@ -184,13 +164,13 @@
 
     .hero-sub {
       margin-top: 2rem;
-      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      font-size: clamp(1rem, 1.5vw, 1.15rem);
       font-weight: 400;
       color: var(--text-dim);
       max-width: 52ch;
       line-height: 1.7;
       opacity: 0;
-      animation: fadeUp 0.8s 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: fadeUp 0.8s 0.6s forwards;
     }
 
     .hero-actions {
@@ -200,7 +180,7 @@
       gap: 2rem;
       flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUp 0.8s 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation: fadeUp 0.8s 0.8s forwards;
     }
 
     .btn-primary {
@@ -232,7 +212,7 @@
     .btn-primary:hover {
       background: var(--accent);
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(209,232,210,0.25);
+      box-shadow: 0 12px 40px rgba(92,184,122,0.25);
     }
 
     .btn-ghost {
@@ -287,7 +267,7 @@
     .strip-track {
       display: flex;
       gap: 4rem;
-      animation: marquee 22s linear infinite;
+      animation: marquee 18s linear infinite;
     }
     .strip-item {
       font-size: 0.72rem;
@@ -302,7 +282,7 @@
     .strip-dot { width: 4px; height: 4px; background: var(--green-lit); border-radius: 50%; }
 
     /* ─── SECTIONS COMMON ─── */
-    section { position: relative; z-index: 1; padding: 9rem 5vw; }
+    section { position: relative; z-index: 1; }
 
     .section-label {
       font-size: 0.68rem;
@@ -325,7 +305,7 @@
 
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
       font-weight: 300;
       line-height: 1.1;
       color: var(--white);
@@ -333,10 +313,13 @@
     .section-title em { font-style: italic; color: var(--green-lit); }
 
     /* ─── PARA QUIÉN ─── */
+    #para-quien {
+      padding: 9rem 5vw;
+    }
     .pq-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 6vw;
+      gap: 5vw;
       align-items: center;
       margin-top: 4rem;
     }
@@ -394,6 +377,9 @@
     }
 
     /* ─── PROCESO ─── */
+    #proceso {
+      padding: 9rem 5vw;
+    }
     .proceso-header { margin-bottom: 5rem; }
     .proceso-steps {
       display: grid;
@@ -436,7 +422,7 @@
     }
     .proceso-step:hover .step-circle {
       background: var(--green);
-      color: var(--bg);
+      color: var(--white);
     }
     .step-title {
       font-size: 0.88rem;
@@ -451,49 +437,39 @@
       line-height: 1.6;
     }
 
-    /* ─── TESTIMONIOS (MASONRY LAYOUT) ─── */
+    /* ─── TESTIMONIO ─── */
     #testimonios {
+      padding: 9rem 5vw;
       background: var(--bg2);
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding-bottom: 8rem;
     }
-    
-    .testi-masonry {
-      column-count: 3;
-      column-gap: 1.5rem;
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--line);
       margin-top: 4rem;
     }
-
     .testimonio-card {
       background: var(--bg);
-      border: 1px solid var(--line);
-      padding: 2.2rem;
-      break-inside: avoid;
-      margin-bottom: 1.5rem;
-      transition: border-color 0.3s;
+      padding: 2.6rem 2.2rem;
     }
-    .testimonio-card:hover {
-      border-color: var(--green-mid);
-    }
-
     .testimonio-stars {
       display: flex;
       gap: 3px;
       margin-bottom: 1.2rem;
     }
     .star { color: var(--green-lit); font-size: 0.9rem; }
-    
     .testimonio-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       font-weight: 300;
       font-style: italic;
       color: var(--white);
-      line-height: 1.6;
+      line-height: 1.55;
       margin-bottom: 1.8rem;
     }
-    
     .testimonio-author {
       display: flex;
       align-items: center;
@@ -511,7 +487,6 @@
       font-size: 0.85rem;
       font-weight: 700;
       color: var(--green-lit);
-      flex-shrink: 0;
     }
     .author-name {
       font-size: 0.82rem;
@@ -525,6 +500,7 @@
 
     /* ─── SOBRE MÍ ─── */
     #sobre-mi {
+      padding: 9rem 5vw;
       background: var(--bg);
     }
     .sm-grid {
@@ -543,7 +519,7 @@
       height: auto;
       display: block;
       border: 1px solid var(--line);
-      filter: grayscale(30%) contrast(1.1);
+      filter: grayscale(15%);
     }
     .sm-text {
       font-size: 1.05rem;
@@ -553,12 +529,12 @@
     .sm-text p { margin-bottom: 1.4rem; }
     .sm-text strong { color: var(--white); font-weight: 600; }
 
-    /* ─── CTA FINAL (AGENDA) ─── */
+    /* ─── CTA FINAL ─── */
     #cta-final {
+      padding: 11rem 5vw;
       text-align: center;
       position: relative;
       overflow: hidden;
-      padding-bottom: 10rem;
     }
     #cta-final::before {
       content: '';
@@ -568,12 +544,12 @@
       transform: translate(-50%, -50%);
       width: 800px;
       height: 500px;
-      background: radial-gradient(ellipse at center, rgba(170,191,171,0.12) 0%, transparent 65%);
+      background: radial-gradient(ellipse at center, rgba(46,107,69,0.22) 0%, transparent 65%);
       pointer-events: none;
     }
     .cta-big {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 5vw, 5rem);
+      font-size: clamp(2.8rem, 6vw, 6rem);
       font-weight: 300;
       line-height: 1.08;
       color: var(--white);
@@ -584,7 +560,7 @@
     .cta-sub {
       font-size: 1rem;
       color: var(--text-dim);
-      max-width: 48ch;
+      max-width: 44ch;
       margin: 0 auto 3rem;
       line-height: 1.7;
     }
@@ -620,7 +596,7 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 1.5rem;
+      gap: 1rem;
     }
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
@@ -636,7 +612,10 @@
       color: var(--text-dim);
       letter-spacing: 0.05em;
     }
-    .footer-links { display: flex; gap: 2rem; }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
     .footer-links a {
       font-size: 0.72rem;
       color: var(--text-dim);
@@ -645,76 +624,6 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--green-lit); }
-
-    /* ─── MODAL LEGAL ─── */
-    .legal-modal {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
-      z-index: 1000;
-      overflow-y: auto;
-      padding: 6rem 5vw;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-    }
-    .legal-modal.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .legal-close {
-      position: absolute;
-      top: 2rem;
-      right: 5vw;
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--text-dim);
-      font-family: 'Syne', sans-serif;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: color 0.3s, border-color 0.3s;
-    }
-    .legal-close:hover {
-      color: var(--green-lit);
-      border-color: var(--green-mid);
-    }
-    .legal-content-box {
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--text-dim);
-      font-size: 0.95rem;
-      line-height: 1.8;
-      display: none;
-    }
-    .legal-content-box.active {
-      display: block;
-    }
-    .legal-content-box h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      color: var(--white);
-      margin-bottom: 2rem;
-      font-weight: 300;
-    }
-    .legal-content-box h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      color: var(--green-lit);
-      margin: 2rem 0 1rem;
-    }
-    .legal-content-box p {
-      margin-bottom: 1.2rem;
-    }
-    .legal-content-box ul {
-      padding-left: 1.5rem;
-      margin-bottom: 1.2rem;
-    }
-    .legal-content-box li {
-      margin-bottom: 0.5rem;
-    }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
@@ -740,81 +649,96 @@
       to   { transform: translateX(-50%); }
     }
 
+    /* ─── REVEAL ─── */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* ─── RESPONSIVE ─── */
-    @media (max-width: 1024px) {
-      .testi-masonry { column-count: 2; }
-    }
-
     @media (max-width: 900px) {
-      .pq-grid, .sm-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .proceso-steps { grid-template-columns: 1fr 1fr; gap: 4rem; }
+      /* Ajustes de cuadrícula */
+      .pq-grid, .sm-grid, .testimonios-grid { grid-template-columns: 1fr; gap: 4rem; }
+      .proceso-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
       .proceso-steps::before { display: none; }
-      section { padding: 6rem 5vw; }
-      #cta-final { padding: 6rem 5vw 8rem; }
-      .nav-links { display: none; }
+      
+      /* Reducción de espaciados gigantes */
+      #para-quien, #proceso, #testimonios, #sobre-mi { padding: 6rem 5vw; }
+      #cta-final { padding: 7rem 5vw; }
+      
+      /* Tipografía adaptada a tablet */
+      .hero-headline { font-size: clamp(3rem, 8vw, 4.5rem); }
+      .section-title { font-size: clamp(2.2rem, 6vw, 3rem); }
+      .cta-big { font-size: clamp(2.4rem, 6vw, 4rem); }
     }
 
     @media (max-width: 600px) {
-      section { padding: 4.5rem 5vw; }
-      #cta-final { padding: 5rem 5vw 6rem; }
-      #hero { padding-bottom: 5vh; padding-top: 20vh; }
-      
-      .hero-glow { width: 100vw; height: 100vw; top: 10%; }
-      .hero-badge { font-size: 0.65rem; margin-bottom: 1.5rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; gap: 1rem; }
-      .btn-primary { text-align: center; padding: 1rem; }
+      /* Reducción de espaciados para móvil */
+      #para-quien, #proceso, #testimonios, #sobre-mi { padding: 4rem 5vw; }
+      #cta-final { padding: 5rem 5vw; }
+      #hero { padding-bottom: 4vh; }
+
+      /* Ajustes del Hero */
+      .hero-glow { width: 100vw; height: 100vw; top: 20%; }
+      .hero-badge { font-size: 0.65rem; padding: 0.35rem 0.8rem; margin-bottom: 2rem; }
+      .hero-headline { font-size: 2.6rem; max-width: 100%; }
+      .hero-sub { font-size: 0.95rem; margin-top: 1.5rem; }
+      /* Botones ocupando todo el ancho en móvil para mejor interacción */
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 1.2rem; margin-top: 2.5rem; }
+      .btn-primary { text-align: center; padding: 1rem 1.5rem; }
       .btn-ghost { justify-content: center; }
-      .hero-scroll { display: none; }
+      .hero-scroll { display: none; } /* Oculto para ahorrar espacio visual */
+
+      /* Navegación */
+      nav { padding: 1rem 5vw; }
+      .nav-logo { font-size: 1.3rem; }
+      .nav-cta { padding: 0.5rem 0.9rem; font-size: 0.7rem; }
+
+      /* Componentes interiores */
+      .proceso-steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .pq-card { padding: 1.2rem; flex-direction: column; gap: 1rem; align-items: flex-start; }
+      .testimonio-card { padding: 1.8rem 1.4rem; }
+      .testimonio-text { font-size: 1.15rem; }
       
-      .proceso-steps { grid-template-columns: 1fr; gap: 3rem; }
-      .pq-card { padding: 1.5rem; flex-direction: column; gap: 1rem; }
+      /* CTA Final */
+      .cta-perks { flex-direction: column; gap: 1.2rem; align-items: flex-start; margin: 3rem auto 0; width: fit-content; }
       
-      .testi-masonry { column-count: 1; margin-top: 3rem; }
-      .testimonio-card { padding: 1.8rem; }
-      
-      .cta-perks { flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 2.5rem; width: fit-content; margin-left: auto; margin-right: auto; }
-      
-      footer { flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; }
+      /* Footer */
+      footer { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 2rem 5vw; }
       .footer-links { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ─── NAV ─── -->
   <nav id="nav">
-    <a href="#" class="nav-logo">A<span>e</span>ther</a>
-    <ul class="nav-links">
-      <li><a href="#para-quien">Para Clínicas</a></li>
-      <li><a href="#proceso">Método</a></li>
-      <li><a href="#testimonios">Resultados</a></li>
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-    </ul>
-    <a href="#cta-final" class="nav-cta">Llenar agenda →</a>
+    <div class="nav-logo">A<span>e</span>ther</div>
+    <a href="#cta-final" class="nav-cta">Quiero vender más →</a>
   </nav>
 
+  <!-- ─── HERO ─── -->
   <section id="hero">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
 
-    <div class="hero-badge">Exclusivo para sector médico-estético</div>
+    <div class="hero-badge">Webs para gente que quiere hacer dinero</div>
 
     <h1 class="hero-headline">
-      Si tu web no trae pacientes, tienes un escaparate<br><em>muy caro.</em>
+      Si tu web no vende,<br>tienes un folleto<br><em>muy caro.</em>
     </h1>
 
     <p class="hero-sub">
-      Hago webs para clínicas de estética. Pero no para que tus colegas te digan "qué bonita ha quedado". Las hago para que tus pacientes reserven y paguen tus tratamientos premium. Sin tener que convencerles por WhatsApp.
+      Hago webs para infoproductores. Pero no para que te digan "qué bonita". Las hago para que la gente saque la tarjeta de crédito. En 48 horas. Y sin mareos.
     </p>
 
     <div class="hero-actions">
-      <a href="#cta-final" class="btn-primary">Quiero pacientes, no curiosos →</a>
+      <a href="#cta-final" class="btn-primary">Agenda llamada (es gratis) →</a>
     </div>
 
     <div class="hero-scroll">
@@ -823,249 +747,323 @@
     </div>
   </section>
 
+  <!-- ─── STRIP ─── -->
   <div class="strip">
     <div class="strip-track">
-      <span class="strip-item"><span class="strip-dot"></span>Citas automáticas</span>
-      <span class="strip-item"><span class="strip-dot"></span>Tratamientos High-Ticket</span>
-      <span class="strip-item"><span class="strip-dot"></span>Adiós cazagangas</span>
-      <span class="strip-item"><span class="strip-dot"></span>Posicionamiento premium</span>
-      <span class="strip-item"><span class="strip-dot"></span>Pacientes filtrados</span>
-      <span class="strip-item"><span class="strip-dot"></span>Diseño clínico elegante</span>
-      <!-- Duplicate for loop -->
-      <span class="strip-item"><span class="strip-dot"></span>Citas automáticas</span>
-      <span class="strip-item"><span class="strip-dot"></span>Tratamientos High-Ticket</span>
-      <span class="strip-item"><span class="strip-dot"></span>Adiós cazagangas</span>
-      <span class="strip-item"><span class="strip-dot"></span>Posicionamiento premium</span>
-      <span class="strip-item"><span class="strip-dot"></span>Pacientes filtrados</span>
-      <span class="strip-item"><span class="strip-dot"></span>Diseño clínico elegante</span>
+      <span class="strip-item"><span class="strip-dot"></span>Cero plantillas de mierda</span>
+      <span class="strip-item"><span class="strip-dot"></span>Textos que venden</span>
+      <span class="strip-item"><span class="strip-dot"></span>Lista en 48h</span>
+      <span class="strip-item"><span class="strip-dot"></span>Hosting incluido</span>
+      <span class="strip-item"><span class="strip-dot"></span>Sin letras pequeñas</span>
+      <span class="strip-item"><span class="strip-dot"></span>Alta conversión</span>
+      <span class="strip-item"><span class="strip-dot"></span>Cero plantillas de mierda</span>
+      <span class="strip-item"><span class="strip-dot"></span>Textos que venden</span>
+      <span class="strip-item"><span class="strip-dot"></span>Lista en 48h</span>
+      <span class="strip-item"><span class="strip-dot"></span>Hosting incluido</span>
+      <span class="strip-item"><span class="strip-dot"></span>Sin letras pequeñas</span>
+      <span class="strip-item"><span class="strip-dot"></span>Alta conversión</span>
     </div>
   </div>
 
+  <!-- ─── PARA QUIÉN ─── -->
   <section id="para-quien">
     <div class="pq-grid">
       <div class="pq-left reveal">
         <div class="section-label">Para quién es esto</div>
         <h2 class="section-title">
-          Para clínicas hartas de<br>competir por <em>precio.</em>
+          Para los que están hartos de<br>regalar su <em>conocimiento.</em>
         </h2>
         <p class="pq-desc">
-          Si tienes que rebajar tus viales de ácido hialurónico o hacer bonos ridículos de láser para llenar la agenda, tienes un problema de percepción. Tu web actual te hace parecer "uno más". Y si pareces uno más, la gente solo mira el precio. Te lo soluciono.
+          Si vendes cursos, mentorías o servicios online, tu web tiene un único trabajo: vender por ti mientras tú haces otras cosas. Si ahora mismo no lo hace, estás perdiendo dinero cada minuto. Literalmente.
         </p>
         <div class="pq-cta">
-          <a href="#cta-final" class="btn-primary">Subir mi estatus online →</a>
+          <a href="#cta-final" class="btn-primary">Quiero mi web →</a>
         </div>
       </div>
 
       <div class="pq-cards reveal" style="transition-delay:0.15s">
         <div class="pq-card">
-          <div class="pq-icon">💉</div>
+          <div class="pq-icon">🎓</div>
           <div>
-            <div class="pq-card-title">Medicina Estética</div>
-            <div class="pq-card-desc">Vende tratamientos inyectables y aparatología de alto coste sin tener que dar explicaciones de media hora. Entran, ven tu autoridad, y reservan.</div>
+            <div class="pq-card-title">Creadores de cursos online</div>
+            <div class="pq-card-desc">Si la gente entra a tu curso y no compra, el problema no es tu producto. Es que no sabes venderlo. Te lo soluciono.</div>
           </div>
         </div>
         <div class="pq-card">
-          <div class="pq-icon">👩‍⚕️</div>
+          <div class="pq-icon">🧠</div>
           <div>
-            <div class="pq-card-title">Cirugía Plástica</div>
-            <div class="pq-card-desc">Quien va a entrar a un quirófano no busca ofertas, busca seguridad. Tu web debe proyectar excelencia y confianza absoluta.</div>
+            <div class="pq-card-title">Mentores y coaches</div>
+            <div class="pq-card-desc">Tener la agenda vacía jode. Una buena web filtra a los curiosos y te trae gente con la tarjeta en la mano lista para pagar.</div>
           </div>
         </div>
         <div class="pq-card">
-          <div class="pq-icon">✨</div>
+          <div class="pq-icon">📈</div>
           <div>
-            <div class="pq-card-title">Centros de Belleza Premium</div>
-            <div class="pq-card-desc">Deja de matar a tus esteticistas a base de limpiezas faciales baratas. Posiciónate para atraer a la clientela que invierte en su cuidado sin mirar la cuenta.</div>
+            <div class="pq-card-title">Consultores y especialistas</div>
+            <div class="pq-card-desc">Deja de perseguir clientes. Que entren en tu web y entiendan al segundo por qué deben pagarte a ti y no a tu competencia.</div>
           </div>
         </div>
         <div class="pq-card">
-          <div class="pq-icon">🩺</div>
+          <div class="pq-icon">🚀</div>
           <div>
-            <div class="pq-card-title">Dermatología y Capilar</div>
-            <div class="pq-card-desc">Filtra las consultas gratuitas de gente curiosa. Atrae a pacientes decididos a pagar por soluciones reales y protocolos avanzados.</div>
+            <div class="pq-card-title">Negocios digitales</div>
+            <div class="pq-card-desc">Si vives de internet, tu web es tu comercial. Y ahora mismo, el tuyo está de vacaciones. Te pongo uno que trabaje 24/7.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ─── PROCESO ─── -->
   <section id="proceso">
     <div class="proceso-header reveal">
       <div class="section-label">Cómo lo hacemos</div>
-      <h2 class="section-title">Dejas de perder tiempo y<br>empiezas a <em>rentabilizar.</em></h2>
+      <h2 class="section-title">Pagas, trabajamos, cobras.<br><em>Así de simple.</em></h2>
     </div>
 
     <div class="proceso-steps">
       <div class="proceso-step reveal">
         <div class="step-circle">1</div>
-        <div class="step-title">Radiografía del negocio</div>
-        <div class="step-desc">Agendamos. Me dices qué máquinas tienes muertas de risa y qué tratamientos te dejan más margen.</div>
+        <div class="step-title">Reservas un hueco</div>
+        <div class="step-desc">Pinchas en el botón y agendamos un rato. Sin formularios coñazo ni preguntas inútiles.</div>
       </div>
       <div class="proceso-step reveal" style="transition-delay:0.1s">
         <div class="step-circle">2</div>
-        <div class="step-title">Estrategia de pacientes</div>
-        <div class="step-desc">No pinto cuadros. Diseño un embudo visual para que el paciente ideal sienta que eres su única opción.</div>
+        <div class="step-title">Hablamos de pasta</div>
+        <div class="step-desc">Me cuentas qué vendes y a quién. Y yo te digo cómo le vamos a sacar los cuartos a tu mercado.</div>
       </div>
       <div class="proceso-step reveal" style="transition-delay:0.2s">
         <div class="step-circle">3</div>
-        <div class="step-title">Montaje del quirófano</div>
-        <div class="step-desc">Desaparezco unos días y construyo la web. Textos persuasivos, diseño elegante, botones donde toca.</div>
+        <div class="step-title">Me encierro a currar</div>
+        <div class="step-desc">Desaparezco 48 horas a picar piedra. Diseño, monto y dejo lista tu máquina de hacer dinero.</div>
       </div>
       <div class="proceso-step reveal" style="transition-delay:0.3s">
         <div class="step-circle">4</div>
-        <div class="step-title">Apertura de agenda</div>
-        <div class="step-desc">Subimos la web. Empiezas a recibir notificaciones de reservas de gente que no regatea tus precios.</div>
+        <div class="step-title">A vender</div>
+        <div class="step-desc">Le das al OK, subimos la web a tu dominio y empiezas a recibir clientes. No tiene más misterio.</div>
       </div>
     </div>
   </section>
 
+  <!-- ─── TESTIMONIOS ─── -->
   <section id="testimonios">
-    <div class="reveal" style="padding: 0 5vw;">
-      <div class="section-label">Historias Clínicas</div>
-      <h2 class="section-title">Lo que pasa cuando dejas de<br>parecer una <em>clínica low-cost.</em></h2>
+    <div class="reveal">
+      <div class="section-label">Testimonios</div>
+      <h2 class="section-title">Lo que dicen los que<br>ya <em>confiaron en Aether.</em></h2>
     </div>
 
-    <div class="testi-masonry reveal" style="padding: 0 5vw;">
-      
-      <!-- 15 Testimonios orientados a Clínicas -->
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Estaba harta de perder 3 horas al día por Instagram respondiendo '¿precio de labios?'. Desde que lanzamos la web, la paciente que entra ya viene convencida y con la reserva pagada."</p>
+    <div class="testimonios-grid">
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"En 48 horas tenía una web que antes me costaba meses conseguir. El resultado superó todo lo que esperaba."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">MC</div>
-          <div><div class="author-name">Dra. Marta C.</div><div class="author-role">Medicina Estética Integral</div></div>
+          <div class="author-avatar">ML</div>
+          <div>
+            <div class="author-name">María L.</div>
+            <div class="author-role">Creadora de curso de finanzas personales</div>
+          </div>
         </div>
       </div>
-
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Nuestra web anterior parecía un blog del 2010. Daba pena. El nuevo diseño proyecta exactamente el nivel de lujo de nuestra clínica. Hemos podido subir tarifas un 20% sin que nadie rechiste."</p>
+      <div class="testimonio-card reveal" style="transition-delay:0.1s">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"La llamada previa marcó la diferencia. Notaron exactamente lo que necesitaba sin tener que explicarlo mil veces."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">JG</div>
-          <div><div class="author-name">Javier G.</div><div class="author-role">Director Clínica Premium</div></div>
+          <div class="author-avatar">CR</div>
+          <div>
+            <div class="author-name">Carlos R.</div>
+            <div class="author-role">Coach de productividad</div>
+          </div>
         </div>
       </div>
-
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Compramos una máquina láser de 40.000€ y no lográbamos vender sesiones. Hugo estructuró una landing tan directa que la hemos amortizado en tres meses solo con tráfico de Google."</p>
+      <div class="testimonio-card reveal" style="transition-delay:0.2s">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Tener el dominio y el hosting incluido fue un alivio enorme. Todo centralizado, todo resuelto. 100% recomendable."</p>
         <div class="testimonio-author">
           <div class="author-avatar">SV</div>
-          <div><div class="author-name">Sara V.</div><div class="author-role">Centro Estética Avanzada</div></div>
+          <div>
+            <div class="author-name">Sara V.</div>
+            <div class="author-role">Consultora de marketing digital</div>
+          </div>
         </div>
       </div>
-
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Como cirujano, me daba pánico parecer un vendedor de mercadillo. Hugo entendió perfecto que yo necesito proyectar autoridad y seguridad médica. El resultado es impecable."</p>
+      
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Tenía pánico a la parte técnica. Me lo dio todo hecho y masticado. Le pasé mis textos y a los dos días estaba la web subida y funcionando. Sin mareos."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">DR</div>
-          <div><div class="author-name">Dr. Daniel R.</div><div class="author-role">Cirujano Plástico</div></div>
+          <div class="author-avatar">LG</div>
+          <div>
+            <div class="author-name">Laura G.</div>
+            <div class="author-role">Psicóloga online</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Dejé todo el tema de hosting y dominios en sus manos. Yo sé pinchar bótox, no configurar DNS. La paz mental que te da que te lo den todo hecho y funcionando... brutal."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Llevaba 6 meses con mi web en 'modo mantenimiento' porque me daba vergüenza enseñarla. Ahora la envío con orgullo y por fin me están entrando clientes solos."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">PA</div>
-          <div><div class="author-name">Patricia A.</div><div class="author-role">Doctora Estética</div></div>
+          <div class="author-avatar">DM</div>
+          <div>
+            <div class="author-name">David M.</div>
+            <div class="author-role">Entrenador personal</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Veníamos de una agencia que nos tuvo 4 meses mareando con colores y plantillas. Con Hugo fue: primera llamada directa, a los pocos días teníamos la web subida, y el lunes siguiente la primera reserva online de Indiba."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Contraté a otra agencia antes y me cobraron el triple por una plantilla que ni sabía usar. Aquí fue pim, pam. Sencillo, al grano y facturando."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">LM</div>
-          <div><div class="author-name">Laura M.</div><div class="author-role">Gerente Centro Belleza</div></div>
+          <div class="author-avatar">EC</div>
+          <div>
+            <div class="author-name">Elena C.</div>
+            <div class="author-role">Asesora fiscal</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Ya no recibimos pacientes que buscan descuentos o promociones trampa. La web funciona como un filtro implacable. Solo nos entra el paciente 'bueno'."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Me daba miedo que sonara a humo. Tuve la videollamada, entendió mi negocio mejor que yo, y montó algo que realmente funciona y convierte visitas en dinero."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">CM</div>
-          <div><div class="author-name">Carlos M.</div><div class="author-role">Clínica Dermatológica</div></div>
+          <div class="author-avatar">JT</div>
+          <div>
+            <div class="author-name">Javi T.</div>
+            <div class="author-role">Creador de cursos de vídeo</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Me daba vergüenza dar la tarjeta de mi clínica porque si entraban a la web la imagen era cutre. Ahora es el eje de mis ventas. Se la mando a todo el mundo con orgullo."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"No tengo ni idea de qué es un hosting ni quiero saberlo. La tranquilidad de delegar todo esto a alguien que va al grano no tiene precio."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">IS</div>
-          <div><div class="author-name">Irene S.</div><div class="author-role">Micropigmentación Avanzada</div></div>
+          <div class="author-avatar">MR</div>
+          <div>
+            <div class="author-name">Marta R.</div>
+            <div class="author-role">Mentora de negocios</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Hicimos una web preciosa nosotros mismos con Wix y no valió para nada. Fue poner el sistema que nos montó Hugo y empezar a llenar huecos muertos de las mañanas mágicamente."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Por fin alguien que no te habla en idioma 'informático'. Entendió a la primera que yo lo que quería era vender mis mentorías, no ganar premios de diseño."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">RQ</div>
-          <div><div class="author-name">Raquel Q.</div><div class="author-role">Dueña de Centro</div></div>
+          <div class="author-avatar">AP</div>
+          <div>
+            <div class="author-name">Andrés P.</div>
+            <div class="author-role">Consultor B2B</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"El problema de los injertos capilares es que compites con clínicas en Turquía que tiran los precios. Esta web nos desmarcó de eso. El paciente percibe calidad local."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Pensaba que hacer una web era un parto de meses. En un fin de semana lo teníamos listo. Me ahorró tiempo, dolores de cabeza y mucho dinero."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">DP</div>
-          <div><div class="author-name">Dr. Pablo</div><div class="author-role">Injerto Capilar</div></div>
+          <div class="author-avatar">SF</div>
+          <div>
+            <div class="author-name">Silvia F.</div>
+            <div class="author-role">Nutricionista</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Directo y sin humo. Me dijo qué fallaba en mi comunicación de tratamientos, lo corrigió en la web y las cifras del trimestre hablan solas. Sobran las palabras."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"La gente entraba a mi Instagram pero no me compraba. Fue cambiar la web vieja por esta y la diferencia en ventas es ridícula. Saben lo que hacen."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">VT</div>
-          <div><div class="author-name">Valeria T.</div><div class="author-role">Inversores Sector Estético</div></div>
+          <div class="author-avatar">RO</div>
+          <div>
+            <div class="author-name">Rubén O.</div>
+            <div class="author-role">Inversor y formador</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Teníamos 3 locales llenos pero de servicios básicos que dejaban 15€ limpios. Rediseñamos la web para potenciar Hifu y Morpheus, y hemos doblado facturación trabajando la mitad."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Soy muy negada para la tecnología, me agobiaba solo pensar en la web. Lo dejé todo en sus manos y fue la mejor decisión del año. Paz mental absoluta."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">AM</div>
-          <div><div class="author-name">Andrea M.</div><div class="author-role">Directora Operaciones</div></div>
+          <div class="author-avatar">CL</div>
+          <div>
+            <div class="author-name">Carmen L.</div>
+            <div class="author-role">Coach vocal</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"No entiendo de webs, pero entiendo de números. Me hizo un sistema de reservas que cobra una fianza antes de venir. La tasa de 'no show' bajó del 25% al 2%. Increíble."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Si buscas a un artista para que te ponga muñequitos dando vueltas, este no es tu sitio. Si quieres un embudo de ventas que funcione rápido, estás en el lugar correcto."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">GL</div>
-          <div><div class="author-name">Gloria L.</div><div class="author-role">Cosmetóloga Clínica</div></div>
+          <div class="author-avatar">PV</div>
+          <div>
+            <div class="author-name">Pablo V.</div>
+            <div class="author-role">Experto en Ads</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Estaba a punto de cerrar el centro por falta de pacientes nuevos. El lavado de cara digital que nos hizo fue como inaugurar de nuevo. En semanas la agenda estaba al 90%."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Me pasaba el día contestando las mismas dudas por WhatsApp. Ahora la web responde por mí y filtra a los curiosos. Solo me escriben los que ya van a pagar."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">EF</div>
-          <div><div class="author-name">Elena F.</div><div class="author-role">Estética Antiaging</div></div>
+          <div class="author-avatar">LD</div>
+          <div>
+            <div class="author-name">Lucía D.</div>
+            <div class="author-role">Diseñadora de interiores</div>
+          </div>
         </div>
       </div>
 
-      <div class="testimonio-card">
-        <div class="testimonio-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-        <p class="testimonio-text">"Te dice las cosas a la cara. Si una foto tuya es mala y no vende, te lo dice. Hice caso a su criterio, y la web ahora convierte visitas en pacientes Premium sin que yo mueva un dedo."</p>
+      <div class="testimonio-card reveal">
+        <div class="testimonio-stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonio-text">"Es directo y no pierde el tiempo. Tal cual se lee en su web, así trabaja. Pagas, le pasas lo tuyo y a los dos días tienes tu máquina de ventas. Un lujo."</p>
         <div class="testimonio-author">
-          <div class="author-avatar">BM</div>
-          <div><div class="author-name">Beatriz M.</div><div class="author-role">Clínica Odontoestética</div></div>
+          <div class="author-avatar">MS</div>
+          <div>
+            <div class="author-name">Marcos S.</div>
+            <div class="author-role">Copywriter</div>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 
+  <!-- ─── SOBRE MÍ ─── -->
   <section id="sobre-mi">
     <div class="sm-grid">
       <div class="reveal">
@@ -1076,105 +1074,50 @@
       <div class="sm-text reveal" style="transition-delay:0.15s">
         <div class="section-label">Sobre mí</div>
         <h2 class="section-title" style="margin-bottom: 2rem;">
-          No te hago una web, te monto un <em>comercial 24/7.</em>
+          No hago webs para que te den <em>premios de diseño.</em>
         </h2>
         <p>Soy Hugo.</p>
-        <p>Si buscas una agencia tradicional que te siente a tomar café para debatir si el tono del logo transmite "paz y armonía", cierra esta pestaña.</p>
-        <p><strong>Mi trabajo es que tú amortices las máquinas de tu clínica y pagues las nóminas con holgura.</strong></p>
-        <p>He visto clínicas con doctores excepcionales vacías porque su web parece un Word de los 90. O peor, clínicas que han pagado 6.000€ por una web "creativa" súper lenta que no deja claro ni cómo pedir cita.</p>
-        <p>Las clínicas que ganan pasta no tienen webs confusas. Tienen embudos de venta directos. Proyectan estatus médico, filtran a los que no tienen dinero, y empujan a la reserva. Si quieres dejar de regalar diagnósticos y empezar a cobrar tus tratamientos caros, hablemos.</p>
+        <p>No tengo una agencia con 20 empleados en una oficina con futbolín, ni te voy a cobrar reuniones de "brainstorming" donde no se dice absolutamente nada útil y solo pierdes tu tiempo.</p>
+        <p><strong>Mi negocio es que tu negocio haga dinero. Punto.</strong></p>
+        <p>He visto a demasiada gente buena perder miles de euros porque su web parecía un blog de 2012. O peor, porque contrataron a un "artista" que les cobró una fortuna por una web preciosa que tardaba en cargar la vida misma y no vendía un carajo.</p>
+        <p>Si buscas un colega para charlar durante semanas sobre qué tono de verde le va mejor a tu logotipo, vete a otro lado. Si lo que quieres es una máquina bien engrasada para que la gente saque la tarjeta de crédito, estás en el sitio correcto.</p>
       </div>
     </div>
   </section>
 
+  <!-- ─── CTA FINAL ─── -->
   <section id="cta-final">
     <h2 class="cta-big reveal">
-      Deja de regalar pacientes a la clínica de tu <em>calle.</em>
+      Deja de perder dinero con<br>esa web que <em>tienes.</em>
     </h2>
     <p class="cta-sub reveal" style="transition-delay:0.1s">
-      Esa clínica que es peor que la tuya, pero tiene mejor marketing, se está llevando tu dinero. Si quieres darle la vuelta a eso y llenar la agenda, dale al botón. Si prefieres seguir igual, a otra cosa.
+      Si quieres seguir igual, cierra esta pestaña y a otra cosa. Si quieres que tu negocio parezca un puto negocio serio y empiece a vender en 48 horas, dale al botón.
     </p>
     <div class="reveal" style="transition-delay:0.2s">
       <a href="#" class="btn-primary" style="font-size:0.9rem; padding:1.15rem 3rem;">
-        Agendar radiografía de mi clínica (Gratis) →
+        Reserva tu llamada (y hablemos de negocios) →
       </a>
     </div>
     <div class="cta-perks reveal" style="transition-delay:0.3s">
-      <div class="cta-perk"><span class="cta-perk-dot"></span>Cero humo técnico</div>
-      <div class="cta-perk"><span class="cta-perk-dot"></span>Hablamos de pacientes reales</div>
-      <div class="cta-perk"><span class="cta-perk-dot"></span>Llave en mano</div>
-      <div class="cta-perk"><span class="cta-perk-dot"></span>Aumento de estatus</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Cero compromiso</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Llamada sin coste</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Te lo doy todo montado</div>
+      <div class="cta-perk"><span class="cta-perk-dot"></span>Vendes en 48h</div>
     </div>
   </section>
 
+  <!-- ─── FOOTER ─── -->
   <footer>
     <div class="footer-logo">A<span>e</span>ther</div>
-    <div class="footer-copy">© 2026 Aether. Webs exclusivas para sector médico-estético.</div>
+    <div class="footer-copy">© 2025 Aether. Todos los derechos reservados.</div>
     <div class="footer-links">
-      <a href="#" onclick="openLegal('privacidad', event)">Privacidad</a>
-      <a href="#" onclick="openLegal('aviso', event)">Aviso Legal</a>
-      <a href="#cta-final">Reservar</a>
+      <a href="#">Política de privacidad</a>
+      <a href="#">Aviso legal</a>
+      <a href="#cta-final">Contacto</a>
     </div>
   </footer>
 
-  <!-- Modal Textos Legales -->
-  <div id="legal-modal" class="legal-modal">
-    <button class="legal-close" onclick="closeLegal()">Cerrar ✕</button>
-    
-    <!-- Aviso Legal -->
-    <div id="content-aviso" class="legal-content-box">
-      <h2>Aviso Legal</h2>
-      <h3>1. Datos identificativos</h3>
-      <p>En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, a continuación se reflejan los siguientes datos:</p>
-      <ul>
-        <li><strong>Titular:</strong> Hugo Pérez</li>
-        <li><strong>DNI:</strong> 26055790X</li>
-        <li><strong>Domicilio:</strong> Calle la milagrosa 30, 50009, Zaragoza</li>
-      </ul>
-      <h3>2. Uso del portal</h3>
-      <p>El acceso y/o uso de este portal atribuye la condición de USUARIO. El USUARIO asume la responsabilidad del uso del portal.</p>
-      <h3>3. Propiedad intelectual e industrial</h3>
-      <p>Hugo Pérez es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como de los elementos contenidos en la misma. Todos los derechos reservados.</p>
-      <h3>4. Exclusión de garantías y responsabilidad</h3>
-      <p>Hugo Pérez no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores u omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos.</p>
-    </div>
-
-    <!-- Política de Privacidad -->
-    <div id="content-privacidad" class="legal-content-box">
-      <h2>Política de Privacidad</h2>
-      <p>En esta web estamos comprometidos con la protección de la privacidad y el uso correcto de los datos personales.</p>
-      <h3>1. Responsable del tratamiento</h3>
-      <ul>
-        <li><strong>Identidad:</strong> Hugo Pérez</li>
-        <li><strong>DNI:</strong> 26055790X</li>
-        <li><strong>Dirección postal:</strong> Calle la milagrosa 30, 50009, Zaragoza</li>
-      </ul>
-      <h3>2. Finalidad del tratamiento</h3>
-      <p>Tratamos la información que nos facilitan las personas interesadas con el fin de gestionar las solicitudes recibidas y mantener la relación profesional y comercial.</p>
-      <h3>3. Tiempo de conservación</h3>
-      <p>Los datos personales proporcionados se conservarán mientras se mantenga la relación y no se solicite su supresión por el interesado.</p>
-      <h3>4. Legitimación y Destinatarios</h3>
-      <p>La base legal para el tratamiento de sus datos es el consentimiento prestado. No se cederán datos a terceros, salvo obligación legal o necesidad estricta para la prestación del servicio.</p>
-      <h3>5. Derechos del usuario</h3>
-      <p>Cualquier persona tiene derecho a obtener confirmación sobre si estamos tratando sus datos personales. Puede ejercer sus derechos de acceso, rectificación, supresión y portabilidad.</p>
-    </div>
-  </div>
-
   <script>
-    // Funciones para Modal Legal
-    function openLegal(type, event) {
-      if (event) event.preventDefault();
-      document.getElementById('legal-modal').classList.add('active');
-      document.querySelectorAll('.legal-content-box').forEach(box => box.classList.remove('active'));
-      document.getElementById('content-' + type).classList.add('active');
-      document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
-    }
-
-    function closeLegal() {
-      document.getElementById('legal-modal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1192,6 +1135,14 @@
     }, { threshold: 0.12 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth CTA link (placeholder)
+    document.querySelectorAll('a[href="#cta-final"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('cta-final').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
   </script>
 
 </body>
