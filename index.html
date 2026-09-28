@@ -467,6 +467,111 @@ body{font-weight:400}
   .stat .num{font-size:1.6rem!important}
   .svc-cta .btn{white-space:normal}
 }
+
+/* ---------- HERO: modelo de fondo ---------- */
+.hero-model{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.hero-model img{position:absolute;left:50%;top:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);opacity:.5;filter:grayscale(1) contrast(1.05)}
+.hero-model::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 55% 60% at 50% 40%,rgba(0,0,0,.15),rgba(0,0,0,.85) 75%),
+  linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0) 60%,#000 100%)}
+.hero .hero-grid{opacity:.35}
+@media(max-width:700px){
+  .hero-model img{height:78%;opacity:.45}
+  .hero-model::after{background:
+    radial-gradient(ellipse 80% 45% at 50% 28%,rgba(0,0,0,.2),rgba(0,0,0,.9) 80%),
+    linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,0) 20%,rgba(0,0,0,.6) 55%,#000 78%)}
+}
+
+.hero-model img{-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 70%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 70%,transparent 100%)}
+.hero-sub{color:#c4c4c4;text-shadow:0 2px 18px rgba(0,0,0,.9)}
+.hero h1{text-shadow:0 4px 40px rgba(0,0,0,.55)}
+
+/* hero: sin retícula, modelo opaco y oscurecido */
+.hero .hero-grid{display:none}
+.hero-model img{opacity:1!important;filter:grayscale(1) brightness(.52) contrast(1.1)!important}
+
+/* hero: título más fino y elegante */
+.hero h1{font-weight:300!important;letter-spacing:-.03em!important;line-height:1.02!important;font-size:clamp(2.8rem,7vw,6.6rem)!important;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","kern"}
+@media(max-width:700px){.hero h1{font-size:clamp(2.5rem,11.5vw,3.4rem)!important;letter-spacing:-.025em!important}}
+
+/* ---------- hero compacto ---------- */
+.hero{min-height:78vh;display:flex;align-items:center;padding:150px 0 90px!important}
+.hero-inner{width:100%}
+@media(max-width:700px){.hero{min-height:72vh;padding:120px 0 64px!important}}
+.marquee-band{border-top:1px solid var(--line)}
+.marquee-band .marquee{margin:0}
+/* ---------- botón ampliar ---------- */
+.vslot-expand{position:absolute;right:12px;top:12px;z-index:2;font-family:var(--f-ui);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);padding:7px 10px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
+.vslot.has-video:hover .vslot-expand{background:#fff;color:#000}
+.vslot.has-video video{transition:transform .6s var(--ease)}
+.vslot.has-video:hover video{transform:scale(1.03)}
+/* ---------- lightbox de vídeo ---------- */
+.vlb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;padding:calc(64px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px))}
+.vlb.open{display:flex;animation:pfade .35s ease}
+.vlb-stage{flex:1;width:100%;display:flex;align-items:center;justify-content:center;min-height:0}
+.vlb video{max-height:100%;max-width:min(100%,560px);width:auto;height:auto;border-radius:14px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.vlb video.wide{max-width:min(100%,1200px)}
+.vlb-close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:46px;height:46px;border-radius:50%;background:#fff;color:#000;border:0;font-size:1.6rem;line-height:1;cursor:pointer}
+.vlb-title{margin-top:16px;font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a}
+@media(max-width:700px){
+  .vslot-expand{right:8px;top:8px;font-size:.56rem;padding:5px 8px}
+  .vlb{padding:calc(70px + env(safe-area-inset-top,0px)) 0 calc(24px + env(safe-area-inset-bottom,0px))}
+  .vlb video{max-width:100%;width:100%;border-radius:0}
+  .vlb video:not(.wide){width:auto;max-width:100%}
+}
+
+.vlb video{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px)}
+@media(max-width:700px){.vlb video{max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px)}}
+
+/* ---------- web uniforme: sin divisorias entre secciones ---------- */
+.marquee,.marquee-band,.stats,.svc,footer,header.scrolled,.sec{border-top:none!important;border-bottom:none!important}
+section.sec.svc,section.sec.svc:hover,.stats,.marquee,.marquee-band,.sec,footer{background:#000!important}
+/* ---------- presupuesto ---------- */
+.quote-wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:120px;padding-bottom:80px;max-width:720px}
+.quote-wrap h2{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.04;letter-spacing:-.01em;margin:18px 0 22px}
+.quote-wrap h2 em{font-style:normal}
+.quote-text{color:#a8a8a8;font-size:1.1rem;line-height:1.6;max-width:52ch;margin:0 auto 36px}
+.quote-phone{margin-top:20px;color:#8f8f8f;font-size:.95rem}
+.quote-phone a{color:#fff;text-decoration:underline;text-underline-offset:5px}
+@media(max-width:700px){.quote-wrap{padding-top:100px}.quote-wrap .btn{width:100%;justify-content:center}.quote-text{font-size:1rem}}
+
+.quote-wrap h2 .nw{white-space:nowrap}
+@media(max-width:700px){.quote-wrap h2{font-size:clamp(1.7rem,8.6vw,2.6rem)!important;letter-spacing:-.015em;line-height:1.08}}
+@media(max-width:700px){.quote-wrap .btn{white-space:nowrap;font-size:.95rem;padding:17px 18px}}
+
+.quote-text{font-size:1rem!important;font-weight:300;letter-spacing:.01em;line-height:1.65;color:#b3b3b3;max-width:60ch!important;margin-bottom:32px!important}
+@media(max-width:700px){.quote-text{font-size:.88rem!important;line-height:1.6;max-width:none!important;padding:0 4px}}
+.quote-text.qt-1{margin-bottom:10px!important}
+
+/* ---------- por qué: versión breve ---------- */
+.why-title{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(2rem,5vw,3.8rem);line-height:1.04;letter-spacing:-.01em;margin:18px 0 48px;white-space:nowrap}
+.why-title em{font-style:normal}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.why-item .rn{font-family:var(--f-ui);font-size:.8rem;color:#8f8f8f;letter-spacing:.1em}
+.why-item h4{font-family:var(--f-display);font-weight:400;font-size:1.35rem;margin:12px 0 8px;letter-spacing:-.01em}
+.why-item p{color:#a8a8a8;font-size:.95rem;font-weight:300;line-height:1.55}
+@media(max-width:700px){
+  .why-title{font-size:clamp(2rem,10vw,2.7rem);margin-bottom:32px;white-space:normal}
+  .why-grid{grid-template-columns:1fr;gap:26px}
+  .why-item h4{font-size:1.2rem;margin:6px 0 4px}
+}
+
+/* ---------- CTA final con dato ---------- */
+.cta-stat .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
+.cs-num{font-family:var(--f-ui);font-weight:800;font-size:clamp(6rem,16vw,12rem);line-height:.9;letter-spacing:-.05em;margin:22px 0 10px}
+.cs-line{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:.01em;line-height:1.15;margin-bottom:18px}
+.cs-sub{color:#a8a8a8;font-weight:300;font-size:1rem;line-height:1.6;max-width:52ch;margin:0 auto 36px}
+.cs-note{margin-top:22px;color:#6f6f6f;font-size:.72rem;letter-spacing:.04em}
+@media(max-width:700px){
+  .cs-sub{font-size:.9rem}
+  .cta-stat .btn{width:100%;justify-content:center;white-space:nowrap;font-size:.95rem;padding:17px 18px}
+}
+
+/* hero: fondo negro puro, igual que el resto */
+.hero{background:#000!important}
+.hero .hero-glow{display:none!important}
+
+.logo .dot,.logo::after{display:none!important}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -490,11 +595,11 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
 
 <header id="hdr">
   <div class="wrap nav">
-    <a href="#top" class="logo">Aether<span class="dot"></span></a>
+    <a href="#top" class="logo">Aether</a>
     <nav class="nav-links" id="navlinks">
       <a href="#spots">Anuncios de marca</a>
       <a href="#avatares">Avatares IA</a>
-      <a href="#precios">Precios</a>
+      <a href="#precios">Presupuesto</a>
       <a href="#faq">FAQ</a>
       <a href="#formacion" class="nav-formacion">Formación</a>
       <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="btn btn-primary wa" target="_blank" rel="noopener">Hablemos →</a>
@@ -507,48 +612,18 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <section class="hero" id="inicio">
+  <div class="hero-model" aria-hidden="true"><img src="img/modelo.jpg" alt="" fetchpriority="high"></div>
   <div class="hero-glow"></div>
   <div class="hero-grid"></div>
   
   <div class="wrap hero-inner">
     <div class="eyebrow reveal">Agencia de anuncios IA</div>
     <h1 class="serif reveal" data-d="1">Eleva tu marca con nuestros <em>anuncios IA</em>.</h1>
-    <p class="hero-sub reveal" data-d="2">Spots cinematográficos de nivel televisión para moda, cosmética, perfumería, relojería y marcas premium, y avatares hiperrealistas para anuncios que venden. Sin castings, sin rodajes, sin esperas.</p>
-    <div class="hero-choices reveal" data-d="3">
-      <a href="#spots" class="hero-choice">
-        <span class="hc-num">01</span>
-        <span class="hc-body"><span class="hc-title serif">Anuncios de marca</span><span class="hc-desc">Spots cinematográficos para moda, cosmética, perfumes, relojes y más</span></span>
-        <span class="hc-arrow">↓</span>
-      </a>
-      <a href="#avatares" class="hero-choice">
-        <span class="hc-num">02</span>
-        <span class="hc-body"><span class="hc-title serif">Avatares IA</span><span class="hc-desc">Anuncios UGC con personas que no existen</span></span>
-        <span class="hc-arrow">↓</span>
-      </a>
-    </div>
-    <div class="hero-meta reveal" data-d="4">
-      <span>Licencia comercial completa</span><span class="dotsep"></span>
-      <span>Calidad de estudio</span><span class="dotsep"></span>
-      <span>Todos los nichos</span>
-    </div>
-    <a href="#spots" class="scroll-ind reveal" data-d="5" aria-label="Bajar"><span>SCROLL</span><i></i><b></b></a>
-  </div>
-  <div class="marquee reveal" data-d="4">
-    <div class="marquee-track" id="mq">
-      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
-      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
-    </div>
+    <p class="hero-sub reveal" data-d="2">Anuncios hiperrealistas para cualquier sector.<br>Sin castings, sin rodajes, sin esperas.</p>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat reveal"><div class="num serif">–<em>85%</em></div><div class="lbl">en costes de producción frente al rodaje tradicional</div></div>
-    <div class="stat reveal" data-d="1"><div class="num serif"><em>10×</em></div><div class="lbl">más variantes para testear que una productora convencional</div></div>
-    <div class="stat reveal" data-d="2"><div class="num serif"><em>72</em>h</div><div class="lbl">de media hasta tus primeras creatividades listas</div></div>
-  </div>
-</section>
+
 
 <!-- SERVICIO 01: ANUNCIOS DE MARCA -->
 <section class="sec svc" id="spots">
@@ -564,37 +639,56 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
         <div class="vslot has-video">
           <video data-src="videos/spot-1.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Perfume</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
         <div class="vslot has-video">
           <video data-src="videos/spot-2.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Reloj</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
         <div class="vslot has-video">
           <video data-src="videos/spot-3.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Auriculares</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
         <div class="vslot has-video">
           <video data-src="videos/spot-4.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Café</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
     </div>
     <div class="vgrid vgrid-wide reveal">
         <div class="vslot has-video">
           <video data-src="videos/spot-5.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Abrigo</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
     </div>
     <div class="svc-cta reveal">
       <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre un anuncio IA para mi marca.">Quiero un spot para mi marca →</a>
-      <a href="#precios" class="btn btn-ghost" data-open-tab="spots">Ver tarifas</a>
+      <a href="#precios" class="btn btn-ghost" data-open-tab="spots">Pedir presupuesto</a>
     </div>
   </div>
 </section>
+
+<!-- NICHOS + STATS -->
+<div class="marquee-band">
+  <div class="marquee reveal" data-d="4">
+    <div class="marquee-track" id="mq">
+      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
+      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
+    </div>
+  </div>
+</div>
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat reveal"><div class="num serif">–<em>85%</em></div><div class="lbl">en costes de producción frente al rodaje tradicional</div></div>
+    <div class="stat reveal" data-d="1"><div class="num serif"><em>10×</em></div><div class="lbl">más variantes para testear que una productora convencional</div></div>
+    <div class="stat reveal" data-d="2"><div class="num serif"><em>72</em>h</div><div class="lbl">de media hasta tus primeras creatividades listas</div></div>
+  </div>
+</section>
+
 
 <!-- SERVICIO 02: AVATARES IA -->
 <section class="sec svc" id="avatares">
@@ -609,18 +703,18 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
         <div class="vslot has-video">
           <video data-src="videos/avatar-2.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Clínica estética</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
         <div class="vslot has-video">
           <video data-src="videos/avatar-3.mp4" muted loop playsinline preload="none"></video>
           <span class="vslot-tag">Acondicionador</span>
-          <button class="vslot-sound" aria-label="Activar sonido">Sonido off</button>
+          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
         </div>
     </div>
     <p class="svc-text reveal">Creatividades UGC con avatares hiperrealistas para tu marca. Sin castings, sin rodajes: anuncios que venden, para cualquier nicho, con volumen para testear.</p>
     <div class="svc-cta reveal">
       <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre los anuncios con avatares IA.">Quiero anuncios con avatares →</a>
-      <a href="#precios" class="btn btn-ghost" data-open-tab="avatares">Ver planes</a>
+      <a href="#precios" class="btn btn-ghost" data-open-tab="avatares">Pedir presupuesto</a>
     </div>
   </div>
 </section>
@@ -629,19 +723,12 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
 <!-- POR QUÉ AETHER -->
 <section class="sec" id="por-que">
   <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow reveal">Por qué Aether</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">No hacemos vídeos bonitos.<br>Hacemos anuncios que <em>venden</em>.</h2>
-      </div>
-      <p class="reveal" data-d="2">Cada decisión visual está al servicio de una métrica. Estética con criterio comercial.</p>
-    </div>
-    <div class="why-list">
-      <div class="why-row reveal"><div class="rn">01</div><h4 class="serif">Realismo indistinguible</h4><p>Pipeline avanzado de generación y postproducción: texturas de piel, iluminación coherente y micro-detalle. Tu audiencia no sabrá que no es una persona real.</p></div>
-      <div class="why-row reveal"><div class="rn">02</div><h4 class="serif">Pensado para convertir</h4><p>Escribimos y dirigimos cada pieza con lógica de copy y performance. El objetivo no es el like: es el clic, el lead y la venta.</p></div>
-      <div class="why-row reveal"><div class="rn">03</div><h4 class="serif">Velocidad imposible de igualar</h4><p>Lo que a una productora le cuesta semanas de producción, nosotros lo resolvemos sin rodajes ni esperas. Testeas antes, aprendes antes, escalas antes.</p></div>
-      <div class="why-row reveal"><div class="rn">04</div><h4 class="serif">Volumen para testear de verdad</h4><p>Diez variantes donde otros entregan una. A/B testing real desde el día uno para encontrar el ángulo ganador sin inflar el presupuesto.</p></div>
-      <div class="why-row reveal"><div class="rn">05</div><h4 class="serif">Sin límites de nicho</h4><p>Moda, skincare, fitness, tech, suplementos, servicios… Si tu marca necesita anunciarse, podemos producir para ti.</p></div>
+    <div class="eyebrow reveal">Por qué Aether</div>
+    <h2 class="serif why-title reveal" data-d="1">Anuncios que <em>venden</em>.</h2>
+    <div class="why-grid">
+      <div class="why-item reveal"><span class="rn">01</span><h4>Realismo total</h4><p>Indistinguible de una producción real.</p></div>
+      <div class="why-item reveal" data-d="1"><span class="rn">02</span><h4>Hechos para vender</h4><p>Cada pieza, pensada para el clic y la venta.</p></div>
+      <div class="why-item reveal" data-d="2"><span class="rn">03</span><h4>Rápido y escalable</h4><p>Sin rodajes. Más variantes, menos coste.</p></div>
     </div>
   </div>
 </section>
@@ -650,112 +737,14 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
 
 
 <!-- PRECIOS -->
-<div class="form-overlay" id="precios" role="dialog" aria-modal="true" aria-label="Planes y precios">
-  <button class="form-close" aria-label="Cerrar planes">×</button>
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow reveal">Precios</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Planes claros, <em>sin letra pequeña</em></h2>
-      </div>
-      <p class="reveal" data-d="2">Elige el servicio y el plan según el volumen que necesitas. Licencia comercial completa y formatos listos para Meta, TikTok y YouTube en todos los planes.</p>
-    </div>
-    <div class="price-tabs reveal" role="tablist">
-      <button class="price-tab active" data-tab="spots" role="tab">Anuncios de marca</button>
-      <button class="price-tab" data-tab="avatares" role="tab">Avatares IA</button>
-    </div>
-    <div class="price-panel" data-panel="avatares">
-    <div class="pricing-grid">
-      <div class="plan reveal">
-        <div class="plan-name">Starter</div>
-        <div class="price serif">450–600€ <small>/ mes</small></div>
-        <div class="plan-desc">Para empezar a vender con avatares IA indistinguibles de una persona real.</div>
-        <ul>
-          <li>5 vídeos / mes</li>
-          <li>Motor de IA estándar</li>
-          <li>Realismo indistinguible de una persona real</li>
-          <li>1 idioma</li>
-          <li>Duración estándar (hasta 30–45 s)</li>
-          
-        </ul>
-        <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="btn btn-ghost wa" target="_blank" rel="noopener">Empezar →</a>
-      </div>
-      <div class="plan featured reveal" data-d="1">
-        <div class="badge">Más vendido</div>
-        <div class="plan-name">Growth</div>
-        <div class="price serif">1.200–1.500€ <small>/ mes</small></div>
-        <div class="plan-desc">El punto óptimo para escalar campañas y ganar la batalla del A/B testing.</div>
-        <ul>
-          <li>8–10 vídeos / mes</li>
-          <li>Motor de IA avanzado</li>
-          <li>Realismo indistinguible de una persona real</li>
-          <li>Hasta 3 idiomas</li>
-          <li>3 variantes de guion/hook por vídeo (A/B testing)</li>
-          
-        </ul>
-        <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="btn btn-primary wa" target="_blank" rel="noopener">Quiero Growth →</a>
-      </div>
-      <div class="plan reveal" data-d="2">
-        <div class="plan-name">Elite</div>
-        <div class="price serif">2.800–4.000€ <small>/ mes</small></div>
-        <div class="plan-desc">Máxima potencia y volumen para marcas y agencias que producen a gran escala.</div>
-        <ul>
-          <li>15–20 vídeos / mes</li>
-          <li>Motor de IA de máxima capacidad</li>
-          <li>Realismo indistinguible de una persona real</li>
-          <li>Idiomas ilimitados</li>
-          <li>5 variantes de guion/hook por vídeo (A/B testing)</li>
-          
-          
-        </ul>
-        <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="btn btn-ghost wa" target="_blank" rel="noopener">Hablar con ventas →</a>
-      </div>
-    </div>
-    </div>
-    <div class="price-panel active" data-panel="spots">
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="plan-name">Básico</div>
-        <div class="price serif">250–350€ <small>/ vídeo</small></div>
-        <div class="plan-desc">Para probar el servicio con un primer anuncio, sin compromiso mensual.</div>
-        <ul>
-          <li>1 vídeo</li>
-          <li>Formato vertical 9:16</li>
-          <li>1 revisión</li>
-        </ul>
-        <a href="#" data-msg="Hola Aether, me interesa el plan Básico de anuncios IA hiperrealistas." class="btn btn-ghost wa" target="_blank" rel="noopener">Probar con 1 vídeo →</a>
-      </div>
-      <div class="plan featured">
-        <div class="badge">Más vendido</div>
-        <div class="plan-name">Intermedio</div>
-        <div class="price serif">700–900€ <small>/ mes</small></div>
-        <div class="plan-desc">El punto óptimo para escalar campañas y testear qué anuncio convierte mejor.</div>
-        <ul>
-          <li>4–5 vídeos / mes</li>
-          <li>2 revisiones</li>
-          <li>Entrega prioritaria (48–72h)</li>
-        </ul>
-        <a href="#" data-msg="Hola Aether, me interesa el plan Intermedio de anuncios IA hiperrealistas." class="btn btn-primary wa" target="_blank" rel="noopener">Quiero Intermedio →</a>
-      </div>
-      <div class="plan">
-        <div class="plan-name">Avanzado</div>
-        <div class="price serif">1.400–1.800€ <small>/ mes</small></div>
-        <div class="plan-desc">Máximo volumen para marcas que ya invierten en serio en Meta Ads.</div>
-        <ul>
-          <li>8–10 vídeos / mes</li>
-          <li>2 revisiones</li>
-          <li>Entrega prioritaria (48–72h)</li>
-        </ul>
-        <a href="#" data-msg="Hola Aether, me interesa el plan Avanzado de anuncios IA hiperrealistas." class="btn btn-ghost wa" target="_blank" rel="noopener">Hablar con ventas →</a>
-      </div>
-    </div>
-    <div class="price-extras">
-      <div><span class="serif">120–180€</span><small>Vídeo adicional fuera de pack</small></div>
-      <div><span class="serif">+50%</span><small>Entrega urgente (&lt;48h)</small></div>
-    </div>
-    <p class="price-disclaimer">Precios orientativos · propuesta final a medida del proyecto</p>
-    </div>
-    <p class="pricing-note">¿No sabes qué plan encaja contigo? <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="wa" style="color:var(--accent)" target="_blank" rel="noopener">Cuéntanos tu caso por WhatsApp</a> y te lo decimos en 5 minutos.</p>
+<div class="form-overlay" id="precios" role="dialog" aria-modal="true" aria-label="Pedir presupuesto">
+  <button class="form-close" aria-label="Cerrar">×</button>
+  <div class="wrap quote-wrap">
+    <div class="eyebrow">Presupuesto</div>
+    <h2 class="serif"><span class="nw">Cada proyecto,</span><br><em>a medida</em></h2>
+    <p class="quote-text qt-1">Cuéntanos tu marca, tu producto y qué anuncios necesitas.</p>
+    <p class="quote-text">Te preparamos un presupuesto personalizado, sin compromiso.</p>
+    <a href="https://wa.me/34614576542" data-msg="Hola Aether, quiero pedir presupuesto para mis anuncios IA." class="btn btn-primary wa" target="_blank" rel="noopener">Pedir presupuesto por WhatsApp →</a>
   </div>
 </div>
 
@@ -819,10 +808,21 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
       <div class="faq-item"><button class="faq-q">¿Se nota que están hechos con IA? <span class="ic">+</span></button><div class="faq-a"><p>No. Trabajamos con un pipeline avanzado de generación y postproducción que cuida texturas, iluminación y micro-detalle en ambos servicios. El objetivo es que tu audiencia vea una persona real o un spot rodado, no una IA.</p></div></div>
       <div class="faq-item"><button class="faq-q">¿Puedo usar el contenido en mis campañas de pago? <span class="ic">+</span></button><div class="faq-a"><p>Sí. Todo se entrega con licencia comercial completa, listo para Meta Ads, TikTok, YouTube, web y redes, en los formatos que necesite cada plataforma.</p></div></div>
       <div class="faq-item"><button class="faq-q">¿Para qué tipo de marcas trabajáis? <span class="ic">+</span></button><div class="faq-a"><p>Los avatares IA funcionan en cualquier nicho: clínicas, e-commerce, skincare, fitness, servicios, hostelería o inmobiliaria. Los anuncios de marca están pensados para productos donde la imagen lo es todo: perfumes, relojes, joyería, moda o cosmética de lujo.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Cuánto tardáis en entregar? <span class="ic">+</span></button><div class="faq-a"><p>En avatares IA la media es de 72h. En los planes mensuales de anuncios de marca la entrega es prioritaria (48–72h), y si lo necesitas antes hay entrega urgente en menos de 48h (+50%).</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Cuántas revisiones incluye? <span class="ic">+</span></button><div class="faq-a"><p>Los planes de avatares IA incluyen dos rondas de revisión. En anuncios de marca, el plan Básico incluye una y los planes Intermedio y Avanzado, dos. Una vez entregado, el contenido es tuyo, sin royalties.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Y si no sé qué servicio o plan necesito? <span class="ic">+</span></button><div class="faq-a"><p>Escríbenos por WhatsApp, cuéntanos tu producto y tu objetivo, y te recomendamos el servicio y el plan más rentable para tu caso, sin compromiso.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Cuánto tardáis en entregar? <span class="ic">+</span></button><div class="faq-a"><p>De media, 72h. Si lo necesitas antes, también hacemos entregas urgentes; te lo detallamos en el presupuesto.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Y si no sé qué servicio necesito? <span class="ic">+</span></button><div class="faq-a"><p>Escríbenos por WhatsApp, cuéntanos tu producto y tu objetivo, y te recomendamos el servicio más rentable para tu caso y te pasamos presupuesto, sin compromiso.</p></div></div>
     </div>
+  </div>
+</section>
+
+<!-- CTA FINAL: dato + presupuesto -->
+<section class="sec cta-stat" id="presupuesto">
+  <div class="wrap">
+    <div class="eyebrow reveal">El dato</div>
+    <div class="cs-num reveal" data-d="1">10×</div>
+    <p class="cs-line reveal" data-d="2">más barato que un rodaje tradicional.</p>
+    <p class="cs-sub reveal" data-d="2">La IA reduce en torno a un 90% el coste de producir un anuncio en vídeo. Pero el realismo lo es todo: cuando el público detecta la IA, la intención de compra cae un 14%. Por eso los nuestros son hiperrealistas.</p>
+    <a href="https://wa.me/34614576542" data-msg="Hola Aether, quiero pedir presupuesto para mis anuncios IA." class="btn btn-primary wa reveal" data-d="3" target="_blank" rel="noopener">Pedir presupuesto por WhatsApp →</a>
+    <p class="cs-note reveal" data-d="3">Fuentes: coste medio por minuto de vídeo, producción tradicional vs. IA (2026); IAB (2026).</p>
   </div>
 </section>
 
@@ -835,21 +835,21 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a href="#top" class="logo">Aether<span class="dot"></span></a>
-        <p>Anuncios con avatares IA hiperrealistas para marcas que quieren vender más gastando menos.</p>
+        <a href="#top" class="logo">Aether</a>
+        <p>Anuncios IA hiperrealistas para marcas que quieren vender más gastando menos.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
-          <h5>Packs</h5>
-          <a href="#precios">Starter</a>
-          <a href="#precios">Growth</a>
-          <a href="#precios">Elite</a>
-          <a href="#precios">Comparar planes</a>
+          <h5>Servicios</h5>
+          <a href="#spots">Anuncios de marca</a>
+          <a href="#avatares">Avatares IA</a>
+          <a href="#formacion">Formación</a>
+          <a href="#precios">Pedir presupuesto</a>
         </div>
         <div class="foot-col">
           <h5>Navegación</h5>
           <a href="#por-que">Por qué Aether</a>
-          <a href="#precios">Precios</a>
+          <a href="#precios">Presupuesto</a>
           <a href="#faq">FAQ</a>
         </div>
         <div class="foot-col">
@@ -956,6 +956,12 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
   </div>
 </div>
 
+
+<div class="vlb" id="vlb" role="dialog" aria-modal="true" aria-label="Vídeo ampliado">
+  <button class="vlb-close" aria-label="Cerrar vídeo">×</button>
+  <div class="vlb-stage"><video id="vlbVideo" controls playsinline></video></div>
+  <div class="vlb-title" id="vlbTitle"></div>
+</div>
 <script>
 /* ==== CONFIG: cambia solo esta línea por tu número real (formato internacional, sin + ni espacios) ==== */
 const WHATSAPP_NUMBER = "34614576542";
@@ -1016,7 +1022,7 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
 })();
 
-/* vídeos de ejemplo: cargan y se reproducen al entrar en pantalla; clic = sonido on/off (solo uno con sonido) */
+/* vídeos de ejemplo: autoplay silencioso en pantalla; clic = abrir en grande con sonido */
 (function(){
   const vids=[...document.querySelectorAll('.vslot video[data-src]')];
   const vio=new IntersectionObserver(es=>es.forEach(e=>{
@@ -1025,14 +1031,24 @@ document.querySelectorAll('.faq-item').forEach(item=>{
     else v.pause();
   }),{threshold:.35});
   vids.forEach(v=>vio.observe(v));
-  document.querySelectorAll('.vslot.has-video').forEach(s=>{
-    const v=s.querySelector('video'), b=s.querySelector('.vslot-sound');
-    s.addEventListener('click',()=>{
-      const turnOn=v.muted;
-      document.querySelectorAll('.vslot.has-video').forEach(o=>{o.querySelector('video').muted=true;const ob=o.querySelector('.vslot-sound');ob.classList.remove('on');ob.textContent='Sonido off'});
-      if(turnOn){ v.muted=false; v.currentTime=0; v.play().catch(()=>{}); b.classList.add('on'); b.textContent='Sonido on'; }
-    });
-  });
+  const lb=document.getElementById('vlb'), lv=document.getElementById('vlbVideo'), lt=document.getElementById('vlbTitle');
+  const openLb=s=>{
+    const v=s.querySelector('video'); const src=v.dataset.src||v.src;
+    vids.forEach(x=>x.pause());
+    lv.src=src; lv.muted=false; lt.textContent=(s.querySelector('.vslot-tag')||{}).textContent||'';
+    lv.classList.toggle('wide',s.closest('.vgrid-wide')!==null);
+    lb.classList.add('open'); document.documentElement.style.overflow='hidden';
+    lv.currentTime=0; lv.play().catch(()=>{});
+  };
+  const closeLb=()=>{
+    lb.classList.remove('open'); lv.pause(); lv.removeAttribute('src'); lv.load();
+    document.documentElement.style.overflow='';
+    vids.forEach(x=>{ if(x.src){ const r=x.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight) x.play().catch(()=>{}); }});
+  };
+  document.querySelectorAll('.vslot.has-video').forEach(s=>s.addEventListener('click',()=>openLb(s)));
+  lb.querySelector('.vlb-close').addEventListener('click',closeLb);
+  lb.addEventListener('click',e=>{ if(e.target===lb||e.target.classList.contains('vlb-stage')) closeLb(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&lb.classList.contains('open')) closeLb(); });
 })();
 
 /* pestañas de precios */
