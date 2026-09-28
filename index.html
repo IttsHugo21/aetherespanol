@@ -572,6 +572,51 @@ section.sec.svc,section.sec.svc:hover,.stats,.marquee,.marquee-band,.sec,footer{
 .hero .hero-glow{display:none!important}
 
 .logo .dot,.logo::after{display:none!important}
+
+/* spots: subtítulo en 2 líneas (una frase por línea) */
+.sec-head p.spots-sub{max-width:none}
+.spots-sub span{display:block;white-space:nowrap}
+@media(max-width:700px){.sec-head p.spots-sub{font-size:clamp(.88rem,4vw,1rem);line-height:1.55}}
+
+.br-m{display:none}
+@media(max-width:700px){.br-m{display:inline}.spots-sub span:first-child{margin-bottom:6px}}
+
+/* hero: frases separadas + primer servicio más arriba */
+.hero-sub .hs-line{display:block}
+.hero-sub .hs-line + .hs-line{margin-top:14px}
+.hero{min-height:66vh!important;padding-bottom:40px!important}
+#spots{padding-top:48px!important}
+@media(max-width:700px){
+  .hero-sub .hs-line + .hs-line{margin-top:12px}
+  .hero{min-height:62vh!important;padding-bottom:28px!important}
+  #spots{padding-top:36px!important}
+}
+
+/* ---------- CTA: círculo flotante de fuentes ---------- */
+.cs-src{position:relative;margin-bottom:26px;display:flex;justify-content:center}
+.cs-src-btn{width:78px;height:78px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.04);color:#fff;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;animation:csfloat 4s ease-in-out infinite;transition:background .3s,color .3s,border-color .3s;box-shadow:0 0 0 6px rgba(255,255,255,.03)}
+.cs-src-btn:hover,.cs-src.open .cs-src-btn{background:#fff;color:#000;border-color:#fff;animation-play-state:paused}
+@keyframes csfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.cs-src-pop{position:absolute;top:calc(100% + 14px);left:50%;transform:translate(-50%,-8px);width:min(380px,calc(100vw - 32px));background:#0d0d0d;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;text-align:left;opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;z-index:20;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.cs-src.open .cs-src-pop{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.cs-src-title{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8f8f8f;margin-bottom:10px}
+.cs-src-pop ul{list-style:none;display:grid;gap:10px;margin:0;padding:0}
+.cs-src-pop li{color:#bdbdbd;font-size:.82rem;line-height:1.5}
+.cs-src-pop li strong{color:#fff;font-weight:600}
+.cs-src-pop a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+@media (hover:hover){.cs-src:hover .cs-src-pop{opacity:1;visibility:visible;transform:translate(-50%,0)}}
+@media(prefers-reduced-motion:reduce){.cs-src-btn{animation:none}}
+
+/* CTA dato: número elegante + frases en 2 líneas */
+.cs-num{font-family:var(--f-display)!important;font-weight:200!important;letter-spacing:-.04em!important;font-size:clamp(5rem,12vw,9.5rem)!important;line-height:1!important;margin:26px 0 34px!important}
+.cs-sub{max-width:none!important}
+.cs-s{display:block}
+.cs-s + .cs-s{margin-top:14px}
+.cs-s .nw{display:block;white-space:nowrap}
+@media(max-width:700px){
+  .cs-num{margin:20px 0 26px!important}
+  .cs-sub{font-size:clamp(.78rem,3.55vw,.95rem)!important}
+}
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -619,7 +664,7 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
   <div class="wrap hero-inner">
     <div class="eyebrow reveal">Agencia de anuncios IA</div>
     <h1 class="serif reveal" data-d="1">Eleva tu marca con nuestros <em>anuncios IA</em>.</h1>
-    <p class="hero-sub reveal" data-d="2">Anuncios hiperrealistas para cualquier sector.<br>Sin castings, sin rodajes, sin esperas.</p>
+    <p class="hero-sub reveal" data-d="2"><span class="hs-line">Anuncios hiperrealistas para cualquier sector.</span><span class="hs-line">Sin castings, sin rodajes, sin esperas.</span></p>
   </div>
 </section>
 
@@ -631,9 +676,9 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
     <div class="sec-head">
       <div>
         <div class="eyebrow reveal">01 — Anuncios de marca</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Spots de <em>nivel televisión</em>, sin rodaje</h2>
+        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Anuncios de <em>nivel televisión</em>, sin rodaje</h2>
       </div>
-      <p class="reveal" data-d="2">Perfumes, relojes, joyería, cosmética de lujo… Anuncios cinematográficos hiperrealistas para marcas que quieren verse como las grandes, sin el presupuesto de una productora.</p>
+      <p class="reveal spots-sub" data-d="2"><span>Tú pones el producto y nosotros, <br class="br-m">el anuncio.</span> <span>Sin cámaras, sin focos y sin nadie <br class="br-m">gritando «¡otra toma!».</span></p>
     </div>
     <div class="vgrid vgrid-vertical vgrid-4 reveal">
         <div class="vslot has-video">
@@ -665,7 +710,7 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
         </div>
     </div>
     <div class="svc-cta reveal">
-      <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre un anuncio IA para mi marca.">Quiero un spot para mi marca →</a>
+      <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre un anuncio IA para mi marca.">Quiero un anuncio para mi marca →</a>
       <a href="#precios" class="btn btn-ghost" data-open-tab="spots">Pedir presupuesto</a>
     </div>
   </div>
@@ -817,12 +862,21 @@ src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
 <!-- CTA FINAL: dato + presupuesto -->
 <section class="sec cta-stat" id="presupuesto">
   <div class="wrap">
+    <div class="cs-src reveal">
+      <button class="cs-src-btn" type="button" aria-expanded="false" aria-controls="csSrcPop">Fuentes</button>
+      <div class="cs-src-pop" id="csSrcPop" role="dialog" aria-label="Fuentes del dato">
+        <p class="cs-src-title">Fuentes</p>
+        <ul>
+          <li><strong>3,4×</strong> más ROAS del vídeo frente a display (mediana). <a href="https://adwave.com/resources/ai-video-ad-statistics-2026" target="_blank" rel="noopener">Adwave · AI Video Ad Statistics 2026</a>, con datos de shno.co.</li>
+          <li><strong>70–90%</strong> menos coste por vídeo al producir con IA. Mismo informe, con datos de Magic Hour.</li>
+        </ul>
+      </div>
+    </div>
     <div class="eyebrow reveal">El dato</div>
-    <div class="cs-num reveal" data-d="1">10×</div>
-    <p class="cs-line reveal" data-d="2">más barato que un rodaje tradicional.</p>
-    <p class="cs-sub reveal" data-d="2">La IA reduce en torno a un 90% el coste de producir un anuncio en vídeo. Pero el realismo lo es todo: cuando el público detecta la IA, la intención de compra cae un 14%. Por eso los nuestros son hiperrealistas.</p>
+    <div class="cs-num reveal" data-d="1">3,4×</div>
+    <p class="cs-line reveal" data-d="2">más retorno con anuncios en vídeo.</p>
+    <p class="cs-sub reveal" data-d="2"><span class="cs-s"><span class="nw">El vídeo es el formato que más vende</span> <span class="nw">en publicidad.</span></span><span class="cs-s"><span class="nw">Con IA, producirlo cuesta hasta un 90% menos,</span> <span class="nw">y si es hiperrealista, nadie nota la diferencia.</span></span></p>
     <a href="https://wa.me/34614576542" data-msg="Hola Aether, quiero pedir presupuesto para mis anuncios IA." class="btn btn-primary wa reveal" data-d="3" target="_blank" rel="noopener">Pedir presupuesto por WhatsApp →</a>
-    <p class="cs-note reveal" data-d="3">Fuentes: coste medio por minuto de vídeo, producción tradicional vs. IA (2026); IAB (2026).</p>
   </div>
 </section>
 
@@ -1059,6 +1113,15 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   };
   document.querySelectorAll('.price-tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
   document.querySelectorAll('[data-open-tab]').forEach(a=>a.addEventListener('click',()=>setTab(a.dataset.openTab),true));
+})();
+
+/* fuentes del dato: abrir/cerrar con clic (móvil) */
+(function(){
+  const w=document.querySelector('.cs-src'); if(!w) return;
+  const b=w.querySelector('.cs-src-btn');
+  b.addEventListener('click',e=>{e.stopPropagation();const o=w.classList.toggle('open');b.setAttribute('aria-expanded',o)});
+  document.addEventListener('click',e=>{if(!w.contains(e.target)){w.classList.remove('open');b.setAttribute('aria-expanded',false)}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){w.classList.remove('open');b.setAttribute('aria-expanded',false)}});
 })();
 </script>
 
