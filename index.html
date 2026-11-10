@@ -1,1132 +1,393 @@
 <!DOCTYPE html>
-<!-- saved from url=(0024)https://aetherstudio.es/ -->
-<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aether — Anuncios IA para marcas</title>
-<meta name="description" content="Aether diseña anuncios con avatares IA ultrarrealistas para marcas de cualquier nicho. Creatividades que venden, en días, sin rodajes ni costes de producción.">
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..800;1,300..600&family=Inter:wght@300..800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#000000;
-  --ink-soft:#111111;
-  --cream:#ffffff;
-  --cream-2:#e8e8e8;
-  --cream-dim:#8f8f8f;
-  --line:rgba(255,255,255,.14);
-  --line-dark:rgba(0,0,0,.14);
-  --accent:#ffffff;
-  --maxw:1240px;
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  background:var(--ink);
-  color:var(--cream);
-  font-family:var(--f-ui);
-  font-weight:300;
-  line-height:1.5;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-::selection{background:var(--accent);color:var(--ink)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
-.serif{font-family:var(--f-display)}
-.mono{font-family:var(--f-ui)}
-.eyebrow{
-  font-family:var(--f-ui);
-  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--cream-dim);
-}
-
-/* ---------- NAV ---------- */
-header{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  transition:border-color .5s var(--ease);
-  border-bottom:1px solid transparent;
-}
-header::before{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:rgba(0,0,0,.72);backdrop-filter:blur(18px);
-  opacity:0;transition:opacity .5s var(--ease);
-}
-header.scrolled::before{opacity:1}
-header.scrolled{
-  border-bottom:1px solid var(--line);
-}
-.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-.logo{font-family:var(--f-display);font-weight:600;font-size:1.5rem;letter-spacing:.02em;display:flex;align-items:center;gap:.5ch}
-.logo .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block;margin-bottom:14px}
-.nav-links{display:flex;gap:38px;align-items:center}
-.nav-links a{font-size:.82rem;letter-spacing:.04em;color:var(--cream-dim);transition:color .3s}
-.nav-links a:hover{color:var(--cream)}
-.nav-formacion{font-family:var(--f-ui)!important;font-size:.72rem!important;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)!important;border:1px solid var(--accent);padding:9px 15px;border-radius:2px;transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease)}
-.nav-formacion:hover{background:var(--accent);color:var(--ink)!important;transform:translateY(-2px)}
-/* ---------- FORMACIÓN OVERLAY ---------- */
-.form-overlay{position:fixed;inset:0;z-index:2000;background:var(--ink);overflow-y:auto;padding:120px 0 90px;display:none;opacity:0;transition:opacity .4s var(--ease)}
-.form-overlay.open{display:block;opacity:1}
-.form-overlay .reveal{opacity:1;transform:none}
-.form-close{position:fixed;top:26px;right:34px;z-index:2010;width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--cream);font-size:1.8rem;line-height:1;cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
-.form-close:hover{background:var(--accent);color:var(--ink);transform:rotate(90deg)}
-body.form-open{overflow:hidden}
-/* legal panels */
-.legal-body{max-width:820px;color:var(--cream-2);font-size:.97rem;line-height:1.72}
-.legal-body h3{font-family:var(--f-display);font-weight:500;color:var(--cream);font-size:1.3rem;margin:34px 0 12px;letter-spacing:-.01em}
-.legal-body h3:first-of-type{margin-top:6px}
-.legal-body p{margin-bottom:14px}
-.legal-body ul{list-style:none;margin:0 0 16px;display:flex;flex-direction:column;gap:9px}
-.legal-body li{padding-left:24px;position:relative}
-.legal-body li::before{content:"\2192";position:absolute;left:0;color:var(--accent)}
-.legal-body a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
-.legal-body strong{color:var(--cream);font-weight:500}
-.legal-body .updated{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cream-dim);margin-top:36px;border-top:1px solid var(--line);padding-top:18px}
-.foot-legal{display:flex;gap:22px;flex-wrap:wrap}
-.foot-legal a{color:var(--cream-dim);font-size:.82rem;text-decoration:none;transition:color .3s var(--ease)}
-.foot-legal a:hover{color:var(--cream)}
-.btn{
-  font-family:var(--f-ui);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:.7ch;cursor:pointer;border:none;
-  transition:transform .4s var(--ease),background .4s,color .4s;
-}
-.btn-primary{background:var(--cream);color:var(--ink);padding:14px 24px;border-radius:2px}
-.btn-primary:hover{background:var(--accent);transform:translateY(-2px)}
-.btn-ghost{color:var(--cream);border:1px solid var(--line);padding:13px 24px;border-radius:2px;background:transparent}
-.btn-ghost:hover{border-color:var(--cream);transform:translateY(-2px)}
-.nav .btn-primary{padding:12px 20px}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
-.burger span{width:24px;height:1.5px;background:var(--cream);transition:.3s}
-
-/* ---------- HERO ---------- */
-.hero{position:relative;padding:190px 0 90px;overflow:hidden}
-.hero-glow{
-  position:absolute;top:-10%;left:50%;transform:translateX(-50%);
-  width:900px;height:900px;pointer-events:none;
-  background:radial-gradient(circle,rgba(255,255,255,.05),transparent 62%);
-  filter:blur(20px);
-}
-.hero-grid{position:absolute;inset:0;background-image:
-  linear-gradient(var(--line) 1px,transparent 1px),
-  linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(circle at 50% 30%,#000,transparent 72%);
-  opacity:.5;pointer-events:none;
-}
-.hero-strip{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero-strip-track{display:flex;gap:18px;align-items:center;height:100%;width:max-content;animation:heroscroll 55s linear infinite;padding:0 9px}
-.hero-strip img{height:64%;width:auto;max-width:none;border-radius:12px;object-fit:cover;box-shadow:0 20px 50px rgba(0,0,0,.55)}
-.hero-strip-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#000000 0%,rgba(0,0,0,.60) 26%,rgba(0,0,0,.60) 74%,#000000 100%),linear-gradient(180deg,rgba(0,0,0,.5),rgba(0,0,0,.82))}
-@keyframes heroscroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.hero .hero-glow,.hero .hero-grid{z-index:2}
-.hero .marquee{position:relative;z-index:3}
-.hero-inner{position:relative;z-index:3}
-.hero .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:34px}
-.hero .eyebrow::before{content:"";width:38px;height:1px;background:var(--accent)}
-.hero h1{
-  font-family:var(--f-display);font-weight:500;
-  font-size:clamp(2.9rem,7.4vw,6.6rem);line-height:.98;letter-spacing:-.01em;
-  max-width:16ch;
-}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero-sub{
-  margin-top:34px;max-width:46ch;font-size:1.13rem;line-height:1.65;color:var(--cream-2);font-weight:300;
-}
-.hero-cta{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap}
-.hero-meta{margin-top:56px;display:flex;gap:40px;flex-wrap:wrap;align-items:center;color:var(--cream-dim);font-size:.82rem}
-.hero-meta .dotsep{width:4px;height:4px;border-radius:50%;background:var(--cream-dim)}
-
-/* reveal helper */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-[data-d="1"]{transition-delay:.08s}[data-d="2"]{transition-delay:.16s}
-[data-d="3"]{transition-delay:.24s}[data-d="4"]{transition-delay:.32s}
-
-/* ---------- MARQUEE ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;margin-top:70px}
-.marquee-track{display:inline-flex;gap:40px;animation:scroll 34s linear infinite}
-.marquee span{font-family:var(--f-display);font-style:italic;font-size:1.5rem;color:var(--cream-dim)}
-.marquee .star{color:var(--accent);font-style:normal}
-@keyframes scroll{to{transform:translateX(-50%)}}
-
-/* ---------- SECTION SHELL ---------- */
-section{position:relative}
-.sec{padding:120px 0}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:64px;flex-wrap:wrap}
-.sec-head h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.02;letter-spacing:-.01em;max-width:15ch}
-.sec-head h2 em{font-style:italic;color:var(--accent)}
-.sec-head p{max-width:38ch;color:var(--cream-dim);font-size:1rem}
-
-/* ---------- SERVICES ---------- */
-.services{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.svc{background:var(--ink);padding:48px 44px;position:relative;transition:background .5s var(--ease)}
-.svc:hover{background:var(--ink-soft)}
-.svc-n{font-family:var(--f-ui);font-size:.78rem;color:var(--accent);letter-spacing:.1em}
-.svc h3{font-family:var(--f-display);font-weight:500;font-size:1.9rem;margin:28px 0 16px;letter-spacing:-.01em}
-.svc p{color:var(--cream-dim);font-size:.98rem;line-height:1.6;max-width:40ch}
-.svc-tag{margin-top:26px;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-2)}
-.svc-arrow{position:absolute;top:44px;right:44px;font-size:1.2rem;color:var(--cream-dim);transition:.4s var(--ease)}
-.svc:hover .svc-arrow{color:var(--accent);transform:translate(4px,-4px)}
-
-/* ---------- STATS ---------- */
-.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.stat{padding:70px 40px;text-align:center;border-right:1px solid var(--line)}
-.stat:last-child{border-right:none}
-.stat .num{font-family:var(--f-display);font-weight:500;font-size:clamp(3rem,6vw,4.6rem);line-height:1;letter-spacing:-.02em}
-.stat .num em{font-style:italic;color:var(--accent)}
-.stat .lbl{margin-top:16px;color:var(--cream-dim);font-size:.9rem;max-width:26ch;margin-inline:auto}
-
-/* ---------- WHY (feature rows) ---------- */
-.why-list{border-top:1px solid var(--line)}
-.why-row{display:grid;grid-template-columns:80px 1fr 1.1fr;gap:40px;align-items:baseline;padding:38px 0;border-bottom:1px solid var(--line);transition:padding-left .5s var(--ease)}
-.why-row:hover{padding-left:16px}
-.why-row .rn{font-family:var(--f-ui);color:var(--accent);font-size:.85rem}
-.why-row h4{font-family:var(--f-display);font-weight:500;font-size:1.55rem;letter-spacing:-.01em}
-.why-row p{color:var(--cream-dim);font-size:.98rem;line-height:1.6}
-
-/* ---------- PROCESS ---------- */
-.process{background:var(--cream);color:var(--ink)}
-.process .eyebrow{color:#777777}
-.process .sec-head h2{color:var(--ink)}
-.process .sec-head h2 em{color:#000000}
-.process .sec-head p{color:#555555}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-dark);border:1px solid var(--line-dark)}
-.step{background:var(--cream);padding:40px 32px;min-height:260px;display:flex;flex-direction:column}
-.step .sn{font-family:var(--f-ui);font-size:.8rem;color:#000000;letter-spacing:.1em}
-.step h4{font-family:var(--f-display);font-weight:600;font-size:1.5rem;margin:auto 0 14px;letter-spacing:-.01em}
-.step p{color:#555555;font-size:.92rem;line-height:1.55}
-
-/* ---------- PRICING ---------- */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.plan{border:1px solid var(--line);padding:44px 38px;display:flex;flex-direction:column;position:relative;transition:transform .5s var(--ease),border-color .5s}
-.plan:hover{transform:translateY(-8px);border-color:var(--cream-dim)}
-.plan.featured{border-color:var(--accent)}
-.badge{position:absolute;top:-11px;left:38px;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;background:var(--cream);color:var(--ink);padding:5px 12px;border-radius:2px}
-.plan-name{font-family:var(--f-ui);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim)}
-.price{font-family:var(--f-display);font-weight:500;font-size:1.9rem;letter-spacing:-.01em;margin:22px 0 4px;white-space:nowrap}
-.price small{font-size:.82rem;color:var(--cream-dim);font-family:var(--f-ui);font-weight:300}
-.plan-desc{color:var(--cream-dim);font-size:.92rem;line-height:1.55;min-height:44px}
-.plan ul{list-style:none;margin:30px 0 34px;display:flex;flex-direction:column;gap:13px}
-.plan li{font-size:.92rem;color:var(--cream-2);padding-left:26px;position:relative;line-height:1.45}
-.plan li::before{content:"→";position:absolute;left:0;color:var(--accent)}
-.plan .btn{margin-top:auto;justify-content:center;width:100%}
-.pricing-note{text-align:center;margin-top:40px;color:var(--cream-dim);font-size:.88rem}
-
-/* ---------- TESTIMONIALS ---------- */
-.tst-marquee{position:relative;display:flex;flex-direction:column;gap:20px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);}
-.tst-row{display:flex;gap:20px;width:max-content;will-change:transform;
-  animation:tstscroll 80s linear infinite;}
-.tst-row.rev{animation-duration:64s;animation-direction:reverse}
-.tst-marquee:hover .tst-row{animation-play-state:paused}
-@keyframes tstscroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-.tst{flex:0 0 auto;width:360px;border:1px solid var(--line);padding:34px 32px;display:flex;flex-direction:column;transition:background .5s,border-color .5s;background:var(--ink)}
-.tst:hover{background:var(--ink-soft);border-color:var(--cream-dim)}
-.tst .quote{font-family:var(--f-display);font-size:1.22rem;line-height:1.5;font-style:italic;color:var(--cream);flex:1}
-.tst .who{margin-top:30px;display:flex;align-items:center;gap:14px}
-.tst .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#555555);display:flex;align-items:center;justify-content:center;font-family:var(--f-display);color:var(--ink);font-weight:600}
-.tst .who .nm{font-size:.9rem;color:var(--cream)}
-.tst .who .rl{font-size:.76rem;color:var(--cream-dim)}
-.stars{color:var(--accent);letter-spacing:2px;margin-bottom:20px;font-size:.85rem}
-
-/* ---------- FAQ ---------- */
-.faq{max-width:900px;margin:0 auto}
-.faq-item{border-bottom:1px solid var(--line)}
-.faq-q{width:100%;background:none;border:none;color:var(--cream);text-align:left;padding:30px 0;font-family:var(--f-display);font-size:1.3rem;font-weight:500;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;letter-spacing:-.01em}
-.faq-q .ic{font-family:var(--f-ui);color:var(--accent);font-size:1.4rem;transition:transform .4s var(--ease);flex-shrink:0}
-.faq-item.open .faq-q .ic{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
-.faq-a p{padding:0 0 30px;color:var(--cream-dim);font-size:1rem;line-height:1.7;max-width:70ch}
-
-/* ---------- FINAL CTA ---------- */
-.final{text-align:center;padding:150px 0;position:relative;overflow:hidden}
-.final .hero-glow{top:-30%}
-.final h2{font-family:var(--f-display);font-weight:500;font-size:clamp(2.4rem,6.5vw,5.4rem);line-height:1;letter-spacing:-.01em;position:relative;z-index:2}
-.final h2 em{font-style:italic;color:var(--accent)}
-.final p{margin:28px auto 40px;max-width:44ch;color:var(--cream-2);font-size:1.1rem;position:relative;z-index:2}
-.final .btn{position:relative;z-index:2}
-
-/* ---------- FOOTER ---------- */
-footer{border-top:1px solid var(--line);padding:70px 0 40px}
-.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:60px}
-.foot-brand{max-width:34ch}
-.foot-brand .logo{margin-bottom:20px}
-.foot-brand p{color:var(--cream-dim);font-size:.95rem;line-height:1.6}
-.foot-cols{display:flex;gap:70px;flex-wrap:wrap}
-.foot-col h5{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:20px}
-.foot-col a{display:block;color:var(--cream-2);font-size:.92rem;margin-bottom:12px;transition:color .3s}
-.foot-col a:hover{color:var(--accent)}
-.foot-bot{display:flex;justify-content:space-between;padding-top:30px;border-top:1px solid var(--line);color:var(--cream-dim);font-size:.8rem;flex-wrap:wrap;gap:16px}
-
-/* ---------- FORMACIÓN ---------- */
-.form-grid{display:flex;gap:44px;align-items:center;flex-wrap:wrap}
-.form-photo{flex:0 0 38%;max-width:420px}
-.form-photo img,.form-photo video{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.5);display:block;object-fit:cover;aspect-ratio:4/5;background:#000}
-.form-info{flex:1;min-width:300px}
-.form-info h3{font-family:var(--f-display);font-weight:500;font-size:1.9rem;margin-bottom:16px;letter-spacing:-.01em}
-.form-info h3 em{font-style:italic;color:var(--accent)}
-.form-info>p{color:var(--cream-2);font-size:1rem;line-height:1.65;margin-bottom:18px;max-width:56ch}
-.form-info ul{list-style:none;margin:0 0 24px;display:flex;flex-direction:column;gap:11px}
-.form-info li{font-size:.96rem;color:var(--cream-2);padding-left:26px;position:relative;line-height:1.45}
-.form-info li::before{content:"→";position:absolute;left:0;color:var(--accent)}
-.form-price{color:var(--cream)!important;font-weight:500;font-size:.98rem!important}
-@media(max-width:900px){.form-photo{flex:0 0 100%;max-width:none}}
-
-/* ---------- RESPONSIVE ---------- */
-@media(max-width:900px){
-  .nav-links{position:fixed;inset:0;top:0;background:var(--ink);flex-direction:column;justify-content:center;gap:34px;transform:translateY(-100%);transition:transform .5s var(--ease);z-index:99}
-  .nav-links.open{transform:none}
-  .nav-links a{font-size:1.5rem;font-family:var(--f-display)}
-  .nav-links .nav-formacion{margin-top:16px}
-  .burger{display:flex;z-index:100}
-  .burger.x span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-  .burger.x span:nth-child(2){opacity:0}
-  .burger.x span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-  .services,.pricing-grid,.tst-grid,.steps{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:1fr}
-  .stat{border-right:none;border-bottom:1px solid var(--line)}
-  .why-row{grid-template-columns:1fr;gap:12px}
-  .why-row .rn{font-size:.9rem}
-  .sec{padding:80px 0}
-  .wrap{padding:0 22px}
-}
-@media(max-width:560px){
-  .hero{padding:150px 0 60px}
-  .hero-cta{flex-direction:column}
-  .hero-cta .btn{width:100%;justify-content:center}
-  .foot-cols{gap:40px}
-  .tst{width:300px;padding:30px 26px}
-}
-
-/* ---------- HERO: selector de servicios ---------- */
-.hero-choices{margin-top:44px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:760px}
-.hero-choice{display:flex;align-items:center;gap:18px;padding:22px 24px;border:1px solid var(--line);border-radius:2px;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);transition:border-color .4s var(--ease),transform .4s var(--ease),background .4s var(--ease)}
-.hero-choice:hover{border-color:var(--accent);transform:translateY(-3px);background:rgba(255,255,255,.08)}
-.hc-num{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;color:var(--accent)}
-.hc-body{display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
-.hc-title{font-size:1.45rem;font-weight:500;line-height:1.1}
-.hc-desc{font-size:.84rem;color:var(--cream-dim)}
-.hc-arrow{font-family:var(--f-ui);color:var(--cream-dim);transition:transform .4s var(--ease),color .4s}
-.hero-choice:hover .hc-arrow{transform:translateY(4px);color:var(--accent)}
-@media(max-width:700px){.hero-choices{grid-template-columns:1fr}}
-
-/* ---------- SERVICIOS: galerías de vídeo ---------- */
-.svc{border-top:1px solid var(--line);scroll-margin-top:76px}
-.vgrid{display:grid;gap:16px}
-.vgrid-vertical{grid-template-columns:repeat(2,minmax(0,320px));justify-content:center}
-.vgrid-vertical .vslot{aspect-ratio:9/16}
-.vgrid-cinema{grid-template-columns:repeat(2,minmax(0,1fr))}
-.vgrid-cinema .vslot{aspect-ratio:16/9}
-.vgrid-cinema .vslot:first-child{grid-column:1/-1;aspect-ratio:21/9}
-.vslot{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.04),transparent 60%),var(--ink-soft);display:flex;align-items:center;justify-content:center}
-.vslot video,.vslot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.vslot-label{font-family:var(--f-ui);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cream-dim)}
-.svc-cta{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
-@media(max-width:700px){.vgrid-vertical{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.vgrid-cinema{grid-template-columns:1fr}.vgrid-cinema .vslot:first-child{aspect-ratio:16/9}}
-
-/* ---------- B/N: ajustes monocromo ---------- */
-.hero-strip img{filter:grayscale(1) contrast(1.08)}
-.btn-primary:hover{background:transparent;color:var(--cream);box-shadow:inset 0 0 0 1px var(--cream)}
-.process .btn-primary:hover,.process .btn-ghost:hover{color:var(--ink)}
-.hero h1 em,.sec-head h2 em{font-weight:500}
-.hero-choice:hover{background:#fff;color:#000;border-color:#fff}
-.hero-choice:hover .hc-desc,.hero-choice:hover .hc-num,.hero-choice:hover .hc-arrow{color:#000}
-.tst .av{color:#000}
-
-/* ---------- vídeos en huecos ---------- */
-.vslot.has-video{cursor:pointer}
-.vslot-tag{position:absolute;left:14px;bottom:14px;z-index:2;font-family:var(--f-ui);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);padding:7px 10px;border-radius:2px}
-.vslot-sound{position:absolute;right:14px;top:14px;z-index:2;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.25);padding:7px 10px;border-radius:2px;cursor:pointer;transition:background .3s,color .3s}
-.vslot-sound.on{background:#fff;color:#000}
-
-.svc-text{max-width:640px;margin:36px auto 0;text-align:center;color:var(--cream-dim);font-size:1rem;line-height:1.6}
-
-/* ---------- precios: pestañas por servicio ---------- */
-.price-tabs{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:999px;padding:4px;margin:0 0 40px}
-.price-tab{font-family:var(--f-ui);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim);background:transparent;border:0;padding:12px 22px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
-.price-tab:hover{color:var(--cream)}
-.price-tab.active{background:#fff;color:#000}
-.price-panel{display:none}
-.price-panel.active{display:block;animation:pfade .5s ease}
-@keyframes pfade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.price-extras{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:28px}
-.price-extras div{display:flex;align-items:baseline;gap:14px;border:1px solid var(--line);padding:16px 24px}
-.price-extras .serif{font-size:1.6rem;color:var(--cream)}
-.price-extras small{color:var(--cream-dim);font-size:.85rem}
-.price-disclaimer{text-align:center;margin-top:22px;font-family:var(--f-ui);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream-dim)}
-@media(max-width:520px){.price-tab{padding:10px 14px;font-size:.62rem}}
-
-/* precios: Bodoni con trazos finos más gruesos (el 4 se perdía) */
-.price,.price-extras .serif{font-optical-sizing:none;font-variation-settings:"opsz" 6;font-weight:600;color:#fff}
-
-.vgrid-vertical.vgrid-4{grid-template-columns:repeat(4,minmax(0,260px))}
-@media(max-width:1100px){.vgrid-vertical.vgrid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-/* ================= ESTILO BLACKBYTE ================= */
-:root{--f-display:'Hanken Grotesk',system-ui,-apple-system,sans-serif;--f-ui:'Inter',system-ui,-apple-system,sans-serif}
-body{font-weight:400}
-.hero h1 em,.sec-head h2 em,.stat .num em,.form-overlay h2 em,.form-info h3 em{font-style:normal;color:inherit}
-/* nav */
-.logo{font-family:var(--f-display);font-weight:700;letter-spacing:.01em}
-.nav-links{gap:44px}
-.nav-links a{font-family:var(--f-ui);font-weight:500;font-size:.95rem;letter-spacing:.06em;color:#fff}
-.nav-links a:not(.btn):hover{color:#fff;text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
-.nav-formacion{border:none!important;padding:0!important;text-transform:none!important;font-family:var(--f-ui)!important;font-size:.95rem!important;letter-spacing:.06em!important;color:#fff!important;border-radius:0}
-.nav-formacion:hover{background:none!important;transform:none!important}
-.nav .btn-primary{border-radius:999px;padding:11px 22px;font-size:.9rem}
-/* botones */
-.btn{font-family:var(--f-ui);text-transform:none;letter-spacing:0;font-size:1rem;font-weight:600}
-.btn-primary{background:#fff;color:#000;border-radius:10px;padding:16px 32px}
-.btn-primary:hover{background:#fff;color:#000;box-shadow:none;transform:translateY(-2px);opacity:.9}
-.btn-ghost{background:#000;color:#fff;border:2px solid #fff;border-radius:999px;padding:15px 34px}
-.btn-ghost:hover{background:#fff;color:#000;border-color:#fff}
-/* hero */
-.hero{text-align:center;padding:200px 0 70px}
-.hero-inner{display:flex;flex-direction:column;align-items:center}
-.hero .eyebrow::before{display:none}
-.hero h1{font-weight:400;font-size:clamp(2.8rem,6.4vw,6rem);line-height:1.04;letter-spacing:0;max-width:18ch}
-.hero-sub{margin-inline:auto;color:#9a9a9a;font-size:1.15rem}
-.hero-choices{margin-inline:auto;text-align:left}
-.hero-choice{border-radius:14px;border-width:1px}
-.hc-title{font-family:var(--f-display);font-weight:500}
-.hc-num,.hc-arrow{font-family:var(--f-ui)}
-.hero-meta{justify-content:center}
-.scroll-ind{margin-top:56px;display:flex;flex-direction:column;align-items:center;gap:12px;color:#9a9a9a;font-family:var(--f-ui);font-size:.8rem;letter-spacing:.12em}
-.scroll-ind i{width:1px;height:40px;background:linear-gradient(#9a9a9a,transparent)}
-.scroll-ind b{width:24px;height:38px;border:2px solid #fff;border-radius:14px;position:relative}
-.scroll-ind b::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:8px;margin-left:-1.5px;border-radius:2px;background:#fff;animation:sdot 1.8s ease-in-out infinite}
-@keyframes sdot{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(12px)}}
-/* títulos de sección */
-.eyebrow{font-family:var(--f-ui);font-weight:500;letter-spacing:.16em}
-.sec-head h2{font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.04;max-width:20ch}
-.sec-head p{color:#9a9a9a;font-size:1.08rem;line-height:1.6}
-/* stats */
-.stat .num{font-family:var(--f-ui);font-weight:800;letter-spacing:-.03em}
-.stat .lbl{color:#b5b5b5;font-size:.98rem}
-/* varios */
-.faq-q{font-family:var(--f-display);font-weight:500}
-.price-tab,.vslot-tag,.vslot-sound,.plan-name,.badge{font-family:var(--f-ui)!important;letter-spacing:.08em}
-.price-tab{border-radius:999px}
-.vslot{border-radius:16px}
-
-.nav-links a.btn-primary,.nav-links a.btn-primary:hover{color:#000!important;text-decoration:none}
-.marquee,.marquee *{font-style:normal!important}
-.marquee span:not(.star){font-family:var(--f-display);text-transform:uppercase;letter-spacing:.06em;font-weight:400}
-.sec-head h2{max-width:24ch}
-
-.vgrid-wide{max-width:1088px;margin:16px auto 0;grid-template-columns:1fr}
-.vgrid-wide .vslot{aspect-ratio:16/9}
-@media(max-width:1100px){.vgrid-wide{max-width:none}}
-
-/* ================= MÓVIL ================= */
-@media(max-width:900px){
-  #navlinks a:not(.btn),#navlinks a.nav-formacion{font-family:var(--f-display)!important;font-size:1.6rem!important;letter-spacing:.01em!important;font-weight:400}
-  #navlinks .btn-primary{margin-top:10px;padding:14px 30px;font-size:1rem}
-}
-@media(max-width:700px){
-  .sec{padding:72px 0}
-  .hero{padding:120px 0 48px}
-  .hero h1{font-size:clamp(2.4rem,11vw,3.2rem);line-height:1.06}
-  .hero-sub{font-size:1rem;line-height:1.55;margin-top:18px}
-  .hero-choices{margin-top:30px;gap:10px;width:100%}
-  .hero-choice{padding:18px 18px;gap:14px}
-  .hc-title{font-size:1.2rem}
-  .hero-meta{flex-direction:column;gap:8px;margin-top:28px}
-  .hero-meta .dotsep{display:none}
-  .scroll-ind{display:none}
-  .marquee span{font-size:1.05rem!important}
-  .marquee-track{gap:26px}
-  .stats-grid{grid-template-columns:repeat(3,1fr)}
-  .stat{padding:30px 8px;border-right:1px solid var(--line)!important;border-bottom:none!important}
-  .stat:last-child{border-right:none!important}
-  .stat .num{font-size:1.9rem!important}
-  .stat .lbl{font-size:.74rem;line-height:1.35;margin-top:8px}
-  .sec-head{margin-bottom:36px;gap:16px}
-  .sec-head h2{font-size:clamp(1.9rem,8.4vw,2.4rem)}
-  .sec-head p{font-size:1rem}
-  .vgrid{gap:10px}
-  .vslot{border-radius:12px}
-  .vslot-tag{left:8px;bottom:8px;font-size:.56rem;padding:5px 7px;letter-spacing:.06em}
-  .vslot-sound{right:8px;top:8px;font-size:.54rem;padding:5px 7px;letter-spacing:.06em}
-  .vgrid-wide{margin-top:10px}
-  .svc-text{font-size:.98rem;margin-top:26px}
-  .svc-cta{flex-direction:column;align-items:stretch;gap:12px;margin-top:30px}
-  .svc-cta .btn{width:100%;justify-content:center;text-align:center;white-space:nowrap}
-  .faq-q{font-size:1.05rem!important;padding:22px 0!important;gap:16px}
-  .price-tabs{display:flex;width:100%}
-  .price-tab{flex:1;padding:12px 8px}
-  .price-extras div{width:100%;justify-content:space-between}
-}
-@media(max-width:380px){
-  .stat .num{font-size:1.6rem!important}
-  .svc-cta .btn{white-space:normal}
-}
-
-/* ---------- HERO: modelo de fondo ---------- */
-.hero-model{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.hero-model img{position:absolute;left:50%;top:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);opacity:.5;filter:grayscale(1) contrast(1.05)}
-.hero-model::after{content:"";position:absolute;inset:0;background:
-  radial-gradient(ellipse 55% 60% at 50% 40%,rgba(0,0,0,.15),rgba(0,0,0,.85) 75%),
-  linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 25%,rgba(0,0,0,0) 60%,#000 100%)}
-.hero .hero-grid{opacity:.35}
-@media(max-width:700px){
-  .hero-model img{height:78%;opacity:.45}
-  .hero-model::after{background:
-    radial-gradient(ellipse 80% 45% at 50% 28%,rgba(0,0,0,.2),rgba(0,0,0,.9) 80%),
-    linear-gradient(to bottom,rgba(0,0,0,.3) 0%,rgba(0,0,0,0) 20%,rgba(0,0,0,.6) 55%,#000 78%)}
-}
-
-.hero-model img{-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 70%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,#000 30%,#000 70%,transparent 100%)}
-.hero-sub{color:#c4c4c4;text-shadow:0 2px 18px rgba(0,0,0,.9)}
-.hero h1{text-shadow:0 4px 40px rgba(0,0,0,.55)}
-
-/* hero: sin retícula, modelo opaco y oscurecido */
-.hero .hero-grid{display:none}
-.hero-model img{opacity:1!important;filter:grayscale(1) brightness(.52) contrast(1.1)!important}
-
-/* hero: título más fino y elegante */
-.hero h1{font-weight:300!important;letter-spacing:-.03em!important;line-height:1.02!important;font-size:clamp(2.8rem,7vw,6.6rem)!important;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","kern"}
-@media(max-width:700px){.hero h1{font-size:clamp(2.5rem,11.5vw,3.4rem)!important;letter-spacing:-.025em!important}}
-
-/* ---------- hero compacto ---------- */
-.hero{min-height:78vh;display:flex;align-items:center;padding:150px 0 90px!important}
-.hero-inner{width:100%}
-@media(max-width:700px){.hero{min-height:72vh;padding:120px 0 64px!important}}
-.marquee-band{border-top:1px solid var(--line)}
-.marquee-band .marquee{margin:0}
-/* ---------- botón ampliar ---------- */
-.vslot-expand{position:absolute;right:12px;top:12px;z-index:2;font-family:var(--f-ui);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);padding:7px 10px;border-radius:999px;cursor:pointer;transition:background .3s,color .3s}
-.vslot.has-video:hover .vslot-expand{background:#fff;color:#000}
-.vslot.has-video video{transition:transform .6s var(--ease)}
-.vslot.has-video:hover video{transform:scale(1.03)}
-/* ---------- lightbox de vídeo ---------- */
-.vlb{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;padding:calc(64px + env(safe-area-inset-top,0px)) 16px calc(40px + env(safe-area-inset-bottom,0px))}
-.vlb.open{display:flex;animation:pfade .35s ease}
-.vlb-stage{flex:1;width:100%;display:flex;align-items:center;justify-content:center;min-height:0}
-.vlb video{max-height:100%;max-width:min(100%,560px);width:auto;height:auto;border-radius:14px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
-.vlb video.wide{max-width:min(100%,1200px)}
-.vlb-close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;width:46px;height:46px;border-radius:50%;background:#fff;color:#000;border:0;font-size:1.6rem;line-height:1;cursor:pointer}
-.vlb-title{margin-top:16px;font-family:var(--f-ui);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a}
-@media(max-width:700px){
-  .vslot-expand{right:8px;top:8px;font-size:.56rem;padding:5px 8px}
-  .vlb{padding:calc(70px + env(safe-area-inset-top,0px)) 0 calc(24px + env(safe-area-inset-bottom,0px))}
-  .vlb video{max-width:100%;width:100%;border-radius:0}
-  .vlb video:not(.wide){width:auto;max-width:100%}
-}
-
-.vlb video{max-height:calc(100vh - 150px);max-height:calc(100dvh - 150px)}
-@media(max-width:700px){.vlb video{max-height:calc(100vh - 120px);max-height:calc(100dvh - 120px)}}
-
-/* ---------- web uniforme: sin divisorias entre secciones ---------- */
-.marquee,.marquee-band,.stats,.svc,footer,header.scrolled,.sec{border-top:none!important;border-bottom:none!important}
-section.sec.svc,section.sec.svc:hover,.stats,.marquee,.marquee-band,.sec,footer{background:#000!important}
-/* ---------- presupuesto ---------- */
-.quote-wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:120px;padding-bottom:80px;max-width:720px}
-.quote-wrap h2{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.04;letter-spacing:-.01em;margin:18px 0 22px}
-.quote-wrap h2 em{font-style:normal}
-.quote-text{color:#a8a8a8;font-size:1.1rem;line-height:1.6;max-width:52ch;margin:0 auto 36px}
-.quote-phone{margin-top:20px;color:#8f8f8f;font-size:.95rem}
-.quote-phone a{color:#fff;text-decoration:underline;text-underline-offset:5px}
-@media(max-width:700px){.quote-wrap{padding-top:100px}.quote-wrap .btn{width:100%;justify-content:center}.quote-text{font-size:1rem}}
-
-.quote-wrap h2 .nw{white-space:nowrap}
-@media(max-width:700px){.quote-wrap h2{font-size:clamp(1.7rem,8.6vw,2.6rem)!important;letter-spacing:-.015em;line-height:1.08}}
-@media(max-width:700px){.quote-wrap .btn{white-space:nowrap;font-size:.95rem;padding:17px 18px}}
-
-.quote-text{font-size:1rem!important;font-weight:300;letter-spacing:.01em;line-height:1.65;color:#b3b3b3;max-width:60ch!important;margin-bottom:32px!important}
-@media(max-width:700px){.quote-text{font-size:.88rem!important;line-height:1.6;max-width:none!important;padding:0 4px}}
-.quote-text.qt-1{margin-bottom:10px!important}
-
-/* ---------- por qué: versión breve ---------- */
-.why-title{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(2rem,5vw,3.8rem);line-height:1.04;letter-spacing:-.01em;margin:18px 0 48px;white-space:nowrap}
-.why-title em{font-style:normal}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
-.why-item .rn{font-family:var(--f-ui);font-size:.8rem;color:#8f8f8f;letter-spacing:.1em}
-.why-item h4{font-family:var(--f-display);font-weight:400;font-size:1.35rem;margin:12px 0 8px;letter-spacing:-.01em}
-.why-item p{color:#a8a8a8;font-size:.95rem;font-weight:300;line-height:1.55}
-@media(max-width:700px){
-  .why-title{font-size:clamp(2rem,10vw,2.7rem);margin-bottom:32px;white-space:normal}
-  .why-grid{grid-template-columns:1fr;gap:26px}
-  .why-item h4{font-size:1.2rem;margin:6px 0 4px}
-}
-
-/* ---------- CTA final con dato ---------- */
-.cta-stat .wrap{display:flex;flex-direction:column;align-items:center;text-align:center}
-.cs-num{font-family:var(--f-ui);font-weight:800;font-size:clamp(6rem,16vw,12rem);line-height:.9;letter-spacing:-.05em;margin:22px 0 10px}
-.cs-line{font-family:var(--f-display);font-weight:300;text-transform:uppercase;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:.01em;line-height:1.15;margin-bottom:18px}
-.cs-sub{color:#a8a8a8;font-weight:300;font-size:1rem;line-height:1.6;max-width:52ch;margin:0 auto 36px}
-.cs-note{margin-top:22px;color:#6f6f6f;font-size:.72rem;letter-spacing:.04em}
-@media(max-width:700px){
-  .cs-sub{font-size:.9rem}
-  .cta-stat .btn{width:100%;justify-content:center;white-space:nowrap;font-size:.95rem;padding:17px 18px}
-}
-
-/* hero: fondo negro puro, igual que el resto */
-.hero{background:#000!important}
-.hero .hero-glow{display:none!important}
-
-.logo .dot,.logo::after{display:none!important}
-
-/* spots: subtítulo en 2 líneas (una frase por línea) */
-.sec-head p.spots-sub{max-width:none}
-.spots-sub span{display:block;white-space:nowrap}
-@media(max-width:700px){.sec-head p.spots-sub{font-size:clamp(.88rem,4vw,1rem);line-height:1.55}}
-
-.br-m{display:none}
-@media(max-width:700px){.br-m{display:inline}.spots-sub span:first-child{margin-bottom:6px}}
-
-/* hero: frases separadas + primer servicio más arriba */
-.hero-sub .hs-line{display:block}
-.hero-sub .hs-line + .hs-line{margin-top:14px}
-.hero{min-height:66vh!important;padding-bottom:40px!important}
-#spots{padding-top:48px!important}
-@media(max-width:700px){
-  .hero-sub .hs-line + .hs-line{margin-top:12px}
-  .hero{min-height:62vh!important;padding-bottom:28px!important}
-  #spots{padding-top:36px!important}
-}
-
-/* ---------- CTA: círculo flotante de fuentes ---------- */
-.cs-src{position:relative;margin-bottom:26px;display:flex;justify-content:center}
-.cs-src-btn{width:78px;height:78px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.04);color:#fff;font-family:var(--f-ui);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;animation:csfloat 4s ease-in-out infinite;transition:background .3s,color .3s,border-color .3s;box-shadow:0 0 0 6px rgba(255,255,255,.03)}
-.cs-src-btn:hover,.cs-src.open .cs-src-btn{background:#fff;color:#000;border-color:#fff;animation-play-state:paused}
-@keyframes csfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.cs-src-pop{position:absolute;top:calc(100% + 14px);left:50%;transform:translate(-50%,-8px);width:min(380px,calc(100vw - 32px));background:#0d0d0d;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:18px 20px;text-align:left;opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;z-index:20;box-shadow:0 20px 60px rgba(0,0,0,.7)}
-.cs-src.open .cs-src-pop{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.cs-src-title{font-family:var(--f-ui);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#8f8f8f;margin-bottom:10px}
-.cs-src-pop ul{list-style:none;display:grid;gap:10px;margin:0;padding:0}
-.cs-src-pop li{color:#bdbdbd;font-size:.82rem;line-height:1.5}
-.cs-src-pop li strong{color:#fff;font-weight:600}
-.cs-src-pop a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-@media (hover:hover){.cs-src:hover .cs-src-pop{opacity:1;visibility:visible;transform:translate(-50%,0)}}
-@media(prefers-reduced-motion:reduce){.cs-src-btn{animation:none}}
-
-/* CTA dato: número elegante + frases en 2 líneas */
-.cs-num{font-family:var(--f-display)!important;font-weight:200!important;letter-spacing:-.04em!important;font-size:clamp(5rem,12vw,9.5rem)!important;line-height:1!important;margin:26px 0 34px!important}
-.cs-sub{max-width:none!important}
-.cs-s{display:block}
-.cs-s + .cs-s{margin-top:14px}
-.cs-s .nw{display:block;white-space:nowrap}
-@media(max-width:700px){
-  .cs-num{margin:20px 0 26px!important}
-  .cs-sub{font-size:clamp(.78rem,3.55vw,.95rem)!important}
-}
-
-/* vídeos a pantalla completa: verse enteros, sin recortes ni marcos */
-video:fullscreen,video:-webkit-full-screen{object-fit:contain!important;aspect-ratio:auto!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;filter:none!important;background:#000!important}
-</style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1064863449377888');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1064863449377888&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-</head>
-<body>
-
-<header id="hdr">
-  <div class="wrap nav">
-    <a href="#top" class="logo">Aether</a>
-    <nav class="nav-links" id="navlinks">
-      <a href="#spots">Anuncios de marca</a>
-      <a href="#avatares">Avatares IA</a>
-      <a href="#precios">Presupuesto</a>
-      <a href="#faq">FAQ</a>
-      <a href="#formacion" class="nav-formacion">Formación</a>
-      <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="btn btn-primary wa" target="_blank" rel="noopener">Hablemos →</a>
-    </nav>
-    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
-  </div>
-</header>
-
-<main id="top">
-
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-model" aria-hidden="true"><img src="img/modelo.jpg" alt="" fetchpriority="high"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-grid"></div>
-  
-  <div class="wrap hero-inner">
-    <div class="eyebrow reveal">Agencia de anuncios IA</div>
-    <h1 class="serif reveal" data-d="1">Eleva tu marca con nuestros <em>anuncios IA</em>.</h1>
-    <p class="hero-sub reveal" data-d="2"><span class="hs-line">Anuncios hiperrealistas para cualquier sector.</span><span class="hs-line">Sin castings, sin rodajes, sin esperas.</span></p>
-  </div>
-</section>
-
-
-
-<!-- SERVICIO 01: ANUNCIOS DE MARCA -->
-<section class="sec svc" id="spots">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow reveal">01 — Anuncios de marca</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Anuncios de <em>nivel televisión</em>, sin rodaje</h2>
-      </div>
-      <p class="reveal spots-sub" data-d="2"><span>Tú pones el producto y nosotros, <br class="br-m">el anuncio.</span> <span>Sin cámaras, sin focos y sin nadie <br class="br-m">gritando «¡otra toma!».</span></p>
-    </div>
-    <div class="vgrid vgrid-vertical vgrid-4 reveal">
-        <div class="vslot has-video">
-          <video data-src="videos/spot-1.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Perfume</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-        <div class="vslot has-video">
-          <video data-src="videos/spot-2.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Reloj</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-        <div class="vslot has-video">
-          <video data-src="videos/spot-3.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Auriculares</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-        <div class="vslot has-video">
-          <video data-src="videos/spot-4.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Café</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-    </div>
-    <div class="vgrid vgrid-wide reveal">
-        <div class="vslot has-video">
-          <video data-src="videos/spot-5.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Abrigo</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-    </div>
-    <div class="svc-cta reveal">
-      <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre un anuncio IA para mi marca.">Quiero un anuncio para mi marca →</a>
-      <a href="#precios" class="btn btn-ghost" data-open-tab="spots">Pedir presupuesto</a>
-    </div>
-  </div>
-</section>
-
-<!-- NICHOS + STATS -->
-<div class="marquee-band">
-  <div class="marquee reveal" data-d="4">
-    <div class="marquee-track" id="mq">
-      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
-      <span>Perfumería</span><span class="star">✦</span><span>Relojería</span><span class="star">✦</span><span>Joyería</span><span class="star">✦</span><span>E-commerce</span><span class="star">✦</span><span>Skincare</span><span class="star">✦</span><span>Moda</span><span class="star">✦</span><span>Fitness</span><span class="star">✦</span><span>Suplementos</span><span class="star">✦</span><span>Tech</span><span class="star">✦</span><span>Hostelería</span><span class="star">✦</span><span>Inmobiliaria</span><span class="star">✦</span>
-    </div>
-  </div>
-</div>
-<!-- STATS -->
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat reveal"><div class="num serif">–<em>85%</em></div><div class="lbl">en costes de producción frente al rodaje tradicional</div></div>
-    <div class="stat reveal" data-d="1"><div class="num serif"><em>10×</em></div><div class="lbl">más variantes para testear que una productora convencional</div></div>
-    <div class="stat reveal" data-d="2"><div class="num serif"><em>72</em>h</div><div class="lbl">de media hasta tus primeras creatividades listas</div></div>
-  </div>
-</section>
-
-
-<!-- SERVICIO 02: AVATARES IA -->
-<section class="sec svc" id="avatares">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow reveal">02 — Avatares IA</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Anuncios con avatares que nadie sabrá que <em>no son reales</em></h2>
-      </div>
-    </div>
-    <div class="vgrid vgrid-vertical reveal">
-        <div class="vslot has-video">
-          <video data-src="videos/avatar-2.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Clínica estética</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-        <div class="vslot has-video">
-          <video data-src="videos/avatar-3.mp4" muted loop playsinline preload="none"></video>
-          <span class="vslot-tag">Acondicionador</span>
-          <button class="vslot-expand" aria-label="Ver en grande">⤢ Ampliar</button>
-        </div>
-    </div>
-    <p class="svc-text reveal">Creatividades UGC con avatares hiperrealistas para tu marca. Sin castings, sin rodajes: anuncios que venden, para cualquier nicho, con volumen para testear.</p>
-    <div class="svc-cta reveal">
-      <a href="#" class="btn btn-primary wa" data-msg="Hola Aether, quiero información sobre los anuncios con avatares IA.">Quiero anuncios con avatares →</a>
-      <a href="#precios" class="btn btn-ghost" data-open-tab="avatares">Pedir presupuesto</a>
-    </div>
-  </div>
-</section>
-
-
-<!-- POR QUÉ AETHER -->
-<section class="sec" id="por-que">
-  <div class="wrap">
-    <div class="eyebrow reveal">Por qué Aether</div>
-    <h2 class="serif why-title reveal" data-d="1">Anuncios que <em>venden</em>.</h2>
-    <div class="why-grid">
-      <div class="why-item reveal"><span class="rn">01</span><h4>Realismo total</h4><p>Indistinguible de una producción real.</p></div>
-      <div class="why-item reveal" data-d="1"><span class="rn">02</span><h4>Hechos para vender</h4><p>Cada pieza, pensada para el clic y la venta.</p></div>
-      <div class="why-item reveal" data-d="2"><span class="rn">03</span><h4>Rápido y escalable</h4><p>Sin rodajes. Más variantes, menos coste.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-
-
-<!-- PRECIOS -->
-<div class="form-overlay" id="precios" role="dialog" aria-modal="true" aria-label="Pedir presupuesto">
-  <button class="form-close" aria-label="Cerrar">×</button>
-  <div class="wrap quote-wrap">
-    <div class="eyebrow">Presupuesto</div>
-    <h2 class="serif"><span class="nw">Cada proyecto,</span><br><em>a medida</em></h2>
-    <p class="quote-text qt-1">Cuéntanos tu marca, tu producto y qué anuncios necesitas.</p>
-    <p class="quote-text">Te preparamos un presupuesto personalizado, sin compromiso.</p>
-    <a href="https://wa.me/34614576542" data-msg="Hola Aether, quiero pedir presupuesto para mis anuncios IA." class="btn btn-primary wa" target="_blank" rel="noopener">Pedir presupuesto por WhatsApp →</a>
-  </div>
-</div>
-
-<!-- FORMACIÓN -->
-<div class="form-overlay" id="formacion" role="dialog" aria-modal="true" aria-label="Formación">
-  <button class="form-close" aria-label="Cerrar formación">×</button>
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="eyebrow reveal">Formación</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Forma a tu marca en <em>avatares IA</em></h2>
-      </div>
-      <p class="reveal" data-d="2">Para marcas, empresas e infoproductores que quieran dominar los avatares IA.</p>
-    </div>
-    <div class="form-grid">
-      <div class="form-photo reveal">
-        <video src="videos/formacion.mp4" poster="data:image/jpeg;base64,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" autoplay="" muted="" loop="" playsinline="" controls=""></video>
-      </div>
-      <div class="form-info reveal" data-d="1">
-        <h3 class="serif">Aprende a crear anuncios con avatares IA que <em>venden</em></h3>
-        <p>Enseño a tu equipo, paso a paso, a generar avatares hiperrealistas y montar anuncios en vídeo listos para Meta, TikTok e Instagram — sin rodajes, sin depender de nadie externo y a una fracción del coste.</p>
-        <ul>
-          <li>Cómo crear avatares IA indistinguibles de una persona real</li>
-          <li>Guión y ganchos que convierten, no solo que lucen</li>
-          <li>Aprenderás a producir masivamente y a un precio ridículo</li>
-          <li>Todo aplicado a los productos de tu propia marca</li>
-          <li>Biblioteca de recursos, prompts y agentes para alumnos, siempre actualizada</li>
-        </ul>
-        <p class="form-price">Precio a medida según tu equipo y objetivos. Solicita la información sin compromiso.</p>
-        <a href="https://wa.me/34614576542?text=Hola%20Hugo%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20formaci%C3%B3n%20para%20marcas" target="_blank" rel="noopener" class="btn btn-primary" style="padding:16px 30px;font-size:.8rem">Solicitar información por WhatsApp →</a>
-      </div>
-    </div>
-
-    <div class="form-faq" style="margin-top:64px;max-width:820px">
-      <div class="eyebrow reveal" style="margin-bottom:22px">Antes de reservar</div>
-      <div class="faq">
-        <div class="faq-item"><button class="faq-q">¿Esta formación me va a ayudar a vender más? <span class="ic">+</span></button><div class="faq-a"><p>Sí, es exactamente para eso. Todo lo que enseño tiene un único objetivo: aumentar la facturación de tu negocio. No aprendes a hacer vídeos bonitos, aprendes a crear anuncios con avatares IA que captan la atención, comunican tu oferta y convierten en ventas. Cada técnica está pensada para que recuperes la inversión con tus primeras campañas.</p></div></div>
-        <div class="faq-item"><button class="faq-q">¿Necesito experiencia técnica o saber editar vídeo? <span class="ic">+</span></button><div class="faq-a"><p>Ninguna. Empezamos desde cero y avanzamos paso a paso. Si sabes manejar un móvil y un ordenador, al terminar podrás crear tus propios avatares y anuncios sin depender de nadie.</p></div></div>
-        <div class="faq-item"><button class="faq-q">¿Cuánto tardaré en crear mi primer anuncio? <span class="ic">+</span></button><div class="faq-a"><p>Desde el primer módulo ya produces. La mayoría monta su primer anuncio con avatar IA el mismo día que empieza a aplicar lo aprendido — sin rodajes, sin esperas y a una fracción del coste de una productora.</p></div></div>
-        <div class="faq-item"><button class="faq-q">¿Para quién es esta formación? <span class="ic">+</span></button><div class="faq-a"><p>Para marcas, e-commerce y tiendas online, empresas e infoproductores que quieran dejar de depender de agencias y creadores externos, y producir sus propios anuncios en casa para escalar su facturación con control total.</p></div></div>
-        <div class="faq-item"><button class="faq-q">¿Cuánto cuesta y cómo reservo mi plaza? <span class="ic">+</span></button><div class="faq-a"><p>El precio es a medida según tu equipo y tus objetivos. Escríbeme por WhatsApp, te cuento qué incluye sin compromiso y, si encaja contigo, reservas tu plaza. Trabajo con plazas limitadas para poder darte seguimiento personalizado, así que cuanto antes escribas, mejor.</p></div></div>
-      </div>
-      <div style="margin-top:34px">
-        <a href="https://wa.me/34614576542?text=Hola%20Hugo%2C%20quiero%20reservar%20mi%20plaza%20en%20la%20formaci%C3%B3n%20de%20avatares%20IA" target="_blank" rel="noopener" class="btn btn-primary" style="padding:16px 30px;font-size:.8rem">Reservar mi plaza por WhatsApp →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- FAQ -->
-<section class="sec" id="faq">
-  <div class="wrap">
-    <div class="sec-head" style="justify-content:center;text-align:center">
-      <div>
-        <div class="eyebrow reveal">FAQ</div>
-        <h2 class="serif reveal" data-d="1" style="margin-top:22px">Preguntas <em>frecuentes</em></h2>
-      </div>
-    </div>
-    <div class="faq">
-      <div class="faq-item"><button class="faq-q">¿Qué diferencia hay entre los avatares IA y los anuncios de marca? <span class="ic">+</span></button><div class="faq-a"><p>Los avatares IA son anuncios tipo UGC: una persona hiperrealista que habla a cámara y presenta tu producto o servicio, ideales para Meta Ads y TikTok. Los anuncios de marca son spots cinematográficos de estética premium, pensados para perfumes, relojes, joyería o cosmética, con acabado de anuncio de televisión.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Se nota que están hechos con IA? <span class="ic">+</span></button><div class="faq-a"><p>No. Trabajamos con un pipeline avanzado de generación y postproducción que cuida texturas, iluminación y micro-detalle en ambos servicios. El objetivo es que tu audiencia vea una persona real o un spot rodado, no una IA.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Puedo usar el contenido en mis campañas de pago? <span class="ic">+</span></button><div class="faq-a"><p>Sí. Todo se entrega con licencia comercial completa, listo para Meta Ads, TikTok, YouTube, web y redes, en los formatos que necesite cada plataforma.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Para qué tipo de marcas trabajáis? <span class="ic">+</span></button><div class="faq-a"><p>Los avatares IA funcionan en cualquier nicho: clínicas, e-commerce, skincare, fitness, servicios, hostelería o inmobiliaria. Los anuncios de marca están pensados para productos donde la imagen lo es todo: perfumes, relojes, joyería, moda o cosmética de lujo.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Cuánto tardáis en entregar? <span class="ic">+</span></button><div class="faq-a"><p>De media, 72h. Si lo necesitas antes, también hacemos entregas urgentes; te lo detallamos en el presupuesto.</p></div></div>
-      <div class="faq-item"><button class="faq-q">¿Y si no sé qué servicio necesito? <span class="ic">+</span></button><div class="faq-a"><p>Escríbenos por WhatsApp, cuéntanos tu producto y tu objetivo, y te recomendamos el servicio más rentable para tu caso y te pasamos presupuesto, sin compromiso.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA FINAL: dato + presupuesto -->
-<section class="sec cta-stat" id="presupuesto">
-  <div class="wrap">
-    <div class="cs-src reveal">
-      <button class="cs-src-btn" type="button" aria-expanded="false" aria-controls="csSrcPop">Fuentes</button>
-      <div class="cs-src-pop" id="csSrcPop" role="dialog" aria-label="Fuentes del dato">
-        <p class="cs-src-title">Fuentes</p>
-        <ul>
-          <li><strong>3,4×</strong> más ROAS del vídeo frente a display (mediana). <a href="https://adwave.com/resources/ai-video-ad-statistics-2026" target="_blank" rel="noopener">Adwave · AI Video Ad Statistics 2026</a>, con datos de shno.co.</li>
-          <li><strong>70–90%</strong> menos coste por vídeo al producir con IA. Mismo informe, con datos de Magic Hour.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="eyebrow reveal">El dato</div>
-    <div class="cs-num reveal" data-d="1">3,4×</div>
-    <p class="cs-line reveal" data-d="2">más retorno con anuncios en vídeo.</p>
-    <p class="cs-sub reveal" data-d="2"><span class="cs-s"><span class="nw">El vídeo es el formato que más vende</span> <span class="nw">en publicidad.</span></span><span class="cs-s"><span class="nw">Con IA, producirlo cuesta hasta un 90% menos,</span> <span class="nw">y si es hiperrealista, nadie nota la diferencia.</span></span></p>
-    <a href="https://wa.me/34614576542" data-msg="Hola Aether, quiero pedir presupuesto para mis anuncios IA." class="btn btn-primary wa reveal" data-d="3" target="_blank" rel="noopener">Pedir presupuesto por WhatsApp →</a>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <a href="#top" class="logo">Aether</a>
-        <p>Anuncios IA hiperrealistas para marcas que quieren vender más gastando menos.</p>
-      </div>
-      <div class="foot-cols">
-        <div class="foot-col">
-          <h5>Servicios</h5>
-          <a href="#spots">Anuncios de marca</a>
-          <a href="#avatares">Avatares IA</a>
-          <a href="#formacion">Formación</a>
-          <a href="#precios">Pedir presupuesto</a>
-        </div>
-        <div class="foot-col">
-          <h5>Navegación</h5>
-          <a href="#por-que">Por qué Aether</a>
-          <a href="#precios">Presupuesto</a>
-          <a href="#faq">FAQ</a>
-        </div>
-        <div class="foot-col">
-          <h5>Contacto</h5>
-          <a href="https://wa.me/34614576542?text=Hola%20Aether%2C%20quiero%20informaci%C3%B3n%20sobre%20vuestros%20anuncios%20con%20avatares%20IA." class="wa" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="mailto:aether.avatar@gmail.com">aether.avatar@gmail.com</a>
-          <a href="https://www.instagram.com/aetherstudioia/" target="_blank" rel="noopener">Instagram</a>
-        </div>
-      </div>
-    </div>
-    <div class="foot-bot">
-      <span>© 2026 Aether Studio. Todos los derechos reservados.</span>
-      <div class="foot-legal">
-        <a href="#aviso-legal">Aviso legal</a>
-        <a href="#privacidad">Política de privacidad</a>
-        <a href="#cookies">Política de cookies</a>
-      </div>
-      <span class="mono">Diseñado para vender.</span>
-    </div>
-  </div>
-</footer>
-
-<!-- ===== AVISO LEGAL ===== -->
-<div class="form-overlay" id="aviso-legal" role="dialog" aria-modal="true" aria-label="Aviso legal">
-  <button class="form-close" aria-label="Cerrar">×</button>
-  <div class="wrap">
-    <div class="eyebrow">Legal</div>
-    <h2 class="serif" style="margin:16px 0 30px">Aviso <em>legal</em></h2>
-    <div class="legal-body">
-      <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se ponen a disposición del usuario los siguientes datos identificativos del titular de este sitio web.</p>
-      <h3>1. Datos del titular</h3>
-      <ul>
-        <li><strong>Titular:</strong> Hugo Pérez Mené</li>
-        <li><strong>NIF:</strong> 26055790X</li>
-        <li><strong>Domicilio:</strong> Calle la Milagrosa 30, entr. dcha, 50009, Zaragoza (España)</li>
-        <li><strong>Correo electrónico:</strong> <a href="mailto:aether.avatar@gmail.com">aether.avatar@gmail.com</a></li>
-        <li><strong>Nombre comercial:</strong> Aether</li>
-      </ul>
-      <h3>2. Objeto</h3>
-      <p>El presente sitio web tiene como finalidad ofrecer información sobre los servicios de creación de anuncios y contenido audiovisual con avatares de inteligencia artificial, así como la formación relacionada, prestados por el titular. El acceso y uso de este sitio atribuye la condición de usuario e implica la aceptación de las presentes condiciones.</p>
-      <h3>3. Condiciones de uso</h3>
-      <p>El usuario se compromete a hacer un uso adecuado y lícito del sitio web y de sus contenidos, absteniéndose de emplearlos con fines ilícitos, lesivos de derechos de terceros o que de cualquier forma puedan dañar, inutilizar o deteriorar el sitio web o impedir su normal disfrute por otros usuarios.</p>
-      <h3>4. Propiedad intelectual e industrial</h3>
-      <p>Todos los contenidos del sitio web (textos, fotografías, vídeos, gráficos, imágenes, diseño, logotipos y código) son titularidad del titular o de terceros que han autorizado su uso, y están protegidos por la normativa de propiedad intelectual e industrial. Queda prohibida su reproducción, distribución, comunicación pública o transformación sin autorización expresa.</p>
-      <h3>5. Exención de responsabilidad</h3>
-      <p>El titular no se hace responsable de los daños o perjuicios que pudieran derivarse de interferencias, omisiones, interrupciones, virus informáticos o desconexiones en el funcionamiento del sistema, motivadas por causas ajenas a su control. El titular procura mantener la información actualizada y libre de errores, pero no garantiza la ausencia de los mismos.</p>
-      <h3>6. Legislación aplicable</h3>
-      <p>Las presentes condiciones se rigen por la legislación española. Para la resolución de cualquier controversia, las partes se someten a los juzgados y tribunales del domicilio del usuario, cuando este sea consumidor.</p>
-      <p class="updated">Última actualización: julio de 2026</p>
-    </div>
-  </div>
-</div>
-
-<!-- ===== POLÍTICA DE PRIVACIDAD ===== -->
-<div class="form-overlay" id="privacidad" role="dialog" aria-modal="true" aria-label="Política de privacidad">
-  <button class="form-close" aria-label="Cerrar">×</button>
-  <div class="wrap">
-    <div class="eyebrow">Legal</div>
-    <h2 class="serif" style="margin:16px 0 30px">Política de <em>privacidad</em></h2>
-    <div class="legal-body">
-      <p>De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), se informa al usuario sobre el tratamiento de sus datos personales.</p>
-      <h3>1. Responsable del tratamiento</h3>
-      <ul>
-        <li><strong>Responsable:</strong> Hugo Pérez Mené</li>
-        <li><strong>NIF:</strong> 26055790X</li>
-        <li><strong>Domicilio:</strong> Calle la Milagrosa 30, entr. dcha, 50009, Zaragoza (España)</li>
-        <li><strong>Correo electrónico:</strong> <a href="mailto:aether.avatar@gmail.com">aether.avatar@gmail.com</a></li>
-      </ul>
-      <h3>2. Datos que recogemos</h3>
-      <p>Este sitio web no dispone de formularios de registro ni de compra. Únicamente se tratarán los datos personales que el usuario facilite de forma voluntaria al contactar a través del correo electrónico o de WhatsApp: nombre, datos de contacto y cualquier información que incluya en su comunicación.</p>
-      <h3>3. Finalidad del tratamiento</h3>
-      <p>Los datos se utilizan exclusivamente para atender las consultas, solicitudes de información y de presupuesto, gestionar la relación comercial y, en su caso, prestar los servicios contratados.</p>
-      <h3>4. Legitimación</h3>
-      <p>La base legal para el tratamiento es el consentimiento del interesado al ponerse en contacto, así como la aplicación de medidas precontractuales o la ejecución de un contrato cuando proceda.</p>
-      <h3>5. Conservación de los datos</h3>
-      <p>Los datos se conservarán durante el tiempo necesario para atender la solicitud y, posteriormente, durante los plazos legalmente exigidos para atender posibles responsabilidades. Cuando dejen de ser necesarios, se suprimirán con las medidas de seguridad adecuadas.</p>
-      <h3>6. Destinatarios</h3>
-      <p>No se cederán datos a terceros, salvo obligación legal. Al comunicarte por WhatsApp o correo electrónico, tus datos serán tratados también por los proveedores de esos servicios (Meta Platforms y Google) conforme a sus propias políticas de privacidad.</p>
-      <h3>7. Derechos del usuario</h3>
-      <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad enviando un correo a <a href="mailto:aether.avatar@gmail.com">aether.avatar@gmail.com</a>, indicando el derecho que deseas ejercer. Asimismo, tienes derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es/" target="_blank" rel="noopener">www.aepd.es</a>).</p>
-      <p class="updated">Última actualización: julio de 2026</p>
-    </div>
-  </div>
-</div>
-
-<!-- ===== POLÍTICA DE COOKIES ===== -->
-<div class="form-overlay" id="cookies" role="dialog" aria-modal="true" aria-label="Política de cookies">
-  <button class="form-close" aria-label="Cerrar">×</button>
-  <div class="wrap">
-    <div class="eyebrow">Legal</div>
-    <h2 class="serif" style="margin:16px 0 30px">Política de <em>cookies</em></h2>
-    <div class="legal-body">
-      <p>Esta política explica qué son las cookies y cómo se utilizan en este sitio web, en cumplimiento del artículo 22.2 de la Ley 34/2002 (LSSI-CE).</p>
-      <h3>1. ¿Qué son las cookies?</h3>
-      <p>Las cookies son pequeños archivos de texto que un sitio web almacena en el navegador del usuario para guardar y recuperar información sobre su navegación.</p>
-      <h3>2. Cookies utilizadas en este sitio</h3>
-      <p>Este sitio web es una página informativa estática y <strong>no instala cookies propias</strong> de análisis, publicidad ni seguimiento. Tampoco elabora perfiles del usuario.</p>
-      <h3>3. Servicios de terceros</h3>
-      <p>El sitio carga tipografías desde Google Fonts para su correcta visualización. Al hacerlo, tu navegador realiza una petición a los servidores de Google, que puede registrar datos técnicos como tu dirección IP conforme a la política de privacidad de Google. Este servicio no instala cookies con fines publicitarios en este sitio.</p>
-      <h3>4. Gestión de cookies</h3>
-      <p>Puedes configurar tu navegador para bloquear o eliminar las cookies en cualquier momento a través de sus opciones de configuración. A continuación, enlaces a la ayuda de los navegadores más comunes: <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Chrome</a>, <a href="https://support.mozilla.org/es/kb/Borrar%20cookies" target="_blank" rel="noopener">Firefox</a>, <a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a> y <a href="https://support.microsoft.com/es-es/microsoft-edge" target="_blank" rel="noopener">Edge</a>.</p>
-      <p class="updated">Última actualización: julio de 2026</p>
-    </div>
-  </div>
-</div>
-
-
-<div class="vlb" id="vlb" role="dialog" aria-modal="true" aria-label="Vídeo ampliado">
-  <button class="vlb-close" aria-label="Cerrar vídeo">×</button>
-  <div class="vlb-stage"><video id="vlbVideo" controls playsinline></video></div>
-  <div class="vlb-title" id="vlbTitle"></div>
-</div>
-<script>
-/* ==== CONFIG: cambia solo esta línea por tu número real (formato internacional, sin + ni espacios) ==== */
-const WHATSAPP_NUMBER = "34614576542";
-const WHATSAPP_MSG = "Hola Aether, quiero información sobre vuestros anuncios IA.";
-document.querySelectorAll('a.wa').forEach(a=>{
-  a.setAttribute('href', `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(a.dataset.msg || WHATSAPP_MSG)}`);
-  a.setAttribute('target','_blank'); a.setAttribute('rel','noopener');
-});
-
-/* header scroll state */
-const hdr=document.getElementById('hdr');
-addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
-
-/* mobile menu */
-const burger=document.getElementById('burger'), links=document.getElementById('navlinks');
-burger.addEventListener('click',()=>{burger.classList.toggle('x');links.classList.toggle('open')});
-links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('x');links.classList.remove('open')}));
-
-/* reveal on scroll */
-const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-/* faq accordion */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const q=item.querySelector('.faq-q'), a=item.querySelector('.faq-a');
-  q.addEventListener('click',()=>{
-    const open=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
-    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
-  });
-});
-
-/* overlays (formacion + legales) */
-(function(){
-  const overlays=document.querySelectorAll('.form-overlay');
-  function openOv(ov){ ov.classList.add('open'); document.body.classList.add('form-open'); ov.scrollTop=0; }
-  function closeAll(){ overlays.forEach(o=>o.classList.remove('open')); document.body.classList.remove('form-open'); }
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    const id=a.getAttribute('href').slice(1);
-    const ov=id && document.getElementById(id);
-    if(ov && ov.classList.contains('form-overlay')){
-      a.addEventListener('click',e=>{ e.preventDefault(); closeAll(); openOv(ov); });
-    } else {
-      /* scroll interno por JS: funciona también en previsualizaciones/iframes donde el #ancla falla */
-      a.addEventListener('click',e=>{
-        e.preventDefault(); closeAll();
-        const t=(id && id!=='top') ? document.getElementById(id) : null;
-        const y=t ? t.getBoundingClientRect().top + scrollY - 76 : 0;
-        scrollTo({top:y,behavior:'smooth'});
-      });
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether | Agencia de Automatización con IA para Empresas</title>
+    <meta name="description" content="Aether es una agencia de Inteligencia Artificial B2B. Solucionamos tu cuello de botella automatizando procesos para ahorrar tiempo y aumentar tu facturación.">
+    <meta name="keywords" content="automatización con Inteligencia Artificial, agencia de IA, optimización de procesos, IA para empresas, software a medida">
+    
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aetherstudio.es/">
+    <meta property="og:title" content="Aether | Agencia de Automatización con IA para Empresas">
+    <meta property="og:description" content="Automatizamos tus procesos con Inteligencia Artificial para ahorrar decenas de horas a la semana e incrementar tu facturación.">
+    <meta property="og:image" content="https://aetherstudio.es/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://aetherstudio.es/">
+    <meta property="twitter:title" content="Aether | Agencia de Automatización con IA">
+    <meta property="twitter:description" content="Automatizamos tus procesos con Inteligencia Artificial para ahorrar decenas de horas a la semana e incrementar tu facturación.">
+    <meta property="twitter:image" content="https://aetherstudio.es/og-image.jpg">
+
+    <!-- Schema.org Markup (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Aether Studio",
+      "url": "https://aetherstudio.es",
+      "description": "Agencia de Inteligencia Artificial especializada en la automatización de procesos y desarrollo de software a medida para empresas.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ES"
+      },
+      "email": "aether.avatar@gmail.com",
+      "offers": {
+        "@type": "Offer",
+        "category": "Servicios de Inteligencia Artificial y Automatización B2B"
+      }
     }
-  });
-  overlays.forEach(ov=>{
-    const btn=ov.querySelector('.form-close');
-    if(btn) btn.addEventListener('click',closeAll);
-    ov.addEventListener('click',e=>{ if(e.target===ov) closeAll(); });
-  });
-  addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
-})();
+    </script>
 
-/* vídeos de ejemplo: autoplay silencioso en pantalla; clic = abrir en grande con sonido */
-(function(){
-  const vids=[...document.querySelectorAll('.vslot video[data-src]')];
-  const vio=new IntersectionObserver(es=>es.forEach(e=>{
-    const v=e.target;
-    if(e.isIntersecting){ if(!v.src) v.src=v.dataset.src; v.play().catch(()=>{}); }
-    else v.pause();
-  }),{threshold:.35});
-  vids.forEach(v=>vio.observe(v));
-  const lb=document.getElementById('vlb'), lv=document.getElementById('vlbVideo'), lt=document.getElementById('vlbTitle');
-  const openLb=s=>{
-    const v=s.querySelector('video'); const src=v.dataset.src||v.src;
-    vids.forEach(x=>x.pause());
-    lv.src=src; lv.muted=false; lt.textContent=(s.querySelector('.vslot-tag')||{}).textContent||'';
-    lv.classList.toggle('wide',s.closest('.vgrid-wide')!==null);
-    lb.classList.add('open'); document.documentElement.style.overflow='hidden';
-    lv.currentTime=0; lv.play().catch(()=>{});
-  };
-  const closeLb=()=>{
-    lb.classList.remove('open'); lv.pause(); lv.removeAttribute('src'); lv.load();
-    document.documentElement.style.overflow='';
-    vids.forEach(x=>{ if(x.src){ const r=x.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight) x.play().catch(()=>{}); }});
-  };
-  document.querySelectorAll('.vslot.has-video').forEach(s=>s.addEventListener('click',()=>openLb(s)));
-  lb.querySelector('.vlb-close').addEventListener('click',closeLb);
-  lb.addEventListener('click',e=>{ if(e.target===lb||e.target.classList.contains('vlb-stage')) closeLb(); });
-  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&lb.classList.contains('open')) closeLb(); });
-})();
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-primary: #ededed;
+            --text-secondary: #888888;
+            --border-color: #222222;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
 
-/* pestañas de precios */
-(function(){
-  const setTab=t=>{
-    document.querySelectorAll('.price-tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
-    document.querySelectorAll('.price-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===t));
-  };
-  document.querySelectorAll('.price-tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
-  document.querySelectorAll('[data-open-tab]').forEach(a=>a.addEventListener('click',()=>setTab(a.dataset.openTab),true));
-})();
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Syne', sans-serif;
+        }
 
-/* fuentes del dato: abrir/cerrar con clic (móvil) */
-(function(){
-  const w=document.querySelector('.cs-src'); if(!w) return;
-  const b=w.querySelector('.cs-src-btn');
-  b.addEventListener('click',e=>{e.stopPropagation();const o=w.classList.toggle('open');b.setAttribute('aria-expanded',o)});
-  document.addEventListener('click',e=>{if(!w.contains(e.target)){w.classList.remove('open');b.setAttribute('aria-expanded',false)}});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){w.classList.remove('open');b.setAttribute('aria-expanded',false)}});
-})();
-</script>
+        /* Marquee Animation */
+        .marquee-container {
+            display: flex;
+            width: 200%;
+            animation: marquee 20s linear infinite;
+        }
+        
+        .marquee-container:hover {
+            animation-play-state: paused;
+        }
 
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
 
-</body></html>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* FAQ Animation */
+        .faq-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease-out;
+        }
+        .faq-content.open {
+            grid-template-rows: 1fr;
+        }
+        .faq-inner {
+            overflow: hidden;
+        }
+        
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .open .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* Subtle Fade In */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+</head>
+<body class="antialiased selection:bg-white selection:text-black">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#050505]/90 backdrop-blur-md border-b border-[#222]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-display font-bold tracking-tight uppercase" aria-label="Ir al inicio">
+                Aether
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#888]" aria-label="Navegación principal">
+                <a href="#servicios" class="hover:text-white transition-colors" aria-label="Ver servicios de automatización">Servicios</a>
+                <a href="#beneficios" class="hover:text-white transition-colors" aria-label="Ver beneficios de la IA">Beneficios</a>
+                <a href="#faq" class="hover:text-white transition-colors" aria-label="Preguntas Frecuentes">FAQ</a>
+            </nav>
+            <a href="#contacto" class="bg-white text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-200 transition-colors flex items-center gap-2" aria-label="Solicitar contacto">
+                Hablemos <span class="text-lg leading-none" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 border-b border-[#222] min-h-[90vh] flex flex-col justify-center">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block border border-[#222] px-4 py-1.5 rounded-full text-xs font-medium tracking-wide text-[#888] uppercase mb-10 fade-in">
+                ✦ Agencia de Inteligencia Artificial B2B
+            </div>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-display font-normal tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto text-balance fade-in delay-100">
+                Solucionamos tu cuello de botella <span class="text-neutral-400 italic">creando un software trabajando 24/7</span> para tu negocio.
+            </h1>
+            <p class="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-14 font-light tracking-wide fade-in delay-200">
+                Ahorrándote decenas de horas a la semana, e incrementando tu facturación.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in delay-300">
+                <a href="https://wa.me/34614576542" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2" aria-label="Pedir presupuesto de automatización con IA por WhatsApp">
+                    Pedir presupuesto <span aria-hidden="true">→</span>
+                </a>
+                <a href="#servicios" class="w-full sm:w-auto border border-[#222] bg-transparent text-white px-8 py-4 rounded-full text-base font-medium hover:bg-[#111] transition-colors flex items-center justify-center" aria-label="Ver cómo funciona nuestra IA">
+                    Ver cómo funciona
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="border-b border-[#222] overflow-hidden py-4 bg-[#0a0a0a]">
+        <div class="marquee-container text-sm md:text-base font-display font-medium uppercase tracking-widest text-[#555]">
+            <div class="flex-1 flex justify-around whitespace-nowrap px-4">
+                <span>Atención al cliente</span> <span class="text-[#333]">✦</span>
+                <span>Ventas</span> <span class="text-[#333]">✦</span>
+                <span>Gestión de datos</span> <span class="text-[#333]">✦</span>
+                <span>Procesos internos</span> <span class="text-[#333]">✦</span>
+                <span>Escalabilidad</span> <span class="text-[#333]">✦</span>
+            </div>
+            <div class="flex-1 flex justify-around whitespace-nowrap px-4">
+                <span>Atención al cliente</span> <span class="text-[#333]">✦</span>
+                <span>Ventas</span> <span class="text-[#333]">✦</span>
+                <span>Gestión de datos</span> <span class="text-[#333]">✦</span>
+                <span>Procesos internos</span> <span class="text-[#333]">✦</span>
+                <span>Escalabilidad</span> <span class="text-[#333]">✦</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Grid (Brutalist) -->
+    <section class="border-b border-[#222]">
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#222]">
+            <div class="p-12 md:p-16 flex flex-col justify-center items-center text-center hover:bg-[#0a0a0a] transition-colors">
+                <span class="text-5xl md:text-6xl font-display font-bold mb-4">-80%</span>
+                <span class="text-[#888] font-medium text-sm md:text-base uppercase tracking-wide">en horas de tareas manuales</span>
+            </div>
+            <div class="p-12 md:p-16 flex flex-col justify-center items-center text-center hover:bg-[#0a0a0a] transition-colors">
+                <span class="text-5xl md:text-6xl font-display font-bold mb-4">24/7</span>
+                <span class="text-[#888] font-medium text-sm md:text-base uppercase tracking-wide">operativo sin descansos</span>
+            </div>
+            <div class="p-12 md:p-16 flex flex-col justify-center items-center text-center hover:bg-[#0a0a0a] transition-colors">
+                <span class="text-5xl md:text-6xl font-display font-bold mb-4">ROI</span>
+                <span class="text-[#888] font-medium text-sm md:text-base uppercase tracking-wide">Retorno de inversión medible</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="py-24 px-6 border-b border-[#222]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight">Automatización <br>con Inteligencia Artificial.</h2>
+                <p class="text-[#888] max-w-sm">Implementamos sistemas de IA que se integran directamente en el flujo de trabajo de tu empresa.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Service 1 -->
+                <div class="border border-[#222] p-8 md:p-12 group hover:border-[#444] transition-colors bg-[#080808]">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-[#555] font-display text-xl font-medium">01 —</span>
+                        <span class="text-2xl text-[#333] group-hover:text-white transition-colors" aria-hidden="true">⤢</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-display font-bold mb-4">Optimización de procesos</h3>
+                    <p class="text-[#888] leading-relaxed">
+                        Automatización completa de la atención al cliente, gestión inteligente de correos electrónicos corporativos, y procesos administrativos que frenan el crecimiento de tu equipo.
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="border border-[#222] p-8 md:p-12 group hover:border-[#444] transition-colors bg-[#080808]">
+                    <div class="flex justify-between items-start mb-16">
+                        <span class="text-[#555] font-display text-xl font-medium">02 —</span>
+                        <span class="text-2xl text-[#333] group-hover:text-white transition-colors" aria-hidden="true">⤢</span>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-display font-bold mb-4">Aumento de facturación con IA</h3>
+                    <p class="text-[#888] leading-relaxed">
+                        Sistemas automatizados de seguimiento de leads, cualificación automática de prospectos y estrategias de upselling dinámico potenciadas por Inteligencia Artificial.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="beneficios" class="py-24 px-6 border-b border-[#222] bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-4xl md:text-5xl font-display font-bold tracking-tight mb-8">Tu Agencia <br>de IA B2B.</h2>
+                <p class="text-[#888] mb-8 text-lg">No vendemos software, construimos la infraestructura operativa del futuro para tu negocio.</p>
+                <a href="#contacto" class="inline-flex items-center gap-2 border-b border-white pb-1 font-medium hover:text-[#888] hover:border-[#888] transition-colors" aria-label="Agendar consulta de automatización">
+                    Agendar consulta <span aria-hidden="true">→</span>
+                </a>
+            </div>
+            <div class="flex flex-col gap-8">
+                <div class="pb-8 border-b border-[#222]">
+                    <h4 class="text-xl font-display font-bold mb-3 flex items-center gap-4">
+                        <span class="text-[#555] text-sm">01 —</span> Integración a medida
+                    </h4>
+                    <p class="text-[#888] pl-11">
+                        Sistemas 100% adaptados a las herramientas que ya utilizas en tu día a día (CRM, ERP, WhatsApp, Slack, etc.). Sin curvas de aprendizaje complejas.
+                    </p>
+                </div>
+                <div class="pb-8 border-b border-[#222]">
+                    <h4 class="text-xl font-display font-bold mb-3 flex items-center gap-4">
+                        <span class="text-[#555] text-sm">02 —</span> Orientado a resultados
+                    </h4>
+                    <p class="text-[#888] pl-11">
+                        Nuestra arquitectura está diseñada con dos objetivos matemáticos: reducir costes operativos radicalmente y generar nuevas vías de venta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-6 border-b border-[#222]">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">Preguntas Frecuentes sobre Automatización</h2>
+            
+            <div class="divide-y divide-[#222] border-t border-[#222]">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                    <button class="w-full py-6 flex justify-between items-center text-left hover:text-[#888] transition-colors focus:outline-none">
+                        <span class="text-lg font-display font-medium">¿Qué procesos puedo automatizar?</span>
+                        <span class="faq-icon text-2xl font-light text-[#555]">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner text-[#888] pb-6 leading-relaxed">
+                            Casi cualquier proceso digital repetitivo. Desde la captación y clasificación de clientes potenciales, envío de presupuestos, soporte al cliente en múltiples idiomas 24/7, hasta la gestión interna de inventario o bases de datos.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                    <button class="w-full py-6 flex justify-between items-center text-left hover:text-[#888] transition-colors focus:outline-none">
+                        <span class="text-lg font-display font-medium">¿Necesito conocimientos técnicos?</span>
+                        <span class="faq-icon text-2xl font-light text-[#555]">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner text-[#888] pb-6 leading-relaxed">
+                            En absoluto. Nosotros nos encargamos del 100% del desarrollo, la implementación técnica y la conexión entre plataformas. Te entregamos un sistema "llave en mano" listo para operar.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                    <button class="w-full py-6 flex justify-between items-center text-left hover:text-[#888] transition-colors focus:outline-none">
+                        <span class="text-lg font-display font-medium">¿Cuánto se tarda en implementar?</span>
+                        <span class="faq-icon text-2xl font-light text-[#555]">+</span>
+                    </button>
+                    <div class="faq-content">
+                        <div class="faq-inner text-[#888] pb-6 leading-relaxed">
+                            Depende de la complejidad del flujo de trabajo, pero la mayoría de nuestras soluciones están operativas e integradas en tu negocio en cuestión de días tras la auditoría inicial.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contacto" class="py-12 px-6 bg-[#030303] text-center md:text-left">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col gap-2">
+                <a href="#" class="text-2xl font-display font-bold tracking-tight uppercase" aria-label="Volver al inicio de Aether">
+                    Aether
+                </a>
+                <p class="text-[#555] text-sm">&copy; 2026 Aether. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <a href="mailto:aether.avatar@gmail.com" class="text-[#888] hover:text-white transition-colors" aria-label="Enviar correo electrónico a aether.avatar@gmail.com">
+                    aether.avatar@gmail.com
+                </a>
+                <a href="https://wa.me/34614576542" target="_blank" rel="noopener noreferrer" class="bg-[#222] text-white px-4 py-2 rounded text-xs hover:bg-[#333] transition-colors uppercase tracking-wider" aria-label="Contactar rápidamente por WhatsApp">
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botón flotante de WhatsApp (Verde sólido) -->
+    <a href="https://wa.me/34614576542" target="_blank" rel="noopener noreferrer" 
+       class="fixed bottom-6 left-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.3)] hover:scale-110 hover:shadow-[0_4px_25px_rgba(37,211,102,0.5)] transition-all duration-300 flex items-center justify-center"
+       aria-label="Chatear con nosotros en WhatsApp">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.88-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.015c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <!-- JavaScript for Accordion -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const button = item.querySelector('button');
+                const content = item.querySelector('.faq-content');
+
+                button.addEventListener('click', () => {
+                    const isOpen = content.classList.contains('open');
+
+                    // Close all other accordions (optional, but good for clean UI)
+                    faqItems.forEach(otherItem => {
+                        otherItem.querySelector('.faq-content').classList.remove('open');
+                        otherItem.classList.remove('open');
+                    });
+
+                    // Toggle current
+                    if (!isOpen) {
+                        content.classList.add('open');
+                        item.classList.add('open');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
